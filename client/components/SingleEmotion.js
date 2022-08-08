@@ -1,63 +1,53 @@
-import React from "react";
-import { connect } from "react-redux";
-import { fetchSingleEmotion } from "../store/singleEmotion";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import EmotionNav from "./EmotionNav";
 
-export class SingleEmotion extends React.Component {
-  componentDidMount() {
-    try {
-      const emotionId = this.props.match.params.emotionId;
-      this.props.loadSingleEmotion(emotionId);
-    } catch (error) {
-      console.error(error);
-    }
-  }
+const SingleEmotion = (props) => {
+  const [product, setProduct] = useState({});
 
-  render() {
-    const singleItem = this.props.singleEmotion;
-    return (
+  useEffect(() => {
+    (async () => {
+      const { data } = await axios.get(
+        `/api/products/${props.match.params.productId}`
+      );
+      setProduct(data);
+    })();
+  }, []);
+
+  return (
+    !product.name || (
       <div>
+        Single Emotion View
         <EmotionNav />
-        <h1>{singleItem.name}</h1>
+        <h1>{product.name}</h1>
         <div className="item">
           <div className="itemDetails">
             <div className="empathy">
-              Empathy Level: {singleItem.reccomendedEmpathyLevel}
+              Empathy Level: {product.reccomendedEmpathyLevel}
             </div>
             <div className="singleImg">
-              <img src={singleItem.imageURL} />
+              <img src={product.imageURL} />
             </div>
             <div className="description">
               <div>
-                <h2>Description:</h2> {singleItem.description}
+                <h2>Description:</h2> {product.description}
               </div>
             </div>
             <div>
-              <span>Price:</span> ${singleItem.price}
+              <span>Price:</span> ${product.price}
             </div>
             <div>
-              <span>On Hand Quantity:</span> {singleItem.stockQuantity}
+              <span>On Hand Quantity:</span> {product.stockQuantity}
             </div>
             <div>
-              <Link to={`/emotions/${singleItem.id}/edit`} />
+              <Link to={`/products/${product.id}/edit`} />
             </div>
           </div>
         </div>
       </div>
-    );
-  }
-}
-const mapStateToProps = (state) => {
-  return {
-    singleEmotion: state.singleEmotion,
-  };
+    )
+  );
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    loadSingleEmotion: (id) => dispatch(fetchSingleEmotion(id)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SingleEmotion);
+export default SingleEmotion;
