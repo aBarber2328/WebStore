@@ -1,21 +1,32 @@
-const Sequelize = require('sequelize')
-const db = require('../db')
-const jwt = require('jsonwebtoken')
+const Sequelize = require('sequelize');
+const { Op } = require("sequelize");
+const db = require('../db');
+const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const axios = require('axios');
 
 const SALT_ROUNDS = 5;
 
-const User = db.define('user', {
+const User = db.define("user", {
   username: {
     type: Sequelize.STRING,
     unique: true,
-    allowNull: false
+    allowNull: false,
   },
   password: {
     type: Sequelize.STRING,
-  }
-})
+  },
+  email: {
+    type: Sequelize.STRING,
+    unique: true,
+  },
+  type: {
+    type: Sequelize.ENUM("siteAdmin", "customer"),
+    defaultValue: "customer",
+  },
+  address: {
+    type: Sequelize.STRING,
+  },
+});
 
 module.exports = User
 
@@ -30,6 +41,40 @@ User.prototype.correctPassword = function(candidatePwd) {
 User.prototype.generateToken = function() {
   return jwt.sign({id: this.id}, process.env.JWT)
 }
+
+//new methods
+// User.prototype.getCart = async function () {
+//   const cart = await Order.findOne({
+//     where: { userId: this.id, status: "cart" },
+//   });
+//   return cart;
+// };
+
+// User.prototype.getWishlists = async function () {
+//   const wishlists = await Order.findAll({
+//     where: { userId: this.id, status: "wishlist" },
+//   });
+//   return wishlists;
+// };
+
+// User.prototype.getOldOrders = async function () {
+//   const oldOrders = await Order.findAll({
+//     where: {
+//       userId: this.id,
+//       status: {
+//         [Op.or]: ["ordered", "en-route", "delivered"],
+//       },
+//     },
+//   });
+//   return oldOrders;
+// };
+
+// User.prototype.checkoutCart = async function () {
+//   const cart = await this.getCart();
+//   const date = new Date();
+//   await cart.update({ status: "ordered", datePurchased: date });
+//   this.createOrder({ status: "cart" });
+// };
 
 /**
  * classMethods
@@ -69,6 +114,13 @@ const hashPassword = async(user) => {
   }
 }
 
+// const makeCart = async (user) => {
+//   user.createOrder({ status: "cart" });
+// };
+
 User.beforeCreate(hashPassword)
 User.beforeUpdate(hashPassword)
 User.beforeBulkCreate(users => Promise.all(users.map(hashPassword)))
+
+// User.afterCreate(makeCart);
+// User.afterBulkCreate((users) => Promise.all(users.map(makeCart)));
