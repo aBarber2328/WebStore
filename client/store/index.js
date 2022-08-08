@@ -3,21 +3,10 @@ import { createLogger } from "redux-logger";
 import thunkMiddleware from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import auth from "./auth";
-import emotionsReducer from "./allEmotions";
-import singleOrderEmotionDataReducer from "./singleOrderEmotionData";
-import usersReducer from "./allUsers";
-import ordersReducer from "./allOrders";
-import singleOrderReducer from "./singleOrder";
-import singleEmotionReducer from "./singleEmotion";
+
 
 const reducer = combineReducers({
   auth,
-  emotions: emotionsReducer,
-  singleEmotion: singleEmotionReducer,
-  users: usersReducer,
-  orders: ordersReducer,
-  singleOrder: singleOrderReducer,
-  singleOrderEmotionData: singleOrderEmotionDataReducer,
 });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))

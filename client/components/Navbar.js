@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../store";
 import { Login, Signup } from "./AuthForm";
-import AllEmotions from "./AllEmotions";
+import AllEmotions from "./AllProducts";
 import NavCarousel from "./navCarousel";
 import {
   FiLogOut,

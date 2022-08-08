@@ -4,7 +4,7 @@ import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
 import { me } from "./store";
-import AllEmotions from "./components/AllEmotions";
+import AllProducts from "./components/AllProducts";
 import SingleEmotion from "./components/SingleEmotion";
 import EditEmotion from "./components/EditEmotion";
 import AllUsers from "./components/AllUsers";
@@ -33,7 +33,7 @@ class Routes extends Component {
             <Route path="/users/cart" component={Cart} />
           </Switch>
         ) : (
-          <AllEmotions />
+          <AllProducts />
           // <Switch>
           //   {/* <Route exact path="/" component={Login} />
           //   <Route path="/login" component={Login} />
@@ -42,7 +42,7 @@ class Routes extends Component {
         )}
         {/* all users should be able to view items, regardless of loggin status */}
         <Switch>
-          <Route exact path="/emotions" component={AllEmotions} />
+          <Route exact path="/products" component={AllProducts} />
           <Route exact path="/emotions/:emotionId" component={SingleEmotion} />
           <Route path="/cart" component={AddToCart} />
         </Switch>
