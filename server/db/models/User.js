@@ -42,40 +42,6 @@ User.prototype.generateToken = function() {
   return jwt.sign({id: this.id}, process.env.JWT)
 }
 
-//new methods
-// User.prototype.getCart = async function () {
-//   const cart = await Order.findOne({
-//     where: { userId: this.id, status: "cart" },
-//   });
-//   return cart;
-// };
-
-// User.prototype.getWishlists = async function () {
-//   const wishlists = await Order.findAll({
-//     where: { userId: this.id, status: "wishlist" },
-//   });
-//   return wishlists;
-// };
-
-// User.prototype.getOldOrders = async function () {
-//   const oldOrders = await Order.findAll({
-//     where: {
-//       userId: this.id,
-//       status: {
-//         [Op.or]: ["ordered", "en-route", "delivered"],
-//       },
-//     },
-//   });
-//   return oldOrders;
-// };
-
-// User.prototype.checkoutCart = async function () {
-//   const cart = await this.getCart();
-//   const date = new Date();
-//   await cart.update({ status: "ordered", datePurchased: date });
-//   this.createOrder({ status: "cart" });
-// };
-
 /**
  * classMethods
  */
