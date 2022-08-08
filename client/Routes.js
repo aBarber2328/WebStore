@@ -5,7 +5,7 @@ import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
 import { me } from "./store";
 import AllEmotions from "./components/AllEmotions";
-import SingleEmotion from "./components/SingleEmotion";
+import SingleProduct from "./components/SingleProduct";
 import EditEmotion from "./components/EditEmotion";
 import AllUsers from "./components/AllUsers";
 import Cart from "./components/Cart";
@@ -48,7 +48,7 @@ class Routes extends Component {
         {/* all users should be able to view items, regardless of loggin status */}
         <Switch>
           <Route exact path="/products" component={AllEmotions} />
-          <Route exact path="/products/:productId" component={SingleEmotion} />
+          <Route exact path="/products/:productId" component={SingleProduct} />
           <Route path="/cart" component={AddToCart} />
         </Switch>
       </div>
