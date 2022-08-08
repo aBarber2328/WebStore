@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchUserCart } from "../store/singleOrder";
-import AllEmotions from "./AllEmotions";
+import AllEmotions from "./AllProducts";
 
 /**
  * COMPONENT
@@ -25,7 +25,7 @@ export class Home extends React.Component {
 
         <h3>Welcome, {username}</h3>
         <div>
-          
+
         </div>
       </div>
     );
