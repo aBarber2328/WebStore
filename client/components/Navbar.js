@@ -97,13 +97,13 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
                 <FiHome />
               </Link>
               {isAdmin ? (
-                <Link to="/emotions">
+                <Link to="/products">
                   <RiAdminFill />
                 </Link>
               ) : (
                 ""
               )}
-              <Link to="/users/cart">
+              <Link to="/cart">
                 <FiShoppingCart />
               </Link>
               <a href="" onClick={handleClick}>

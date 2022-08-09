@@ -44,36 +44,44 @@ router.post("/", async (req, res, next) => {
   try {
     const userId = await User.findIdByToken(req.body.token);
 
-    const UpdateOrCreate = async () => {
-      const orderSession = await OrderSession.findOne({
-        where: {
-          userId: userId,
-          status: "active",
-        },
-        include: {
-          model: Product,
-        },
-      });
-      let isNewProduct = true;
+    const orderSession = await OrderSession.findOne({
+      where: {
+        userId: userId,
+        status: "active",
+      },
+      include: {
+        model: Product,
+      },
+    });
+    let isNewProduct = true;
+    const products = orderSession.dataValues.products;
 
-      orderSession.dataValues.products.forEach((product) => {
-        if (product.dataValues.id === req.body.productId) {
-          console.log("Test", product);
-          ProductOrderSession.update({
+    for (let i = 0; i < products.length; i++) {
+      if (products[i].dataValues.id === +req.body.productId) {
+        isNewProduct = false;
+        await ProductOrderSession.update(
+          {
             quantity:
-              product.dataValues.productOrderSessions.dataValues.quantity + 1,
-            productId: req.body.productId,
-            orderSessionId: orderSession.dataValues.id,
-          });
-        }
+              products[i].dataValues.productOrderSessions.dataValues.quantity +
+              1,
+          },
+          {
+            where: {
+              productId: +req.body.productId,
+              orderSessionId: orderSession.dataValues.id,
+            },
+          }
+        );
+      }
+    }
+    if (isNewProduct) {
+      await ProductOrderSession.create({
+        quantity: 1,
+        productId: +req.body.productId,
+        orderSessionId: orderSession.dataValues.id,
       });
+    }
 
-      // if (isNewProduct) {
-      //   ProductOrderSession.create({ or });
-      // }
-    };
-
-    UpdateOrCreate();
     res.sendStatus(200);
   } catch (error) {
     next(error);
