@@ -1,67 +1,61 @@
-import React from "react";
-import { connect } from "react-redux";
-import { fetchEmotions } from "../store/allEmotions";
-import { fetchUserCart } from "../store/singleOrder";
-import {
-  fetchSingleOrderEmotionData,
-  unassignOrderSingleEmotion,
-} from "../store/singleOrderEmotionData";
-import { updateQuantity } from "../store/singleOrderEmotionData";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-export class UserCart extends React.Component {
-  constructor(props) {
-    super(props);
 
-    this.removeEmotionHandler = this.removeEmotionHandler.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+const UserCart = (props) => {
 
-  componentDidMount() {
-    try {
-      const userId = this.props.UserId;
-      this.props.loadUserCart(userId);
-      this.props.getAllEmotions();
-      const cartId = this.props.userCart.id;
-      this.props.loadSingleOrderEmotionData(cartId);
-      // console.log(this.props);
-    } catch (error) {}
-  }
+  const [ cart, setCart ] = useState([]);
 
-  componentDidUpdate(prevProps) {
-    // this if statement is a infinit loop
-    if (this.props.loadUserCart !== prevProps.loadUserCart) {
-      const cartId = this.props.userCart.id;
-      this.props.loadSingleOrderEmotionData(cartId);
-    }
-  }
-  removeEmotionHandler(orderId, emotionId) {
-    const userId = this.props.UserId;
-    const cartId = this.props.userCart.id;
-    this.props.unassignOrderSingleEmotion(orderId, emotionId);
-    this.props.loadSingleOrderEmotionData(cartId);
-  }
+  useEffect(() => {
+    (async () => {
+      const { data } = await axios.get("/api/cart");
+      setCart(data);
+    })();
+  }, []);
+  console.log(cart);
+  // componentDidMount() {
+  //   try {
+  //     const userId = this.props.UserId;
+  //     this.props.loadUserCart(userId);
+  //     this.props.getAllEmotions();
+  //     const cartId = this.props.userCart.id;
+  //     this.props.loadSingleOrderEmotionData(cartId);
+  //     // console.log(this.props);
+  //   } catch (error) {}
+  // }
 
-  handleChange(event) {
-    this.setState({ value: event.target.value });
-  }
+  // componentDidUpdate(prevProps) {
+  //   // this if statement is a infinit loop
+  //   if (this.props.loadUserCart !== prevProps.loadUserCart) {
+  //     const cartId = this.props.userCart.id;
+  //     this.props.loadSingleOrderEmotionData(cartId);
+  //   }
+  // }
+  // removeEmotionHandler(orderId, emotionId) {
+  //   const userId = this.props.UserId;
+  //   const cartId = this.props.userCart.id;
+  //   this.props.unassignOrderSingleEmotion(orderId, emotionId);
+  //   this.props.loadSingleOrderEmotionData(cartId);
+  // }
 
-  handleSubmit(event) {
-    event.preventDefault();
+  // handleChange(event) {
+  //   this.setState({ value: event.target.value });
+  // }
 
-    const emotionId = event.target.id;
-    const orderId = this.props.userCart.id;
+  // handleSubmit(event) {
+  //   event.preventDefault();
 
-    this.props.changeQuantity(orderId, emotionId, this.state.value);
-  }
-  render() {
-    const emotions = this.props.emotions;
+  //   const emotionId = event.target.id;
+  //   const orderId = this.props.userCart.id;
 
-    return (
-      <div>
-        <h1>Your Cart</h1>
+  //   this.props.changeQuantity(orderId, emotionId, this.state.value);
+  // }
 
-        {this.props.orderEmotionData.map((emotionData) => (
+  return (
+    <div>
+      <h1>Your Cart</h1>
+
+      {/* {this.props.orderEmotionData.map((emotionData) => (
           <div key={emotionData.emotionId}>
             <h2> Emotion Name {emotions[emotionData.emotionId - 1].name}</h2>
             <h2> Emotion Quanitiy {emotionData.emotionQuantity}</h2>
@@ -91,31 +85,9 @@ export class UserCart extends React.Component {
               Remove Emotion
             </button>
           </div>
-        ))}
-      </div>
-    );
-  }
-}
-
-const mapStateToProps = (state) => {
-  return {
-    userCart: state.singleOrder,
-    orderEmotionData: state.singleOrderEmotionData,
-    UserId: state.auth.id,
-    emotions: state.emotions,
-  };
+        ))} */}
+    </div>
+  );
 };
 
-const mapDispatch = (dispatch) => {
-  return {
-    loadUserCart: (userId) => dispatch(fetchUserCart(userId)),
-    loadSingleOrderEmotionData: (orderId) =>
-      dispatch(fetchSingleOrderEmotionData(orderId)),
-    getAllEmotions: () => dispatch(fetchEmotions()),
-    unassignOrderSingleEmotion: (orderId, emotionId) =>
-      dispatch(unassignOrderSingleEmotion(orderId, emotionId)),
-    changeQuantity: (orderId, emotionId, quantity) =>
-      dispatch(updateQuantity(orderId, emotionId, quantity)),
-  };
-};
-export default connect(mapStateToProps, mapDispatch)(UserCart);
+export default UserCart;
