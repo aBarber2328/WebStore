@@ -16,16 +16,35 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+// GET /api/users/:userId/:ordertype
+// get a users Cart, wishlists, or oldOrders
+router.get("/:orderType", async (req, res, next) => {
+  try {
+    const user = await User.findByPk(req.params.userId);
+    let data;
+    if (req.params.orderType === "cart") {
+      data = await user.getCart();
+    } else if (req.params.orderType === "wishlists") {
+      data = await user.getWishlists();
+    } else if (req.params.orderYype === "history") {
+      data = await user.getHistory();
+    }
+    res.json(data);
+  } catch (err) {
+    next(err);
+  }
+});
+
 // GET /api/orders/:orderId
 // get single order
-// router.get("/:orderId", async (req, res, next) => {
-//   try {
-//     const order = await Order.findByPk(req.params.orderId);
-//     res.send(order);
-//   } catch (err) {
-//     next(err);
-//   }
-// });
+router.get("/:orderId", async (req, res, next) => {
+  try {
+    const order = await Order.findByPk(req.params.orderId);
+    res.send(order);
+  } catch (err) {
+    next(err);
+  }
+});
 
 // GET /api/orders/:orderId/emotionData
 // get single order's emotion Data, i.e. quantities and saved prices

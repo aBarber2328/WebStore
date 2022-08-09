@@ -34,47 +34,24 @@ router.get("/:userId", async (req, res, next) => {
   }
 });
 
-// GET /api/users/:userId/:ordertype
-// get a users Cart, wishlists, or oldOrders
-router.get("/:userId/:ordertype", async (req, res, next) => {
+// PUT /api/users/:userId
+// edit an user
+router.put("/:userId", async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.userId);
-    let data;
-    if (req.params.ordertype === "cart") {
-      data = await user.getCart();
-
-    } else if (req.params.ordertype === "wishlists") {
-      data = await user.getWishlists();
-    } else if (req.params.ordertype === "oldOrders") {
-      data = await user.getOldOrders();
-    }
-    res.send(data);
-  } catch (err) {
-    next(err);
+    res.send(await user.update(req.body));
+  } catch (error) {
+    next(error);
   }
 });
 
-
-// below is not in use, but can be commented out if need be
-
-// // PUT /api/users/:userId
-// // edit an user
-// router.put("/:userId", async (req, res, next) => {
-//   try {
-//     const user = await User.findByPk(req.params.userId);
-//     res.send(await user.update(req.body));
-//   } catch (error) {
-//     next(error);
-//   }
-// });
-
 // // DELETE /api/users/:userId
-// router.delete("/:userId", async (req, res, next) => {
-//   try {
-//     const user = await User.findByPk(req.params.userId);
-//     await user.destroy();
-//     res.send(user);
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+router.delete("/:userId", async (req, res, next) => {
+  try {
+    const user = await User.findByPk(req.params.userId);
+    await user.destroy();
+    res.send(200);
+  } catch (error) {
+    next(error);
+  }
+});
