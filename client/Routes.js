@@ -24,31 +24,18 @@ class Routes extends Component {
 
     return (
       <div>
-        {/* islogged in should only affect the login views */}
-        {isLoggedIn ? (
-          <Switch>
-            <Route exact path="/home" component={Home} />
-            <Route exact path="/users/:userId/:ordertype" component={Cart} />
-            <Route
-              exact
-              path="/emotions/:emotionId/edit"
-              component={EditEmotion}
-            />
-            <Route path="/users/cart" component={Cart} />
-          </Switch>
-        ) : (
-          <AllProducts />
-          // <Switch>
-          //   {/* <Route exact path="/" component={Login} />
-          //   <Route path="/login" component={Login} />
-          //   <Route path="/signUp" component={Signup} /> */}
-          // </Switch>
-        )}
-        {/* all users should be able to view items, regardless of loggin status */}
         <Switch>
-          <Route exact path="/products/:productId" component={SingleProduct} />
-          <Route exact path="/products" component={AllProducts} />
-          <Route path="/cart" component={AddToCart} />
+          <Route exact path="/home" component={Home} />
+          <Route path="/products" component={AllProducts} />
+          <Route path="/products/:productId" component={SingleProduct} />
+          <Route path="/cart" component={Cart} />
+          {/* {isLoggedIn ? (
+            <Route path="/orderHistory" component={OrderHistory} />
+          ) : (
+            <>
+              <Route path="/login" component={Login} />
+            </>
+          )} */}
         </Switch>
       </div>
     );

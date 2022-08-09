@@ -15,31 +15,29 @@ const AllProducts = (props) => {
     })();
   }, []);
 
-  // async function handleAddToCart(event) {
-  //   const emotionId = event.target.id;
-
-  // }
+  async function handleAddToCart(event) {
+    console.log("click");
+  }
   return (
     <div>
-      ALL PRODUCTS
       <EmotionNav />
       <div className="displayAll">
         {products.map((product) => (
           <div className="singleItem" key={product.id}>
             <div>
               <div className="price">Price: ${product.price}</div>
-              <div className="productImages">
+              <div className="emotionImages">
                 <Link to={`/products/${product.id}`}>
                   <div>{<img src={product.imageURL} />}</div>
                 </Link>
               </div>
-              {/* <div className="fontSize">{emotion.name}</div> */}
+              <div className="fontSize">{product.name}</div>
 
-              {/* <div className="allProButtons">
+              <div className="allProButtons">
                 <div>
                   <button
-                    id={emotion.id}
-                    name={emotion.name}
+                    id={product.id}
+                    name={product.name}
                     type="button"
                     onClick={handleAddToCart}
                   >
@@ -49,7 +47,7 @@ const AllProducts = (props) => {
                 <div>
                   <button>Special Offers</button>
                 </div>
-              </div> */}
+              </div>
             </div>
           </div>
         ))}
@@ -58,11 +56,4 @@ const AllProducts = (props) => {
   );
 };
 
-// const mapStateToProps = (state) => {
-//   return {
-//     state: state,
-//   };
-// };
-
-// export default connect(mapStateToProps)(Allproducts);
 export default AllProducts;

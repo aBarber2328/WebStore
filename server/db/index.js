@@ -12,8 +12,8 @@ const ProductOrderSession = require("./models/ProductOrderSession");
 User.hasMany(OrderSession);
 OrderSession.belongsTo(User);
 
-OrderSession.belongsToMany(Product, { through: "ProductOrderSession" });
-Product.belongsToMany(OrderSession, { through: "ProductOrderSession" });
+OrderSession.belongsToMany(Product, { through: "productOrderSessions" });
+Product.belongsToMany(OrderSession, { through: "productOrderSessions" });
 
 module.exports = {
   db,
