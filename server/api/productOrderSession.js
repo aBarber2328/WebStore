@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const {
-  models: { ProductOrderSession },
+  models: { ProductOrderSession, User, OrderSession, Product },
 } = require("../db");
 
 module.exports = router;
@@ -40,13 +40,45 @@ router.get("/", async (req, res, next) => {
 
 // POST /api/orders/
 // add new order
-// router.post("/", async (req, res, next) => {
-//   try {
-//     res.send(await Order.create(req.body));
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+router.post("/", async (req, res, next) => {
+  try {
+    const userId = await User.findIdByToken(req.body.token);
+
+    const UpdateOrCreate = async () => {
+      const orderSession = await OrderSession.findOne({
+        where: {
+          userId: userId,
+          status: "active",
+        },
+        include: {
+          model: Product,
+        },
+      });
+      let isNewProduct = true;
+
+      orderSession.dataValues.products.forEach((product) => {
+        if (product.dataValues.id === req.body.productId) {
+          console.log("Test", product);
+          ProductOrderSession.update({
+            quantity:
+              product.dataValues.productOrderSessions.dataValues.quantity + 1,
+            productId: req.body.productId,
+            orderSessionId: orderSession.dataValues.id,
+          });
+        }
+      });
+
+      // if (isNewProduct) {
+      //   ProductOrderSession.create({ or });
+      // }
+    };
+
+    UpdateOrCreate();
+    res.sendStatus(200);
+  } catch (error) {
+    next(error);
+  }
+});
 
 // PUT /api/orders/:orderId
 // edit an order

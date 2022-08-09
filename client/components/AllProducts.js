@@ -16,6 +16,15 @@ const AllProducts = (props) => {
   }, []);
 
   async function handleAddToCart(event) {
+    const productId = event.target.name;
+
+    (async () => {
+      await axios.post("/api/cart", {
+        token: window.localStorage.token,
+        productId,
+      });
+    })();
+
     console.log("click");
   }
   return (
@@ -36,8 +45,8 @@ const AllProducts = (props) => {
               <div className="allProButtons">
                 <div>
                   <button
-                    id={product.id}
-                    name={product.name}
+                    // id={product.id}
+                    name={product.id}
                     type="button"
                     onClick={handleAddToCart}
                   >
