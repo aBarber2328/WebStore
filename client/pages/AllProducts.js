@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-import EmotionNav from "./EmotionNav";
+import ProductNav from "../components/ProductNav";
 
 const AllProducts = (props) => {
   const [products, setProducts] = useState([]);
@@ -29,7 +29,7 @@ const AllProducts = (props) => {
   }
   return (
     <div>
-      <EmotionNav />
+      <ProductNav />
       <div className="displayAll">
         {products.map((product) => (
           <div className="singleItem" key={product.id}>
