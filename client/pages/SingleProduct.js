@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import EmotionNav from "./EmotionNav";
+import EmotionNav from "../components/ProductNav";
 
 const SingleEmotion = (props) => {
   const [product, setProduct] = useState({});

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 
-const UserCart = (props) => {
+const OrderSession = (props) => {
 
   const [ cart, setCart ] = useState([]);
 
@@ -90,4 +90,4 @@ const UserCart = (props) => {
   );
 };
 
-export default UserCart;
+export default OrderSession;

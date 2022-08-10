@@ -1,8 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { fetchUserCart } from "../store/singleOrder";
-import AllEmotions from "./AllProducts";
+
+
 
 /**
  * COMPONENT
@@ -10,11 +9,6 @@ import AllEmotions from "./AllProducts";
 export class Home extends React.Component {
   constructor() {
     super();
-  }
-
-  componentDidMount() {
-    this.props.loadUserCart(this.props.userId);
-    //console.log(this.props);
   }
 
   render() {

@@ -1,15 +1,13 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter, Route, Switch, Redirect } from "react-router-dom";
-import { Login, Signup } from "./components/AuthForm";
-import Home from "./components/Home";
+import { withRouter, Route, Switch } from "react-router-dom";
+
+import Home from "./pages/Home";
 import { me } from "./store";
-import SingleProduct from "./components/SingleProduct";
-import AllProducts from "./components/AllProducts";
-import EditEmotion from "./components/EditEmotion";
-import AllUsers from "./components/AllUsers";
-import Cart from "./components/Cart";
-import { AddToCart } from "./components/AddToCart";
+import SingleProduct from "./pages/SingleProduct";
+import AllProducts from "./pages/AllProducts";
+
+import OrderSession from "./pages/OrderSession";
 
 /**
  * COMPONENT
@@ -28,7 +26,7 @@ class Routes extends Component {
           <Route exact path="/home" component={Home} />
           <Route path="/products" component={AllProducts} />
           <Route path="/products/:productId" component={SingleProduct} />
-          <Route path="/cart" component={Cart} />
+          <Route path="/orderSession" component={OrderSession} />
           {/* {isLoggedIn ? (
             <Route path="/orderHistory" component={OrderHistory} />
           ) : (
