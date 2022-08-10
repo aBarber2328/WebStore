@@ -109,14 +109,26 @@ router.post("/", async (req, res, next) => {
 
 // PUT /api/orders/:orderId
 // edit an order
-// router.put("/:orderId", async (req, res, next) => {
-//   try {
-//     const order = await Order.findByPk(req.params.orderId);
-//     res.send(await order.update(req.body));
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+router.put("/", async (req, res, next) => {
+  try {
+    console.log(req.body);
+    const userId = await User.findIdByToken(req.body.token);
+    await OrderSession.update(
+      { status: "bought" },
+      {
+        where: { status: "active", userId: userId },
+      }
+    );
+
+    const newOrder = await OrderSession.create({
+      status: "active",
+      userId: userId,
+    });
+    res.sendStatus(200);
+  } catch (error) {
+    next(error);
+  }
+});
 
 // PUT /api/orders/:orderId/:emotionId/unassign
 // remove emotion from an order/cart/wishlist
