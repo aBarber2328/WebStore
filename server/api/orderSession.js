@@ -111,7 +111,6 @@ router.post("/", async (req, res, next) => {
 // edit an order
 router.put("/", async (req, res, next) => {
   try {
-    console.log(req.body);
     const userId = await User.findIdByToken(req.body.token);
     await OrderSession.update(
       { status: "bought" },

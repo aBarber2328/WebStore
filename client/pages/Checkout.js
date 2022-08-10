@@ -40,12 +40,14 @@ const Checkout = () => {
     }));
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     await axios.put("/api/order-session", {
       ...checkoutInfo,
       token: window.localStorage.token,
     });
     setCheckoutInfo(initialCheckoutInfo);
+    alert("Congrats, you just purchase!");
   };
 
   return (
@@ -73,7 +75,7 @@ const Checkout = () => {
           </FormControl>
         ))}
       </Box>
-      <button onClick={handleSubmit}>Buy</button>
+      <button onClick={(event) => handleSubmit(event)}>Buy</button>
     </>
   );
 };
