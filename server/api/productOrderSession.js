@@ -8,8 +8,15 @@ module.exports = router;
 // GET /api/cart
 // get all orders in productOrderSession
 router.get("/", async (req, res, next) => {
+  const userId = await User.findIdByToken(req.headers.authorization);
   try {
-    const orders = await ProductOrderSession.findAll();
+    const orders = await OrderSession.findOne({
+      where:{
+        status: "active",
+        userId: userId,
+      },
+      include: Product,
+    });
     res.json(orders);
   } catch (err) {
     next(err);
@@ -18,14 +25,14 @@ router.get("/", async (req, res, next) => {
 
 // GET /api/orders/:orderId
 // get single order
-// router.get("/:orderId", async (req, res, next) => {
-//   try {
-//     const order = await Order.findByPk(req.params.orderId);
-//     res.send(order);
-//   } catch (err) {
-//     next(err);
-//   }
-// });
+router.get("/user/:orderType", async (req, res, next) => {
+  try {
+    const order = await OrderSession.findByPk(req.params.orderId);
+    res.send(order);
+  } catch (err) {
+    next(err);
+  }
+});
 
 // GET /api/orders/:orderId/emotionData
 // get single order's emotion Data, i.e. quantities and saved prices
@@ -55,6 +62,7 @@ router.post("/", async (req, res, next) => {
     });
     let isNewProduct = true;
     const products = orderSession.dataValues.products;
+
 
     for (let i = 0; i < products.length; i++) {
       if (products[i].dataValues.id === +req.body.productId) {
@@ -125,7 +133,7 @@ router.post("/", async (req, res, next) => {
 
 // PUT /api/orders/:orderId/:emotionId/:quantity
 // change quant of emotion in order/cart/wishlist
-// router.put("/:orderId/:emotionId/:quantity", async (req, res, next) => {
+// router.put("/:orderId", async (req, res, next) => {
 //   try {
 //     const order = await Order.findByPk(req.params.orderId);
 //     res.send(
@@ -136,13 +144,21 @@ router.post("/", async (req, res, next) => {
 //   }
 // });
 
-// DELETE /api/orders/:orderId
-// router.delete("/:orderId", async (req, res, next) => {
-//   try {
-//     const order = await Order.findByPk(req.params.orderId);
-//     await order.destroy();
-//     res.send(order);
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+// DELETE /api/cart/:orderId
+router.delete("/:productId", async (req, res, next) => {
+  try {
+    const userId = await User.findIdByToken(req.headers.authorization);
+    const order = await OrderSession.findOne({
+      where: {
+        status: 'active',
+        userId: userId,
+      }
+    });
+    console.log("order check",order)
+    await order.removeProducts(+req.params.productId);
+    console.log("test")
+    res.send(order);
+  } catch (error) {
+    next(error);
+  }
+});

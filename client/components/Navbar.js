@@ -99,7 +99,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
                 ) : (
                   ""
                 )}
-                <Link to="/cart">
+                <Link to="/orderSession">
                   <FiShoppingCart />
                 </Link>
                 <a href="" onClick={handleClick}>
