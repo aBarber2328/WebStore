@@ -6,6 +6,19 @@ import OrderSessionProduct from "../components/OrderSessionProduct";
 const OrderSession = (props) => {
   const [cart, setCart] = useState([]);
 
+  const updateOrderSession = async () => {
+    const newCart = cart.map((item) => ({
+      quantity: item.productOrderSessions.quantity,
+      orderSessionId: item.productOrderSessions.orderSessionId,
+      productId: item.productOrderSessions.productId,
+    }));
+
+    console.log(newCart);
+    await axios.put("/api/order-session/", {
+      token: window.localStorage.token,
+      cart: newCart,
+    });
+  };
 
   useEffect(() => {
     (async () => {
@@ -17,17 +30,25 @@ const OrderSession = (props) => {
       });
       setCart(data.products);
 
-      // console.log(data.products);
+      console.log(data.products);
     })();
   }, []);
-console.log(cart);
+
   return (
     <div>
       <h1>Your Cart</h1>
 
-      {cart.length === 0 ?(''):(cart.map((product) => (
-        <OrderSessionProduct key={product.id} product={product} cart={cart} setCart={setCart}/>
-      )))}
+      {cart.length === 0
+        ? ""
+        : cart.map((product) => (
+            <OrderSessionProduct
+              key={product.id}
+              product={product}
+              cart={cart}
+              setCart={setCart}
+            />
+          ))}
+      <button onClick={updateOrderSession}>Checkout</button>
     </div>
   );
 };

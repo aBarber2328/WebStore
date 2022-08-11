@@ -21,21 +21,27 @@ const OrderSessionProduct = ({ product, cart, setCart }) => {
     });
   }
 
-  const handleDecrement = () => {
+  const handleDecrement = async () => {
     if (quantity > 0) {
-      setQuantity(quantity - 1);
-      // setCart((cart)=>{
-      //   for()
-      //   cart.productOrderSessions.quantity = quantity;
-      // })
-
+      setQuantity((quantity) => quantity - 1);
+      setCart((cart) => {
+        return cart.map((item) => {
+          if (item.id === product.id) item.productOrderSessions.quantity--;
+          return item;
+        });
+      });
     }
   };
-  console.log("cart quantity", cart);
 
-  const handleIncrement = () => {
+  const handleIncrement = async () => {
     if (quantity < 100) {
-      setQuantity(quantity + 1);
+      setQuantity((quantity) => quantity + 1);
+      setCart((cart) => {
+        return cart.map((item) => {
+          if (item.id === product.id) item.productOrderSessions.quantity++;
+          return item;
+        });
+      });
     }
   };
 

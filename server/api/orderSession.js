@@ -11,7 +11,7 @@ router.get("/", async (req, res, next) => {
   const userId = await User.findIdByToken(req.headers.authorization);
   try {
     const orders = await OrderSession.findOne({
-      where:{
+      where: {
         status: "active",
         userId: userId,
       },
@@ -32,7 +32,6 @@ router.get("/user/:orderType", async (req, res, next) => {
     next(err);
   }
 });
-
 
 // GET /api/orders/:orderId
 // get single order
@@ -101,13 +100,13 @@ router.delete("/:productId", async (req, res, next) => {
     const userId = await User.findIdByToken(req.headers.authorization);
     const order = await OrderSession.findOne({
       where: {
-        status: 'active',
+        status: "active",
         userId: userId,
-      }
+      },
     });
-    console.log("order check",order)
+    console.log("order check", order);
     await order.removeProducts(+req.params.productId);
-    console.log("test")
+    console.log("test");
     res.send(order);
   } catch (error) {
     next(error);
@@ -116,14 +115,17 @@ router.delete("/:productId", async (req, res, next) => {
 
 // PUT /api/orders/:orderId
 // edit an order
-// router.put("/:orderId", async (req, res, next) => {
-//   try {
-//     const order = await Order.findByPk(req.params.orderId);
-//     res.send(await order.update(req.body));
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+router.put("/", async (req, res, next) => {
+  try {
+    await ProductOrderSession.bulkCreate(req.body.cart, {
+      updateOnDuplicate: ["quantity"],
+    });
+
+    res.sendStatus(200);
+  } catch (error) {
+    next(error);
+  }
+});
 
 // PUT /api/orders/:orderId/:emotionId/unassign
 // remove emotion from an order/cart/wishlist
@@ -161,4 +163,3 @@ router.put("/:orderId/:emotionId/:quantity", async (req, res, next) => {
     next(error);
   }
 });
-
