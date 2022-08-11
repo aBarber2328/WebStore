@@ -19,13 +19,11 @@ const AllProducts = (props) => {
     const productId = event.target.name;
 
     (async () => {
-      await axios.post("/api/cart", {
+      await axios.post("/api/order-session", {
         token: window.localStorage.token,
         productId,
       });
     })();
-
-    console.log("click");
   }
   return (
     <div>

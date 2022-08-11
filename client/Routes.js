@@ -8,7 +8,6 @@ import SingleProduct from "./pages/SingleProduct";
 import AllProducts from "./pages/AllProducts";
 import OrderSession from "./pages/OrderSession";
 
-
 /**
  * COMPONENT
  */
@@ -23,10 +22,10 @@ class Routes extends Component {
     return (
       <div>
         <Switch>
-          <Route exact path="/home" component={Home} />
-          <Route path="/products" component={AllProducts} />
-          <Route path="/products/:productId" component={SingleProduct} />
-          <Route path="/orderSession" component={OrderSession} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/products" component={AllProducts} />
+          <Route exact path="/products/:productId" component={SingleProduct} />
+          <Route path="/order-session" component={OrderSession} />
 
           {/* {isLoggedIn ? (
             <Route path="/orderHistory" component={OrderHistory} />
