@@ -13,7 +13,6 @@ const OrderSession = (props) => {
       productId: item.productOrderSessions.productId,
     }));
 
-    console.log(newCart);
     await axios.put("/api/order-session/", {
       token: window.localStorage.token,
       cart: newCart,
@@ -29,8 +28,6 @@ const OrderSession = (props) => {
         },
       });
       setCart(data.products);
-
-      console.log(data.products);
     })();
   }, []);
 

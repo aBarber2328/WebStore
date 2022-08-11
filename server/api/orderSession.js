@@ -104,9 +104,7 @@ router.delete("/:productId", async (req, res, next) => {
         userId: userId,
       },
     });
-    console.log("order check", order);
     await order.removeProducts(+req.params.productId);
-    console.log("test");
     res.send(order);
   } catch (error) {
     next(error);

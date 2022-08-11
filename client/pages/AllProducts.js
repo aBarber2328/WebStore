@@ -24,8 +24,6 @@ const AllProducts = (props) => {
         productId,
       });
     })();
-
-    console.log("click");
   }
   return (
     <div>
