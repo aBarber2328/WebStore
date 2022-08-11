@@ -6,8 +6,8 @@ import Home from "./pages/Home";
 import { me } from "./store";
 import SingleProduct from "./pages/SingleProduct";
 import AllProducts from "./pages/AllProducts";
-
 import OrderSession from "./pages/OrderSession";
+
 
 /**
  * COMPONENT
@@ -27,6 +27,7 @@ class Routes extends Component {
           <Route path="/products" component={AllProducts} />
           <Route path="/products/:productId" component={SingleProduct} />
           <Route path="/orderSession" component={OrderSession} />
+
           {/* {isLoggedIn ? (
             <Route path="/orderHistory" component={OrderHistory} />
           ) : (
