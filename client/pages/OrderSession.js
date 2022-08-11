@@ -10,23 +10,24 @@ const OrderSession = (props) => {
   useEffect(() => {
     (async () => {
       const token = window.localStorage.token;
-      const { data } = await axios.get("/api/cart", {
+      const { data } = await axios.get("/api/order-session", {
         headers: {
           authorization: token,
         },
       });
       setCart(data.products);
-      console.log(data.products);
+
+      // console.log(data.products);
     })();
   }, []);
-
+console.log(cart);
   return (
     <div>
       <h1>Your Cart</h1>
 
-      {cart.map((product) => (
+      {cart.length === 0 ?(''):(cart.map((product) => (
         <OrderSessionProduct key={product.id} product={product} cart={cart} setCart={setCart}/>
-      ))}
+      )))}
     </div>
   );
 };
