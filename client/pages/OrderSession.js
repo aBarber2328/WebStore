@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { data } from "flickity";
 import OrderSessionProduct from "../components/OrderSessionProduct";
+import { Link } from "react-router-dom";
 
 const OrderSession = (props) => {
   const [cart, setCart] = useState([]);
 
-  const updateOrderSession = async () => {
+  const updateOrderSession = async (event) => {
+    event.preventDefault();
     const newCart = cart.map((item) => ({
       quantity: item.productOrderSessions.quantity,
       orderSessionId: item.productOrderSessions.orderSessionId,
@@ -45,7 +47,10 @@ const OrderSession = (props) => {
               setCart={setCart}
             />
           ))}
-      <button onClick={updateOrderSession}>Checkout</button>
+
+      <button onClick={updateOrderSession}>
+        <Link to="/checkout">Checkout</Link>
+      </button>
     </div>
   );
 };
