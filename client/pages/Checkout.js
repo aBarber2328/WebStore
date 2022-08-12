@@ -42,7 +42,7 @@ const Checkout = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await axios.put("/api/order-session", {
+    await axios.put("/api/order-session/checkout", {
       ...checkoutInfo,
       token: window.localStorage.token,
     });

@@ -89,7 +89,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
 
               <div className="navBarMenu">
                 {/* The navbar will show these links after you log in */}
-                <Link to="/home">
+                <Link to="/">
                   <FiHome />
                 </Link>
                 {isAdmin ? (
@@ -99,7 +99,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
                 ) : (
                   ""
                 )}
-                <Link to="/cart">
+                <Link to="/order-session">
                   <FiShoppingCart />
                 </Link>
                 <a href="" onClick={handleClick}>
@@ -118,7 +118,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
             {/* The navbar will show these links before you log in */}
 
             <div className="navBarMenu">
-              <Link to="/home">
+              <Link to="/">
                 <FiHome />
               </Link>
               <div>
