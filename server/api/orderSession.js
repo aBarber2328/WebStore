@@ -125,6 +125,27 @@ router.put("/", async (req, res, next) => {
   }
 });
 
+router.put("/checkout", async (req, res, next) => {
+  try {
+    const userId = await User.findIdByToken(req.body.token);
+    await OrderSession.update(
+      { status: "bought" },
+      {
+        where: { status: "active", userId: userId },
+      }
+    );
+
+    const newOrder = await OrderSession.create({
+      status: "active",
+      userId: userId,
+    });
+
+    res.sendStatus(200);
+  } catch (error) {
+    next(error);
+  }
+});
+
 // PUT /api/orders/:orderId/:emotionId/unassign
 // remove emotion from an order/cart/wishlist
 // router.put("/:orderId/:emotionId/unassign", async (req, res, next) => {

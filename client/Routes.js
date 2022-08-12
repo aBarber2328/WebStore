@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter, Route, Switch } from "react-router-dom";
-
 import Home from "./pages/Home";
 import { me } from "./store";
 import SingleProduct from "./pages/SingleProduct";
 import AllProducts from "./pages/AllProducts";
 import OrderSession from "./pages/OrderSession";
+import Checkout from "./pages/Checkout";
 
 /**
  * COMPONENT
@@ -22,11 +22,12 @@ class Routes extends Component {
     return (
       <div>
         <Switch>
+          <Route exact path="/checkout" component={Checkout} />
           <Route exact path="/" component={Home} />
           <Route exact path="/products" component={AllProducts} />
           <Route exact path="/products/:productId" component={SingleProduct} />
           <Route path="/order-session" component={OrderSession} />
-
+          <Route exact path="/checkout" component={Checkout} />
           {/* {isLoggedIn ? (
             <Route path="/orderHistory" component={OrderHistory} />
           ) : (
