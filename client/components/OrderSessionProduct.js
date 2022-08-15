@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
-const OrderSessionProduct = ({ product, cart, setCart }) => {
+const OrderSessionProduct = ({ product, setCart, cartRef }) => {
   const [quantity, setQuantity] = useState(
     product.productOrderSessions.quantity
   );
@@ -17,6 +17,7 @@ const OrderSessionProduct = ({ product, cart, setCart }) => {
 
     setCart((cart) => {
       const newCart = cart.filter((item) => item.id !== productId);
+      cartRef.current = newCart;
       return newCart;
     });
   }
@@ -25,10 +26,12 @@ const OrderSessionProduct = ({ product, cart, setCart }) => {
     if (quantity > 0) {
       setQuantity((quantity) => quantity - 1);
       setCart((cart) => {
-        return cart.map((item) => {
+        const newCart = cart.map((item) => {
           if (item.id === product.id) item.productOrderSessions.quantity--;
           return item;
         });
+        cartRef.current = newCart;
+        return newCart;
       });
     }
   };
@@ -37,10 +40,12 @@ const OrderSessionProduct = ({ product, cart, setCart }) => {
     if (quantity < 100) {
       setQuantity((quantity) => quantity + 1);
       setCart((cart) => {
-        return cart.map((item) => {
+        const newCart = cart.map((item) => {
           if (item.id === product.id) item.productOrderSessions.quantity++;
           return item;
         });
+        cartRef.current = newCart;
+        return newCart;
       });
     }
   };

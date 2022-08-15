@@ -3,11 +3,11 @@ import axios from "axios";
 import OrderSessionProduct from "../components/OrderSessionProduct";
 import { Link } from "react-router-dom";
 
-const OrderSession = (props) => {
+const OrderSession = () => {
   const [cart, setCart] = useState([]);
   const cartRef = useRef([]);
   const updateOrderSession = async () => {
-    const newCart = cart.map((item) => ({
+    const newCart = cartRef.current.map((item) => ({
       quantity: item.productOrderSessions.quantity,
       orderSessionId: item.productOrderSessions.orderSessionId,
       productId: item.productOrderSessions.productId,
@@ -17,7 +17,6 @@ const OrderSession = (props) => {
       token: window.localStorage.token,
       cart: newCart,
     });
-    console.log("cart: ", cart);
   };
 
   useEffect(() => {
@@ -32,7 +31,7 @@ const OrderSession = (props) => {
       cartRef.current = data.products;
     })();
 
-    return () => updateOrderSession();
+    return updateOrderSession;
   }, []);
 
   return (
@@ -46,6 +45,7 @@ const OrderSession = (props) => {
               product={product}
               cart={cart}
               setCart={setCart}
+              cartRef={cartRef}
             />
           ))}
 
