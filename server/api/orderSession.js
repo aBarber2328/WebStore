@@ -118,7 +118,8 @@ router.put("/", async (req, res, next) => {
     await ProductOrderSession.bulkCreate(req.body.cart, {
       updateOnDuplicate: ["quantity"],
     });
-
+    console.log("updated!!!!");
+    console.log(req.body.cart);
     res.sendStatus(200);
   } catch (error) {
     next(error);

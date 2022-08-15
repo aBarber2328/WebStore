@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import { data } from "flickity";
 import OrderSessionProduct from "../components/OrderSessionProduct";
 import { Link } from "react-router-dom";
 
 const OrderSession = (props) => {
   const [cart, setCart] = useState([]);
-
-  const updateOrderSession = async (event) => {
-    event.preventDefault();
+  const cartRef = useRef([]);
+  const updateOrderSession = async () => {
     const newCart = cart.map((item) => ({
       quantity: item.productOrderSessions.quantity,
       orderSessionId: item.productOrderSessions.orderSessionId,
@@ -19,6 +17,7 @@ const OrderSession = (props) => {
       token: window.localStorage.token,
       cart: newCart,
     });
+    console.log("cart: ", cart);
   };
 
   useEffect(() => {
@@ -30,13 +29,15 @@ const OrderSession = (props) => {
         },
       });
       setCart(data.products);
+      cartRef.current = data.products;
     })();
+
+    return () => updateOrderSession();
   }, []);
 
   return (
-    <div>
+    <div className="order-session">
       <h1>Your Cart</h1>
-
       {cart.length === 0
         ? ""
         : cart.map((product) => (

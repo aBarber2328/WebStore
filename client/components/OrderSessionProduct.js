@@ -49,20 +49,19 @@ const OrderSessionProduct = ({ product, cart, setCart }) => {
     <div
       style={{
         display: "flex",
-        flexDirection: "row",
-        justifyContent: "center",
       }}
+      className="order-session-product"
     >
       <img src={product.imageURL} />
       <button onClick={handleDecrement}>-</button>
       <h2>{quantity}</h2>
       <button onClick={handleIncrement}>+</button>
-      <h2>Price{product.price}</h2>
+      <h2>${product.price}</h2>
       <button
         className="delete-button"
         onClick={() => removeProduct(product.id)}
       >
-        Remove Emotion
+        Remove
       </button>
     </div>
   );
