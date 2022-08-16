@@ -3,13 +3,7 @@ import axios from "axios";
 import Button from "@mui/material/Button";
 import OrderSessionProduct from "../components/OrderSessionProduct";
 import { Link } from "react-router-dom";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
+import { Divider } from "@mui/material";
 
 const OrderSession = () => {
   const [cart, setCart] = useState([]);
@@ -51,44 +45,23 @@ const OrderSession = () => {
   return (
     <div className="order-session">
       <h1>Your Cart</h1>
-
-      {cart.length === 0 ? (
-        ""
-      ) : (
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>Product</TableCell>
-                <TableCell align="right">Quantity</TableCell>
-                <TableCell align="right">Price&nbsp;($)</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {carts.map((product) => (
-                <>
-                  <TableRow
-                    key={row.name}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell component="th" scope="row">
-                      <OrderSessionProduct
-                        key={product.id}
-                        product={product}
-                        cart={cart}
-                        setCart={setCart}
-                        cartRef={cartRef}
-                      />
-                    </TableCell>
-                    <TableCell align="right">{row.calories}</TableCell>
-                    <TableCell align="right">{row.fat}</TableCell>
-                  </TableRow>
-                </>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      )}
+      <div className="order-session-title">
+        <h2>Product</h2>
+        <h2>Qty</h2>
+        <h2>Price</h2>
+      </div>
+      <Divider />
+      {cart.length === 0
+        ? ""
+        : cart.map((product) => (
+            <OrderSessionProduct
+              key={product.id}
+              product={product}
+              cart={cart}
+              setCart={setCart}
+              cartRef={cartRef}
+            />
+          ))}
 
       <strong>
         <p className="session-total">${total}</p>

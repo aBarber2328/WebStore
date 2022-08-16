@@ -70,7 +70,7 @@ span {
   border-radius: 25px;
   height: 250px;
   width: 250px;
-  opacity: .9;
+  opacity: 0.9;
 }
 .singleItem:hover {
   box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.2);
@@ -225,43 +225,45 @@ img {
 
 .order-session {
   width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.order-session-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-session-title > h2 {
+  width: 30%;
+  text-align: center;
 }
 
 .order-session-product {
   display: flex;
   align-items: center;
-  margin: 10px;
+  margin: 5px;
   justify-content: space-between;
 }
 
-.order-session h2 {
-  margin: 10px;
+.order-session-product > div {
+  width: 15%;
+  font-size: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.order-session-product svg {
+  transform: scale(2.5);
 }
 
 .order-session img {
-  width: 30vw;
+  width: 10vw;
   margin: 5px;
-}
-
-.product-title {
-  text-align: center;
-  font-size: 22px;
-  margin-top: 10px;
-}
-
-.order-session button,
-.checkout button {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .session-total {
   text-align: center;
-  font-size: 22px;
-}
-
-.product-total {
   font-size: 22px;
 }
 
