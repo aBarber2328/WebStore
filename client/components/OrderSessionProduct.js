@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Divider } from "@mui/material";
 
 const OrderSessionProduct = ({ product, setCart, cartRef }) => {
   const [quantity, setQuantity] = useState(
@@ -51,24 +52,23 @@ const OrderSessionProduct = ({ product, setCart, cartRef }) => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-      }}
-      className="order-session-product"
-    >
-      <img src={product.imageURL} />
-      <button onClick={handleDecrement}>-</button>
-      <h2>{quantity}</h2>
-      <button onClick={handleIncrement}>+</button>
-      <h2>${product.price}</h2>
-      <button
-        className="delete-button"
-        onClick={() => removeProduct(product.id)}
-      >
-        Remove
-      </button>
-    </div>
+    <>
+      <div className="product-title">{product.name}</div>
+      <div className="order-session-product">
+        <img src={product.imageURL} />
+        <button onClick={handleDecrement}>-</button>
+        <h2>{quantity}</h2>
+        <button onClick={handleIncrement}>+</button>
+        <h2>${product.price}</h2>
+        <button
+          className="delete-button"
+          onClick={() => removeProduct(product.id)}
+        >
+          Remove
+        </button>
+      </div>
+      <Divider />
+    </>
   );
 };
 

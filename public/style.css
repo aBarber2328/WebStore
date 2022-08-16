@@ -242,6 +242,24 @@ img {
   margin: 5px;
 }
 
+.product-title {
+  text-align: center;
+  font-size: 22px;
+  margin-top: 10px;
+}
+
+.order-session button,
+.checkout button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.session-total {
+  text-align: center;
+  font-size: 22px;
+}
+
 .product-total {
   font-size: 22px;
 }
@@ -325,5 +343,12 @@ img {
   }
   #mobileMenu.isActive .bar:nth-child(3) {
     transform: translate(-8px) rotate(-45deg);
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .order-session img {
+    width: 20vw;
+    margin: 5px;
   }
 }

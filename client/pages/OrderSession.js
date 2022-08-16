@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import Button from "@mui/material/Button";
 import OrderSessionProduct from "../components/OrderSessionProduct";
 import { Link } from "react-router-dom";
 
 const OrderSession = () => {
   const [cart, setCart] = useState([]);
   const cartRef = useRef([]);
+  const [total, setTotal] = useState(0);
+
   const updateOrderSession = async () => {
     const newCart = cartRef.current.map((item) => ({
       quantity: item.productOrderSessions.quantity,
@@ -34,6 +37,10 @@ const OrderSession = () => {
     return updateOrderSession;
   }, []);
 
+  useEffect(() => {
+    setTotal(calculateTotal(cart));
+  }, [cart]);
+
   return (
     <div className="order-session">
       <h1>Your Cart</h1>
@@ -48,11 +55,20 @@ const OrderSession = () => {
               cartRef={cartRef}
             />
           ))}
-
-      <button onClick={updateOrderSession}>
-        <Link to="/checkout">Checkout</Link>
-      </button>
+      <strong>
+        <p className="session-total">${total}</p>
+      </strong>
+      <Link to="/checkout">
+        <Button>Checkout</Button>
+      </Link>
     </div>
+  );
+};
+
+const calculateTotal = (cart) => {
+  return cart.reduce(
+    (total, item) => total + item.price * item.productOrderSessions.quantity,
+    0
   );
 };
 
