@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import { data } from "flickity";
+import Button from "@mui/material/Button";
 import OrderSessionProduct from "../components/OrderSessionProduct";
+import { Link } from "react-router-dom";
 
-const OrderSession = (props) => {
+const OrderSession = () => {
   const [cart, setCart] = useState([]);
+  const cartRef = useRef([]);
+  const [total, setTotal] = useState(0);
 
   const updateOrderSession = async () => {
-    const newCart = cart.map((item) => ({
+    const newCart = cartRef.current.map((item) => ({
       quantity: item.productOrderSessions.quantity,
       orderSessionId: item.productOrderSessions.orderSessionId,
       productId: item.productOrderSessions.productId,
@@ -28,13 +31,19 @@ const OrderSession = (props) => {
         },
       });
       setCart(data.products);
+      cartRef.current = data.products;
     })();
+
+    return updateOrderSession;
   }, []);
 
-  return (
-    <div>
-      <h1>Your Cart</h1>
+  useEffect(() => {
+    setTotal(calculateTotal(cart));
+  }, [cart]);
 
+  return (
+    <div className="order-session">
+      <h1>Your Cart</h1>
       {cart.length === 0
         ? ""
         : cart.map((product) => (
@@ -43,10 +52,23 @@ const OrderSession = (props) => {
               product={product}
               cart={cart}
               setCart={setCart}
+              cartRef={cartRef}
             />
           ))}
-      <button onClick={updateOrderSession}>Checkout</button>
+      <strong>
+        <p className="session-total">${total}</p>
+      </strong>
+      <Link to="/checkout">
+        <Button>Checkout</Button>
+      </Link>
     </div>
+  );
+};
+
+const calculateTotal = (cart) => {
+  return cart.reduce(
+    (total, item) => total + item.price * item.productOrderSessions.quantity,
+    0
   );
 };
 

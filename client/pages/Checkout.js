@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
+import Button from "@mui/material/Button";
 import axios from "axios";
 
 const initialCheckoutInfo = {
@@ -51,16 +52,17 @@ const Checkout = () => {
   };
 
   return (
-    <>
+    <div className="checkout">
       <Box
         component="form"
         sx={{
           "& > :not(style)": { m: 1 },
-          maxWidth: "80%",
+          // maxWidth: "80%",
         }}
         noValidate
         autoComplete="off"
       >
+        <h3>Contact {"&"} Shipping Info:</h3>
         {Object.keys(initialCheckoutInfo).map((param, index) => (
           <FormControl key={param}>
             <InputLabel htmlFor="component-outlined">
@@ -75,8 +77,8 @@ const Checkout = () => {
           </FormControl>
         ))}
       </Box>
-      <button onClick={(event) => handleSubmit(event)}>Buy</button>
-    </>
+      <Button onClick={(event) => handleSubmit(event)}>Buy</Button>
+    </div>
   );
 };
 
