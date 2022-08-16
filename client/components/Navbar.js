@@ -139,8 +139,8 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
       </div>
 
       {isLoggedIn ? (
-        <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="static">
+        <Box sx={{ flexGrow: 1}}>
+          <AppBar position="static" style={{color: '#000022',  }}>
             <Toolbar>
               {/* <IconButton
                 size="large"
@@ -157,7 +157,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
                 component="div"
                 sx={{ display: { xs: "none", sm: "block" } }}
               >
-                WEBSTORE
+                <Link to='/products'>WEBSTORE</Link>
               </Typography>
               <Search>
                 <SearchIconWrapper>
@@ -262,7 +262,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
                 component="div"
                 sx={{ display: { xs: "none", sm: "block" } }}
               >
-                WEBSTORE
+                <Link to='/products'>WEBSTORE</Link>
               </Typography>
               <Search>
                 <SearchIconWrapper>
