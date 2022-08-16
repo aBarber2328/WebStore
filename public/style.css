@@ -1,11 +1,11 @@
 body {
   font-family: sans-serif;
-  background-color: #d2e5f5;
+  background-color: #edede9;
 }
 
 a {
   text-decoration: none;
-  color: #000022;
+  color: #edede9;
 }
 a:hover {
   color: #e28413;
@@ -66,10 +66,11 @@ span {
   flex-direction: column;
   justify-content: center;
   margin: 5px;
-  background-color: #e28413;
+  background-color: #edede9;
   border-radius: 25px;
   height: 250px;
   width: 250px;
+  opacity: .9;
 }
 .singleItem:hover {
   box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.2);
