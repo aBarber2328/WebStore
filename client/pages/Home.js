@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-
+import cart, { fetchCart } from "../store/cart";
 
 
 /**
@@ -9,6 +9,10 @@ import { connect } from "react-redux";
 export class Home extends React.Component {
   constructor() {
     super();
+  }
+
+  componentDidMount(){
+    this.props.fetchCart();
   }
 
   render() {
@@ -33,13 +37,17 @@ const mapState = (state) => {
   return {
     username: state.auth.username,
     userId: state.auth.id,
+    cart: state.cart,
   };
 };
 
 const mapDispatch = (dispatch) => {
   return {
-    loadUserCart: (userId) => dispatch(fetchUserCart(userId)),
-  };
+    //loadUserCart: (userId) => dispatch(fetchUserCart(userId)),
+    fetchCart: () => {
+      dispatch(fetchCart());
+  },
+}
 };
 
 export default connect(mapState, mapDispatch)(Home);

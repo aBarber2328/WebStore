@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../store";
-import { Login, Signup } from "./AuthForm";
 import NavCarousel from "./navCarousel";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
@@ -14,7 +14,6 @@ import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import Home from "@mui/icons-material/Home";
@@ -26,15 +25,8 @@ import LoginModal from "./LoginModal";
 import SignupModal from "./SignupModal";
 import RenderMobileMenu from "./MobileNav";
 import { mobileMenuId } from "./MobileNav";
-
-import {
-  FiLogOut,
-  FiHome,
-  FiShoppingCart,
-  FiEdit3,
-  FiUserX,
-} from "react-icons/fi";
-import { RiAdminFill } from "react-icons/ri";
+import { FiEdit3 } from "react-icons/fi";
+import cart from "../store/cart";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -76,14 +68,18 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
+const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart}) => {
   const [openLogin, setLogin] = useState(false);
   const [openSignup, setSignup] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+  const itemNum = cart.products;
+  const [products, setProducts] = useState([]);
+  const [input, setInput] = useState([]);
 
   const isMenuOpen = Boolean(anchorEl);
 
+  // console.log(itemNum);
 
   const handleLogin = () => {
     setLogin(true);
@@ -109,6 +105,14 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const handleSearch = (event) =>{
+    // setInput((event.target.value).toUpperCase());
+
+    // products.filter(product =>)
+
+  }
+
+  //console.log(cart);
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
@@ -139,25 +143,16 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
       </div>
 
       {isLoggedIn ? (
-        <Box sx={{ flexGrow: 1}}>
-          <AppBar position="static" style={{color: '#000022',  }}>
+        <Box sx={{ flexGrow: 1 }}>
+          <AppBar position="static" style={{ color: "#000022" }}>
             <Toolbar>
-              {/* <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="open drawer"
-                sx={{ mr: 2 }}
-              >
-                <MenuIcon />
-              </IconButton> */}
               <Typography
                 variant="h6"
                 noWrap
                 component="div"
                 sx={{ display: { xs: "none", sm: "block" } }}
               >
-                <Link to='/products'>WEBSTORE</Link>
+                <Link to="/products">WEBSTORE</Link>
               </Typography>
               <Search>
                 <SearchIconWrapper>
@@ -166,7 +161,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
                 <StyledInputBase
                   placeholder="Search…"
                   inputProps={{ "aria-label": "search" }}
-                  //onChange={handleChange}
+                  onChange={handleSearch}
                 />
               </Search>
               <Box sx={{ flexGrow: 1 }} />
@@ -181,12 +176,13 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
                   aria-label="show 17 new notifications"
                   color="inherit"
                 >
-                  <Badge badgeContent={17} color="error">
+                  <Badge badgeContent={itemNum && itemNum.length} color="error">
                     <Link to="/order-session">
                       <ShoppingCart />
                     </Link>
                   </Badge>
                 </IconButton>
+
                 <IconButton
                   size="large"
                   edge="end"
@@ -231,7 +227,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
           <RenderMobileMenu
             mobileMoreAnchorEl={mobileMoreAnchorEl}
             isLoggedIn={isLoggedIn}
-            handleProfileMenuOpen ={handleProfileMenuOpen}
+            handleProfileMenuOpen={handleProfileMenuOpen}
             handleClick={handleClick}
             // handleLogin={handleLogin}
             // handleSignup={handleSignup}
@@ -239,7 +235,9 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
             // setLogin={setLogin}
             // openSignup={openSignup}
             // setSignup={setSignup}
-            handleMobileMenuClose= {handleMobileMenuClose}
+            handleMobileMenuClose={handleMobileMenuClose}
+            itemNum={itemNum}
+
           />
           {renderMenu}
         </Box>
@@ -247,22 +245,13 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static">
             <Toolbar>
-              {/* <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="open drawer"
-                sx={{ mr: 2 }}
-              >
-                <MenuIcon />
-              </IconButton> */}
               <Typography
                 variant="h6"
                 noWrap
                 component="div"
                 sx={{ display: { xs: "none", sm: "block" } }}
               >
-                <Link to='/products'>WEBSTORE</Link>
+                <Link to="/products">WEBSTORE</Link>
               </Typography>
               <Search>
                 <SearchIconWrapper>
@@ -271,6 +260,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
                 <StyledInputBase
                   placeholder="Search…"
                   inputProps={{ "aria-label": "search" }}
+                  onChange={handleSearch}
                 />
               </Search>
               <Box sx={{ flexGrow: 1 }} />
@@ -285,7 +275,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
                   aria-label="show 17 new notifications"
                   color="inherit"
                 >
-                  <Badge badgeContent={17} color="error">
+                  <Badge badgeContent={itemNum && itemNum.length} color="error">
                     <Link to="/order-session">
                       <ShoppingCart />
                     </Link>
@@ -329,6 +319,7 @@ const mapState = (state) => {
   return {
     isAdmin: state.auth.type === "siteAdmin",
     isLoggedIn: !!state.auth.id,
+    cart: state.cart,
   };
 };
 

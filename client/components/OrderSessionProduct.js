@@ -1,27 +1,31 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Divider } from "@mui/material";
+import { deleteProduct } from "../store/cart";
+import { connect } from "react-redux";
 
-const OrderSessionProduct = ({ product, setCart, cartRef }) => {
-  const [quantity, setQuantity] = useState(
-    product.productOrderSessions.quantity
-  );
+const OrderSessionProduct = (props, { setCart, cartRef }) => {
 
-  async function removeProduct(productId) {
-    const token = window.localStorage.token;
+  const product = props.product;
+  const quantity = product.productOrderSessions.quantity;
+  // const [quantity, setQuantity] = useState(
+  //   product.productOrderSessions.quantity
+  // );
+console.log(props);
 
-    await axios.delete(`/api/order-session/${productId}`, {
-      headers: {
-        authorization: token,
-      },
-    });
+const removeProduct = (productId) =>{
+    props.deleteItem(productId)
+}
 
-    setCart((cart) => {
-      const newCart = cart.filter((item) => item.id !== productId);
-      cartRef.current = newCart;
-      return newCart;
-    });
-  }
+  //async function removeProduct(productId) {
+
+
+    // setCart((cart) => {
+    //   const newCart = cart.filter((item) => item.id !== productId);
+    //   cartRef.current = newCart;
+    //   return newCart;
+    // });
+  //}
 
   const handleDecrement = async () => {
     if (quantity > 0) {
@@ -72,4 +76,17 @@ const OrderSessionProduct = ({ product, setCart, cartRef }) => {
   );
 };
 
-export default OrderSessionProduct;
+const mapDispatch = (dispatch) => {
+  return {
+    deleteItem: (id) => {
+      dispatch(deleteProduct(id, history));
+    },
+  };
+};
+const mapState = (state) => {
+  return {
+    cart: state.cart,
+  };
+};
+
+export default connect(mapState, mapDispatch)(OrderSessionProduct);

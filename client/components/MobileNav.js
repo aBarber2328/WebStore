@@ -30,7 +30,9 @@ const RenderMobileMenu = ({
   // setLogin,
   // openSignup,
   // setSignup,
-  handleMobileMenuClose
+  handleMobileMenuClose,
+  itemNum
+
 }) => {
 
   const [openLogin, setLogin] = useState(false);
@@ -75,7 +77,7 @@ const RenderMobileMenu = ({
           aria-label="show 17 new notifications"
           color="inherit"
         >
-          <Badge badgeContent={17} color="error">
+          <Badge badgeContent={itemNum && itemNum.length} color="error">
             <Link to="/order-session">
               <ShoppingCart />
             </Link>
