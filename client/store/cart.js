@@ -42,7 +42,7 @@ export const fetchCart = () => async (dispatch) => {
           productId,
         });
       }
-      dispatch(_addProduct())
+      dispatch(_addProduct(product))
   }
 
   export const deleteProduct = (productId, history) => async(dispatch) => {
@@ -62,6 +62,10 @@ export default function (state = {}, action) {
   switch (action.type) {
     case SET_CART:
       return action.cart;
+      case ADD_PRODUCT:
+        return state.product.map((item)=>{
+          item.id === action.product.id ? product.quantity : 
+        })
       case DELETE_PRODUCT:
       return {...state, products: state.products.filter((product) => product.id !== action.product.id)};
     default:
