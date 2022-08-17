@@ -68,7 +68,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart}) => {
+const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart }) => {
   const [openLogin, setLogin] = useState(false);
   const [openSignup, setSignup] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -105,12 +105,10 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart}) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const handleSearch = (event) =>{
+  const handleSearch = (event) => {
     // setInput((event.target.value).toUpperCase());
-
     // products.filter(product =>)
-
-  }
+  };
 
   //console.log(cart);
 
@@ -237,7 +235,6 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart}) => {
             // setSignup={setSignup}
             handleMobileMenuClose={handleMobileMenuClose}
             itemNum={itemNum}
-
           />
           {renderMenu}
         </Box>

@@ -10,9 +10,9 @@ export class Home extends React.Component {
     super();
   }
 
-  componentDidMount() {
-    this.props.fetchCart();
-  }
+  // componentDidMount() {
+  //   this.props.fetchCart();
+  // }
 
   render() {
     const { username } = this.props;
