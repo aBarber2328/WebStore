@@ -2,8 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import cart, { fetchCart } from "../store/cart";
 
-
-
 /**
  * COMPONENT
  */
@@ -12,7 +10,7 @@ export class Home extends React.Component {
     super();
   }
 
-  // componentDidMount(){
+  // componentDidMount() {
   //   this.props.fetchCart();
   // }
 
@@ -21,11 +19,8 @@ export class Home extends React.Component {
 
     return (
       <div className="landing">
-
         <h3>Welcome, {username}</h3>
-        <div>
-
-        </div>
+        <div></div>
       </div>
     );
   }
@@ -47,8 +42,8 @@ const mapDispatch = (dispatch) => {
     //loadUserCart: (userId) => dispatch(fetchUserCart(userId)),
     fetchCart: () => {
       dispatch(fetchCart());
-  },
-}
+    },
+  };
 };
 
 export default connect(mapState, mapDispatch)(Home);
