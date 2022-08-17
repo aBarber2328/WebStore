@@ -4,6 +4,7 @@ import axios from "axios";
 const SET_CART = "SET_CART";
 const DELETE_PRODUCT = "DELETE_PRODUCT";
 const ADD_PRODUCT = "ADD_PRODUCT";
+const EDIT_QUANTITY = "EDIT_QUANTITY";
 
 const setCart = (cart) => ({
   type: SET_CART,
@@ -19,6 +20,12 @@ const _addProduct = (product) => ({
   type: ADD_PRODUCT,
   product,
 });
+
+const _editQuantity = (productId, quantity) =>({
+  type: EDIT_QUANTITY,
+  productId,
+  quantity
+})
 
 export const fetchCart = () => async (dispatch) => {
   const token = window.localStorage.token;
@@ -39,6 +46,17 @@ export const addProduct = (product) => async (dispatch) => {
   })();
   dispatch(_addProduct(product));
 };
+
+export const editQuantity = (productId, quantity)=> async(dispatch)=>{
+  (async () =>{
+    await axios.put("/api/order-session",{
+      token: window.localStorage.token,
+      productId,
+      quantity
+    })
+  })();
+  dispatch(_editQuantity(productId, quantity));
+}
 
 export const deleteProduct = (productId) => async (dispatch) => {
 
@@ -74,12 +92,17 @@ export default function (state = {}, action) {
         }
         return product;
       });
-
       if (isNewProduct) {
         newProducts = [...state.products, { ...action.product, quantity: 1 }];
       }
-
       return { ...state, products: newProducts };
+    case EDIT_QUANTITY:
+      let products = state.products.map((product) => {
+        if (product.id === action.productId) {
+          return { ...product, quantity: action.quantity };
+        }})
+        console.log(products);
+        return { ...state, products };
     default:
       return state;
   }

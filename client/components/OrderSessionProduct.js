@@ -1,57 +1,29 @@
-import React, { useState } from "react";
-import axios from "axios";
+/* eslint-disable react/prop-types */
+import React from "react";
 import { Divider } from "@mui/material";
-import { deleteProduct } from "../store/cart";
+import { deleteProduct, editQuantity } from "../store/cart";
 import { connect } from "react-redux";
 
-const OrderSessionProduct = (props, { setCart, cartRef }) => {
+const OrderSessionProduct = (props) => {
   const product = props.product;
-  const quantity = product.quantity;
-  // const [quantity, setQuantity] = useState(
-  //   product.productOrderSessions.quantity
-  // );
-
-
+  let quantity = product.quantity;
 
   const removeProduct = (productId) => {
     props.deleteItem(productId);
-
   };
 
-  //async function removeProduct(productId) {
-
-  // setCart((cart) => {
-  //   const newCart = cart.filter((item) => item.id !== productId);
-  //   cartRef.current = newCart;
-  //   return newCart;
-  // });
-  //}
-
-  const handleDecrement = async () => {
+  const handleDecrement = async (productId) => {
     if (quantity > 0) {
-      setQuantity((quantity) => quantity - 1);
-      setCart((cart) => {
-        const newCart = cart.map((item) => {
-          if (item.id === product.id) item.productOrderSessions.quantity--;
-          return item;
-        });
-        cartRef.current = newCart;
-        return newCart;
-      });
+      quantity = quantity - 1;
+      console.log(quantity);
+      props.editQuantity(productId, quantity);
     }
   };
 
-  const handleIncrement = async () => {
+  const handleIncrement = async (productId) => {
     if (quantity < 100) {
-      setQuantity((quantity) => quantity + 1);
-      setCart((cart) => {
-        const newCart = cart.map((item) => {
-          if (item.id === product.id) item.productOrderSessions.quantity++;
-          return item;
-        });
-        cartRef.current = newCart;
-        return newCart;
-      });
+      quantity = quantity + 1;
+      props.editQuantity(productId, quantity);
     }
   };
 
@@ -60,9 +32,21 @@ const OrderSessionProduct = (props, { setCart, cartRef }) => {
       <div className="product-title">{product.name}</div>
       <div className="order-session-product">
         <img src={product.imageURL} />
-        <button onClick={handleDecrement}>-</button>
+        <button
+          onClick={() => {
+            handleDecrement(product.id);
+          }}
+        >
+          -
+        </button>
         <h2>{quantity}</h2>
-        <button onClick={handleIncrement}>+</button>
+        <button
+          onClick={() => {
+            handleIncrement(product.id);
+          }}
+        >
+          +
+        </button>
         <h2>${product.price}</h2>
         <button
           className="delete-button"
@@ -80,6 +64,9 @@ const mapDispatch = (dispatch) => {
   return {
     deleteItem: (id) => {
       dispatch(deleteProduct(id));
+    },
+    editQuantity: (productId, quantity) => {
+      dispatch(editQuantity(productId, quantity));
     },
   };
 };
