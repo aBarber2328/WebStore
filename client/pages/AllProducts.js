@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import ProductNav from "../components/ProductNav";
-import { fetchCart } from "../store/cart";
+import { addProduct } from "../store/cart";
 
 const AllProducts = (props) => {
   const [products, setProducts] = useState([]);
@@ -17,9 +17,8 @@ const AllProducts = (props) => {
     })();
   }, []);
 
-  async function handleAddToCart(event) {
-    const productId = event.target.name;
-
+  async function handleAddToCart(event, product) {
+    props.addProduct(product);
     // (();
   }
   return (
@@ -40,10 +39,9 @@ const AllProducts = (props) => {
               <div className="allProButtons">
                 <div>
                   <button
-                    // id={product.id}
                     name={product.id}
                     type="button"
-                    onClick={handleAddToCart}
+                    onClick={(event) => handleAddToCart(event, product)}
                   >
                     Add To Cart
                   </button>
@@ -60,13 +58,12 @@ const AllProducts = (props) => {
   );
 };
 
-
-const mapDispatch = (dispatch)=>{
+const mapDispatch = (dispatch) => {
   return {
-    fetchCart: ()=>{
-      dispatch(fetchCart());
-    }
-  }
-}
+    addProduct: (product) => {
+      dispatch(addProduct(product));
+    },
+  };
+};
 
 export default connect(null, mapDispatch)(AllProducts);

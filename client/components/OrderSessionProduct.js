@@ -5,26 +5,23 @@ import { deleteProduct } from "../store/cart";
 import { connect } from "react-redux";
 
 const OrderSessionProduct = (props, { setCart, cartRef }) => {
-
   const product = props.product;
-  const quantity = product.productOrderSessions.quantity;
+  const quantity = product.quantity;
   // const [quantity, setQuantity] = useState(
   //   product.productOrderSessions.quantity
   // );
-console.log(props);
 
-const removeProduct = (productId) =>{
-    props.deleteItem(productId)
-}
+  const removeProduct = (productId) => {
+    props.deleteItem(productId);
+  };
 
   //async function removeProduct(productId) {
 
-
-    // setCart((cart) => {
-    //   const newCart = cart.filter((item) => item.id !== productId);
-    //   cartRef.current = newCart;
-    //   return newCart;
-    // });
+  // setCart((cart) => {
+  //   const newCart = cart.filter((item) => item.id !== productId);
+  //   cartRef.current = newCart;
+  //   return newCart;
+  // });
   //}
 
   const handleDecrement = async () => {

@@ -10,14 +10,28 @@ module.exports = router;
 router.get("/", async (req, res, next) => {
   const userId = await User.findIdByToken(req.headers.authorization);
   try {
-    const orders = await OrderSession.findOne({
+    const order = await OrderSession.findOne({
       where: {
         status: "active",
         userId: userId,
       },
       include: Product,
     });
-    res.json(orders);
+
+    const filteredOrder = {};
+    filteredOrder.id = order.id;
+    filteredOrder.userId = order.userId;
+    filteredOrder.products = order.products.map((product) => {
+      return {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        imageURL: product.imageURL,
+        quantity: product.productOrderSessions.quantity,
+      };
+    });
+
+    res.json(filteredOrder);
   } catch (err) {
     next(err);
   }
@@ -80,6 +94,7 @@ router.post("/", async (req, res, next) => {
         );
       }
     }
+
     if (isNewProduct) {
       await ProductOrderSession.create({
         quantity: 1,
