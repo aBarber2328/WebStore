@@ -35,7 +35,7 @@ const OrderSession = (props) => {
     //   setCart(data.products);
     //   cartRef.current = data.products;
     // })();
-    props.fetchCart();
+    //props.fetchCart();
 
     //return updateOrderSession;
   }, []);

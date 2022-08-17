@@ -2,8 +2,10 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import ProductNav from "../components/ProductNav";
+import { fetchCart } from "../store/cart";
 
 const AllProducts = (props) => {
   const [products, setProducts] = useState([]);
@@ -18,12 +20,7 @@ const AllProducts = (props) => {
   async function handleAddToCart(event) {
     const productId = event.target.name;
 
-    (async () => {
-      await axios.post("/api/order-session", {
-        token: window.localStorage.token,
-        productId,
-      });
-    })();
+    // (();
   }
   return (
     <div>
@@ -63,4 +60,13 @@ const AllProducts = (props) => {
   );
 };
 
-export default AllProducts;
+
+const mapDispatch = (dispatch)=>{
+  return {
+    fetchCart: ()=>{
+      dispatch(fetchCart());
+    }
+  }
+}
+
+export default connect(null, mapDispatch)(AllProducts);
