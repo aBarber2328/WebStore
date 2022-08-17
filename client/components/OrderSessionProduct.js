@@ -11,8 +11,11 @@ const OrderSessionProduct = (props, { setCart, cartRef }) => {
   //   product.productOrderSessions.quantity
   // );
 
+
+
   const removeProduct = (productId) => {
     props.deleteItem(productId);
+
   };
 
   //async function removeProduct(productId) {
@@ -76,7 +79,7 @@ const OrderSessionProduct = (props, { setCart, cartRef }) => {
 const mapDispatch = (dispatch) => {
   return {
     deleteItem: (id) => {
-      dispatch(deleteProduct(id, history));
+      dispatch(deleteProduct(id));
     },
   };
 };

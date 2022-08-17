@@ -120,7 +120,7 @@ router.delete("/:productId", async (req, res, next) => {
       },
     });
     await order.removeProducts(+req.params.productId);
-    res.send(order);
+    res.send({id: +req.params.productId});
   } catch (error) {
     next(error);
   }
@@ -160,29 +160,6 @@ router.put("/checkout", async (req, res, next) => {
   }
 });
 
-// PUT /api/orders/:orderId/:emotionId/unassign
-// remove emotion from an order/cart/wishlist
-// router.put("/:orderId/:emotionId/unassign", async (req, res, next) => {
-//   try {
-//     console.log("hihihi");
-//     const order = await Order.findByPk(req.params.orderId);
-//     res.json(await order.removeEmotion(req.params.emotionId));
-//   } catch (error) {
-//     next(error);
-//   }
-// });
-
-// PUT /api/orders/:orderId/:emotionId/assign
-// add emotion to an order/cart/wishlist
-// router.put("/:orderId/:emotionId/assign", async (req, res, next) => {
-//   try {
-//     console.log(req.params);
-//     const order = await Order.findByPk(req.params.orderId);
-//     res.send(await order.addEmotion(req.params.emotionId));
-//   } catch (error) {
-//     next(error);
-//   }
-// });
 
 // PUT /api/orders/:orderId/:emotionId/:quantity
 // change quant of emotion in order/cart/wishlist

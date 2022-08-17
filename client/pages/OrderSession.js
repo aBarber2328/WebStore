@@ -24,26 +24,12 @@ const OrderSession = (props) => {
   //   });
   // };
 
-  useEffect(() => {
-    // (async () => {
-    //   const token = window.localStorage.token;
-    //   const { data } = await axios.get("/api/order-session", {
-    //     headers: {
-    //       authorization: token,
-    //     },
-    //   });
-    //   setCart(data.products);
-    //   cartRef.current = data.products;
-    // })();
-    props.fetchCart();
-
-    //return updateOrderSession;
-  }, []);
-
 //console.log(myCart)
-  // useEffect(() => {
-  //   setTotal(calculateTotal(cart));
-  // }, [cart]);
+  useEffect(() => {
+    if(myCart !== undefined){
+      setTotal(calculateTotal(myCart));
+    }
+  }, [myCart]);
 
   return (
     <div className="order-session">
@@ -69,12 +55,12 @@ const OrderSession = (props) => {
   );
 };
 
-// const calculateTotal = (cart) => {
-//   return cart.reduce(
-//     (total, item) => total + item.price * item.productOrderSessions.quantity,
-//     0
-//   );
-// };
+const calculateTotal = (myCart) => {
+  return myCart.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+};
 
 const mapDispatch = (dispatch) => {
   return {

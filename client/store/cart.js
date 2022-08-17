@@ -40,7 +40,8 @@ export const addProduct = (product) => async (dispatch) => {
   dispatch(_addProduct(product));
 };
 
-export const deleteProduct = (productId, history) => async (dispatch) => {
+export const deleteProduct = (productId) => async (dispatch) => {
+
   const token = window.localStorage.token;
   const { data: deleted } = await axios.delete(
     `/api/order-session/${productId}`,
@@ -51,7 +52,6 @@ export const deleteProduct = (productId, history) => async (dispatch) => {
     }
   );
   dispatch(_deleteProduct(deleted));
-  history.push("/");
 };
 
 export default function (state = {}, action) {
