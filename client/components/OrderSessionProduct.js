@@ -15,15 +15,14 @@ const OrderSessionProduct = (props) => {
   const handleDecrement = async (productId) => {
     if (quantity > 0) {
       quantity = quantity - 1;
-      console.log(quantity);
-      props.editQuantity(productId, quantity);
+      props.editQuantity(productId, quantity, props.cart.id);
     }
   };
 
   const handleIncrement = async (productId) => {
     if (quantity < 100) {
       quantity = quantity + 1;
-      props.editQuantity(productId, quantity);
+      props.editQuantity(productId, quantity, props.cart.id);
     }
   };
 
@@ -65,8 +64,8 @@ const mapDispatch = (dispatch) => {
     deleteItem: (id) => {
       dispatch(deleteProduct(id));
     },
-    editQuantity: (productId, quantity) => {
-      dispatch(editQuantity(productId, quantity));
+    editQuantity: (productId, quantity, orderSessionId) => {
+      dispatch(editQuantity(productId, quantity, orderSessionId));
     },
   };
 };

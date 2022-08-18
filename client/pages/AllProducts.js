@@ -20,7 +20,6 @@ const AllProducts = (props) => {
 
   async function handleAddToCart(event, product) {
     props.addProduct(product);
-    // (();
   }
   return (
     <div>

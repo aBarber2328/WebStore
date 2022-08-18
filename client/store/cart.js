@@ -21,11 +21,11 @@ const _addProduct = (product) => ({
   product,
 });
 
-const _editQuantity = (productId, quantity) =>({
+const _editQuantity = (productId, quantity) => ({
   type: EDIT_QUANTITY,
   productId,
-  quantity
-})
+  quantity,
+});
 
 export const fetchCart = () => async (dispatch) => {
   const token = window.localStorage.token;
@@ -47,19 +47,18 @@ export const addProduct = (product) => async (dispatch) => {
   dispatch(_addProduct(product));
 };
 
-export const editQuantity = (productId, quantity)=> async(dispatch)=>{
-  (async () =>{
-    await axios.put("/api/order-session",{
-      token: window.localStorage.token,
-      productId,
-      quantity
-    })
-  })();
-  dispatch(_editQuantity(productId, quantity));
-}
+export const editQuantity =
+  (productId, quantity, orderSessionId) => async (dispatch) => {
+    (async () => {
+      await axios.put("/api/order-session", {
+        token: window.localStorage.token,
+        cart: [{ productId, quantity, orderSessionId }],
+      });
+    })();
+    dispatch(_editQuantity(productId, quantity));
+  };
 
 export const deleteProduct = (productId) => async (dispatch) => {
-
   const token = window.localStorage.token;
   const { data: deleted } = await axios.delete(
     `/api/order-session/${productId}`,
@@ -100,9 +99,10 @@ export default function (state = {}, action) {
       let products = state.products.map((product) => {
         if (product.id === action.productId) {
           return { ...product, quantity: action.quantity };
-        }})
-        console.log(products);
-        return { ...state, products };
+        }
+        return product;
+      });
+      return { ...state, products };
     default:
       return state;
   }
