@@ -1,53 +1,28 @@
-import React, { useState } from "react";
-import axios from "axios";
+/* eslint-disable react/prop-types */
+import React from "react";
 import { Divider } from "@mui/material";
+import { deleteProduct, editQuantity } from "../store/cart";
+import { connect } from "react-redux";
 
-const OrderSessionProduct = ({ product, setCart, cartRef }) => {
-  const [quantity, setQuantity] = useState(
-    product.productOrderSessions.quantity
-  );
+const OrderSessionProduct = (props) => {
+  const product = props.product;
+  let quantity = product.quantity;
 
-  async function removeProduct(productId) {
-    const token = window.localStorage.token;
+  const removeProduct = (productId) => {
+    props.deleteItem(productId);
+  };
 
-    await axios.delete(`/api/order-session/${productId}`, {
-      headers: {
-        authorization: token,
-      },
-    });
-
-    setCart((cart) => {
-      const newCart = cart.filter((item) => item.id !== productId);
-      cartRef.current = newCart;
-      return newCart;
-    });
-  }
-
-  const handleDecrement = async () => {
+  const handleDecrement = async (productId) => {
     if (quantity > 0) {
-      setQuantity((quantity) => quantity - 1);
-      setCart((cart) => {
-        const newCart = cart.map((item) => {
-          if (item.id === product.id) item.productOrderSessions.quantity--;
-          return item;
-        });
-        cartRef.current = newCart;
-        return newCart;
-      });
+      quantity = quantity - 1;
+      props.editQuantity(productId, quantity, props.cart.id);
     }
   };
 
-  const handleIncrement = async () => {
+  const handleIncrement = async (productId) => {
     if (quantity < 100) {
-      setQuantity((quantity) => quantity + 1);
-      setCart((cart) => {
-        const newCart = cart.map((item) => {
-          if (item.id === product.id) item.productOrderSessions.quantity++;
-          return item;
-        });
-        cartRef.current = newCart;
-        return newCart;
-      });
+      quantity = quantity + 1;
+      props.editQuantity(productId, quantity, props.cart.id);
     }
   };
 
@@ -56,9 +31,21 @@ const OrderSessionProduct = ({ product, setCart, cartRef }) => {
       <div className="product-title">{product.name}</div>
       <div className="order-session-product">
         <img src={product.imageURL} />
-        <button onClick={handleDecrement}>-</button>
+        <button
+          onClick={() => {
+            handleDecrement(product.id);
+          }}
+        >
+          -
+        </button>
         <h2>{quantity}</h2>
-        <button onClick={handleIncrement}>+</button>
+        <button
+          onClick={() => {
+            handleIncrement(product.id);
+          }}
+        >
+          +
+        </button>
         <h2>${product.price}</h2>
         <button
           className="delete-button"
@@ -72,4 +59,20 @@ const OrderSessionProduct = ({ product, setCart, cartRef }) => {
   );
 };
 
-export default OrderSessionProduct;
+const mapDispatch = (dispatch) => {
+  return {
+    deleteItem: (id) => {
+      dispatch(deleteProduct(id));
+    },
+    editQuantity: (productId, quantity, orderSessionId) => {
+      dispatch(editQuantity(productId, quantity, orderSessionId));
+    },
+  };
+};
+const mapState = (state) => {
+  return {
+    cart: state.cart,
+  };
+};
+
+export default connect(mapState, mapDispatch)(OrderSessionProduct);

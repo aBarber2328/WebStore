@@ -3,55 +3,45 @@ import axios from "axios";
 import Button from "@mui/material/Button";
 import OrderSessionProduct from "../components/OrderSessionProduct";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import cart, { fetchCart } from "../store/cart";
 
-const OrderSession = () => {
-  const [cart, setCart] = useState([]);
+const OrderSession = (props) => {
+  const myCart = props.cart.products;
   const cartRef = useRef([]);
   const [total, setTotal] = useState(0);
 
-  const updateOrderSession = async () => {
-    const newCart = cartRef.current.map((item) => ({
-      quantity: item.productOrderSessions.quantity,
-      orderSessionId: item.productOrderSessions.orderSessionId,
-      productId: item.productOrderSessions.productId,
-    }));
+  // const updateOrderSession = async () => {
+  //   const newCart = cartRef.current.map((item) => ({
+  //     quantity: item.productOrderSessions.quantity,
+  //     orderSessionId: item.productOrderSessions.orderSessionId,
+  //     productId: item.productOrderSessions.productId,
+  //   }));
 
-    await axios.put("/api/order-session/", {
-      token: window.localStorage.token,
-      cart: newCart,
-    });
-  };
+  //   await axios.put("/api/order-session/", {
+  //     token: window.localStorage.token,
+  //     cart: newCart,
+  //   });
+  // };
 
+//console.log(myCart)
   useEffect(() => {
-    (async () => {
-      const token = window.localStorage.token;
-      const { data } = await axios.get("/api/order-session", {
-        headers: {
-          authorization: token,
-        },
-      });
-      setCart(data.products);
-      cartRef.current = data.products;
-    })();
-
-    return updateOrderSession;
-  }, []);
-
-  useEffect(() => {
-    setTotal(calculateTotal(cart));
-  }, [cart]);
+    if(myCart !== undefined){
+      setTotal(calculateTotal(myCart));
+    }
+  }, [myCart]);
 
   return (
     <div className="order-session">
       <h1>Your Cart</h1>
-      {cart.length === 0
+      {myCart === undefined
         ? ""
-        : cart.map((product) => (
+        : myCart.map((product) => (
             <OrderSessionProduct
               key={product.id}
               product={product}
-              cart={cart}
-              setCart={setCart}
+              cart={myCart}
+              //setCart={setCart}
               cartRef={cartRef}
             />
           ))}
@@ -65,11 +55,24 @@ const OrderSession = () => {
   );
 };
 
-const calculateTotal = (cart) => {
-  return cart.reduce(
-    (total, item) => total + item.price * item.productOrderSessions.quantity,
+const calculateTotal = (myCart) => {
+  return myCart.reduce(
+    (total, item) => total + item.price * item.quantity,
     0
   );
 };
 
-export default OrderSession;
+const mapDispatch = (dispatch) => {
+  return {
+    fetchCart: () => {
+      dispatch(fetchCart());
+    },
+  };
+};
+const mapState = (state) => {
+  return {
+    cart: state.cart,
+  };
+};
+
+export default connect(mapState, mapDispatch)(OrderSession);
