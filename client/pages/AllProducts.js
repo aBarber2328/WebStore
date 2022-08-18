@@ -1,9 +1,12 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import ProductNav from "../components/ProductNav";
+import { addProduct } from "../store/cart";
 
 const AllProducts = (props) => {
   const [products, setProducts] = useState([]);
@@ -15,15 +18,8 @@ const AllProducts = (props) => {
     })();
   }, []);
 
-  async function handleAddToCart(event) {
-    const productId = event.target.name;
-
-    (async () => {
-      await axios.post("/api/order-session", {
-        token: window.localStorage.token,
-        productId,
-      });
-    })();
+  async function handleAddToCart(event, product) {
+    props.addProduct(product);
   }
   return (
     <div>
@@ -43,10 +39,9 @@ const AllProducts = (props) => {
               <div className="allProButtons">
                 <div>
                   <button
-                    // id={product.id}
                     name={product.id}
                     type="button"
-                    onClick={handleAddToCart}
+                    onClick={(event) => handleAddToCart(event, product)}
                   >
                     Add To Cart
                   </button>
@@ -63,4 +58,12 @@ const AllProducts = (props) => {
   );
 };
 
-export default AllProducts;
+const mapDispatch = (dispatch) => {
+  return {
+    addProduct: (product) => {
+      dispatch(addProduct(product));
+    },
+  };
+};
+
+export default connect(null, mapDispatch)(AllProducts);
