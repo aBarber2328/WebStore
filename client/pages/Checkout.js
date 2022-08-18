@@ -14,11 +14,9 @@ const initialCheckoutInfo = {
   shippingAddress: "",
   city: "",
   state: "",
-  paymentMethod: "",
-  cardNumber: "",
 };
 
-const checkoutParams = [
+const checkoutTitles = [
   "First Name",
   "Last Name",
   "Email",
@@ -30,8 +28,19 @@ const checkoutParams = [
   "Card Number",
 ];
 
+const initialPaymentInfo = {
+  paymentMethod: "",
+  cardNumber: "",
+  SVC: "",
+};
+
+const paymentTitles = ["Payment Method", "Card Number", "SVC"];
+
 const Checkout = () => {
-  const [checkoutInfo, setCheckoutInfo] = useState(initialCheckoutInfo);
+  const [checkoutInfo, setCheckoutInfo] = useState({
+    ...initialCheckoutInfo,
+    ...initialPaymentInfo,
+  });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -66,13 +75,27 @@ const Checkout = () => {
         {Object.keys(initialCheckoutInfo).map((param, index) => (
           <FormControl key={param}>
             <InputLabel htmlFor="component-outlined">
-              {checkoutParams[index]}
+              {checkoutTitles[index]}
             </InputLabel>
             <OutlinedInput
               name={param}
               value={checkoutInfo[param]}
               onChange={handleChange}
-              label={checkoutParams[index]}
+              label={checkoutTitles[index]}
+            />
+          </FormControl>
+        ))}
+        <h3>Payment Info:</h3>
+        {Object.keys(initialPaymentInfo).map((param, index) => (
+          <FormControl key={param}>
+            <InputLabel htmlFor="component-outlined">
+              {paymentTitles[index]}
+            </InputLabel>
+            <OutlinedInput
+              name={param}
+              value={checkoutInfo[param]}
+              onChange={handleChange}
+              label={checkoutTitles[index]}
             />
           </FormControl>
         ))}

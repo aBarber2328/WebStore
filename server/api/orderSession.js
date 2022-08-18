@@ -120,7 +120,7 @@ router.delete("/:productId", async (req, res, next) => {
       },
     });
     await order.removeProducts(+req.params.productId);
-    res.send({id: +req.params.productId});
+    res.send({ id: +req.params.productId });
   } catch (error) {
     next(error);
   }
@@ -159,7 +159,6 @@ router.put("/checkout", async (req, res, next) => {
     next(error);
   }
 });
-
 
 // PUT /api/orders/:orderId/:emotionId/:quantity
 // change quant of emotion in order/cart/wishlist

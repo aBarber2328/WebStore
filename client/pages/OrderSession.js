@@ -3,6 +3,7 @@ import axios from "axios";
 import Button from "@mui/material/Button";
 import OrderSessionProduct from "../components/OrderSessionProduct";
 import { Link } from "react-router-dom";
+import { Divider } from "@mui/material";
 import { connect } from "react-redux";
 import cart, { fetchCart } from "../store/cart";
 
@@ -24,9 +25,9 @@ const OrderSession = (props) => {
   //   });
   // };
 
-//console.log(myCart)
+  //console.log(myCart)
   useEffect(() => {
-    if(myCart !== undefined){
+    if (myCart !== undefined) {
       setTotal(calculateTotal(myCart));
     }
   }, [myCart]);
@@ -34,6 +35,12 @@ const OrderSession = (props) => {
   return (
     <div className="order-session">
       <h1>Your Cart</h1>
+      <div className="order-session-title">
+        <h2>Product</h2>
+        <h2>Qty</h2>
+        <h2>Price</h2>
+      </div>
+      <Divider />
       {myCart === undefined
         ? ""
         : myCart.map((product) => (
@@ -45,6 +52,7 @@ const OrderSession = (props) => {
               cartRef={cartRef}
             />
           ))}
+
       <strong>
         <p className="session-total">${total}</p>
       </strong>
@@ -56,10 +64,7 @@ const OrderSession = (props) => {
 };
 
 const calculateTotal = (myCart) => {
-  return myCart.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
+  return myCart.reduce((total, item) => total + item.price * item.quantity, 0);
 };
 
 const mapDispatch = (dispatch) => {
