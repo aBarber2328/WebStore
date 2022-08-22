@@ -49,11 +49,10 @@ export const authenticate =
     }
   };
 
-export const logout = () => async(dispatch) => {
+export const logout = ()=> {
   window.localStorage.removeItem(TOKEN);
 
-  dispatch(clearCart());
-  //dispatch(me());
+  //dispatch(clearCart());
 
   history.push("/");
   return {

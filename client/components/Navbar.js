@@ -25,7 +25,7 @@ import SignupModal from "./SignupModal";
 import RenderMobileMenu from "./MobileNav";
 import { mobileMenuId } from "./MobileNav";
 import { FiEdit3 } from "react-icons/fi";
-import cart from "../store/cart";
+import cart, { clearCart } from "../store/cart";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -325,8 +325,10 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     handleClick() {
+      dispatch(clearCart())
       dispatch(logout());
     },
+
   };
 };
 
