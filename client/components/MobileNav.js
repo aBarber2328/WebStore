@@ -13,9 +13,7 @@ import LogIn from "@mui/icons-material/Login";
 
 import LoginModal from "./LoginModal";
 import SignupModal from "./SignupModal";
-import {
-  FiEdit3,
-} from "react-icons/fi";
+import { FiEdit3 } from "react-icons/fi";
 
 export const mobileMenuId = "primary-search-account-menu-mobile";
 
@@ -31,10 +29,8 @@ const RenderMobileMenu = ({
   // openSignup,
   // setSignup,
   handleMobileMenuClose,
-  itemNum
-
+  itemNum,
 }) => {
-
   const [openLogin, setLogin] = useState(false);
   const [openSignup, setSignup] = useState(false);
 
@@ -67,9 +63,9 @@ const RenderMobileMenu = ({
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
           <Link to="/">
             <Home />
+            Home
           </Link>
         </IconButton>
-        <p>Home</p>
       </MenuItem>
       <MenuItem>
         <IconButton
@@ -80,23 +76,26 @@ const RenderMobileMenu = ({
           <Badge badgeContent={itemNum && itemNum.length} color="error">
             <Link to="/order-session">
               <ShoppingCart />
+              Cart
             </Link>
           </Badge>
         </IconButton>
-        <p>View Cart</p>
       </MenuItem>
       {isLoggedIn ? (
-        <MenuItem onClick={handleProfileMenuOpen}>
-          <IconButton
+        <MenuItem >
+          {/* <IconButton
             size="large"
             aria-label="account of current user"
             aria-controls="primary-search-account-menu"
             aria-haspopup="true"
+            onClick={handleProfileMenuOpen}
             color="inherit"
           >
             <AccountCircle />
-          </IconButton>
-          <p>Profile</p>
+            Profile
+
+          </IconButton> */}
+
           <IconButton
             size="large"
             color="inherit"
@@ -104,13 +103,14 @@ const RenderMobileMenu = ({
               handleClick();
               setLogin(false);
               setSignup(false);
+              handleMobileMenuClose();
             }}
           >
             <Link to="/">
               <LogOut />
+              LogOut
             </Link>
           </IconButton>
-          <p>LogOut</p>
         </MenuItem>
       ) : (
         <MenuItem>

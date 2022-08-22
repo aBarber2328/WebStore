@@ -5,6 +5,7 @@ const SET_CART = "SET_CART";
 const DELETE_PRODUCT = "DELETE_PRODUCT";
 const ADD_PRODUCT = "ADD_PRODUCT";
 const EDIT_QUANTITY = "EDIT_QUANTITY";
+const CLEAR_CART = "CLEAR_CART";
 
 const setCart = (cart) => ({
   type: SET_CART,
@@ -26,6 +27,10 @@ const _editQuantity = (productId, quantity) => ({
   productId,
   quantity,
 });
+
+const _clearCart = ()=>({
+  type: CLEAR_CART,
+})
 
 export const fetchCart = () => async (dispatch) => {
   const token = window.localStorage.token;
@@ -57,6 +62,10 @@ export const editQuantity =
     })();
     dispatch(_editQuantity(productId, quantity));
   };
+
+  export const clearCart = ()=> async (dispatch)=>{
+    dispatch(_clearCart());
+  }
 
 export const deleteProduct = (productId) => async (dispatch) => {
   const token = window.localStorage.token;
@@ -103,6 +112,8 @@ export default function (state = {}, action) {
         return product;
       });
       return { ...state, products };
+      case CLEAR_CART:
+        return {};
     default:
       return state;
   }

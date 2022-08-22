@@ -5,6 +5,8 @@ import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Button from "@mui/material/Button";
 import axios from "axios";
+import { connect } from "react-redux"
+import { fetchCart } from "../store/cart";
 
 const initialCheckoutInfo = {
   firstName: "",
@@ -36,7 +38,7 @@ const initialPaymentInfo = {
 
 const paymentTitles = ["Payment Method", "Card Number", "SVC"];
 
-const Checkout = () => {
+const Checkout = (props) => {
   const [checkoutInfo, setCheckoutInfo] = useState({
     ...initialCheckoutInfo,
     ...initialPaymentInfo,
@@ -56,8 +58,9 @@ const Checkout = () => {
       ...checkoutInfo,
       token: window.localStorage.token,
     });
-    setCheckoutInfo(initialCheckoutInfo);
+    setCheckoutInfo({...initialCheckoutInfo, ...initialPaymentInfo});
     alert("Congrats, you just purchase!");
+    props.setCart();
   };
 
   return (
@@ -105,4 +108,13 @@ const Checkout = () => {
   );
 };
 
-export default Checkout;
+const mapDispatch = (dispatch)=>{
+  return {
+    setCart: ()=>{
+      dispatch(fetchCart());
+    }
+  }
+}
+
+
+export default connect(null, mapDispatch)(Checkout);
