@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../store";
@@ -26,7 +25,7 @@ import SignupModal from "./SignupModal";
 import RenderMobileMenu from "./MobileNav";
 import { mobileMenuId } from "./MobileNav";
 import { FiEdit3 } from "react-icons/fi";
-import cart from "../store/cart";
+import cart, { clearCart } from "../store/cart";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -94,6 +93,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart }) => {
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
+    setAnchorEl(null);
   };
 
   const handleMenuClose = () => {
@@ -102,6 +102,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart }) => {
   };
 
   const handleMobileMenuOpen = (event) => {
+    event.persist();
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
@@ -236,6 +237,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart }) => {
             handleMobileMenuClose={handleMobileMenuClose}
             itemNum={itemNum}
           />
+
           {renderMenu}
         </Box>
       ) : (
@@ -323,8 +325,10 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     handleClick() {
+      dispatch(clearCart())
       dispatch(logout());
     },
+
   };
 };
 

@@ -36,6 +36,9 @@ router.get("/", async (req, res, next) => {
     next(err);
   }
 });
+
+router.get("/")
+
 // GET /api/orders/:orderId
 // get single order
 router.get("/user/:orderType", async (req, res, next) => {
@@ -154,7 +157,7 @@ router.put("/checkout", async (req, res, next) => {
       userId: userId,
     });
 
-    res.sendStatus(200);
+    res.send(newOrder);
   } catch (error) {
     next(error);
   }
