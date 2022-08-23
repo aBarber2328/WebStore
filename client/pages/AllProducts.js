@@ -4,9 +4,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-
 import ProductNav from "../components/ProductNav";
-import { addProduct } from "../store/cart";
+import { addProduct, setCart, fetchCart } from "../store/cart";
 
 const AllProducts = (props) => {
   const [products, setProducts] = useState([]);
@@ -16,11 +15,17 @@ const AllProducts = (props) => {
       const { data } = await axios.get("/api/products");
       setProducts(data);
     })();
+
+    if (!window.localStorage.getItem("cart")) {
+      window.localStorage.setItem("cart", '{"products":[]}');
+    }
+    props.fetchCart();
   }, []);
 
   async function handleAddToCart(event, product) {
     props.addProduct(product);
   }
+
   return (
     <div>
       <ProductNav />
@@ -62,6 +67,12 @@ const mapDispatch = (dispatch) => {
   return {
     addProduct: (product) => {
       dispatch(addProduct(product));
+    },
+    setCart: (cart) => {
+      dispatch(setCart(cart));
+    },
+    fetchCart: () => {
+      dispatch(fetchCart());
     },
   };
 };

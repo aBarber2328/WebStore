@@ -5,7 +5,7 @@ import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Button from "@mui/material/Button";
 import axios from "axios";
-import { connect } from "react-redux"
+import { connect } from "react-redux";
 import { fetchCart } from "../store/cart";
 
 const initialCheckoutInfo = {
@@ -54,11 +54,15 @@ const Checkout = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await axios.put("/api/order-session/checkout", {
-      ...checkoutInfo,
-      token: window.localStorage.token,
-    });
-    setCheckoutInfo({...initialCheckoutInfo, ...initialPaymentInfo});
+    if (window.localStorage.getItem("token")) {
+      await axios.put("/api/order-session/checkout", {
+        ...checkoutInfo,
+        token: window.localStorage.token,
+      });
+    } else {
+      window.localStorage.removeItem("cart");
+    }
+    setCheckoutInfo({ ...initialCheckoutInfo, ...initialPaymentInfo });
     alert("Congrats, you just purchase!");
     props.setCart();
   };
@@ -108,13 +112,12 @@ const Checkout = (props) => {
   );
 };
 
-const mapDispatch = (dispatch)=>{
+const mapDispatch = (dispatch) => {
   return {
-    setCart: ()=>{
+    setCart: () => {
       dispatch(fetchCart());
-    }
-  }
-}
-
+    },
+  };
+};
 
 export default connect(null, mapDispatch)(Checkout);
