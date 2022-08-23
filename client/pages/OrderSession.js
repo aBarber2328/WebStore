@@ -8,7 +8,8 @@ import { connect } from "react-redux";
 import cart, { fetchCart } from "../store/cart";
 
 const OrderSession = (props) => {
-  const myCart = props.cart.products;
+  let myCart = props.cart.products;
+
   const cartRef = useRef([]);
   const [total, setTotal] = useState(0);
 
@@ -25,12 +26,15 @@ const OrderSession = (props) => {
   //   });
   // };
 
-  //console.log(myCart)
   useEffect(() => {
     if (myCart !== undefined) {
       setTotal(calculateTotal(myCart));
     }
   }, [myCart]);
+
+  useEffect(() => {
+    props.fetchCart();
+  }, []);
 
   return (
     <div className="order-session">
@@ -43,9 +47,9 @@ const OrderSession = (props) => {
       <Divider />
       {myCart === undefined
         ? ""
-        : myCart.map((product) => (
+        : myCart.map((product, index) => (
             <OrderSessionProduct
-              key={product.id}
+              key={index}
               product={product}
               cart={myCart}
               //setCart={setCart}
