@@ -18,7 +18,9 @@ const style = {
 
 const LoginModal = ({ open, setOpen }) => {
 
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <div>

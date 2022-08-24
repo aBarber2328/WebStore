@@ -60,10 +60,18 @@ const RenderMobileMenu = ({
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+        <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={handleMobileMenuClose}>
           <Link to="/">
             <Home />
             Home
+          </Link>
+        </IconButton>
+      </MenuItem>
+      <MenuItem>
+        <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={handleMobileMenuClose}>
+          <Link to="/products">
+            <Home />
+            All Products
           </Link>
         </IconButton>
       </MenuItem>
@@ -72,6 +80,7 @@ const RenderMobileMenu = ({
           size="large"
           aria-label="show 17 new notifications"
           color="inherit"
+          onClick={handleMobileMenuClose}
         >
           <Badge badgeContent={itemNum && itemNum.length} color="error">
             <Link to="/order-session">
@@ -82,7 +91,7 @@ const RenderMobileMenu = ({
         </IconButton>
       </MenuItem>
       {isLoggedIn ? (
-        <MenuItem >
+        <MenuItem>
           {/* <IconButton
             size="large"
             aria-label="account of current user"
@@ -114,12 +123,26 @@ const RenderMobileMenu = ({
         </MenuItem>
       ) : (
         <MenuItem>
-          <IconButton size="large" color="inherit" onClick={handleLogin}>
+          <IconButton
+            size="large"
+            color="inherit"
+            onClick={() => {
+              handleLogin();
+              handleMobileMenuClose();
+            }}
+          >
             <LogIn />
-            <LoginModal open={openLogin} setOpen={setLogin} />
+            <LoginModal
+              open={openLogin}
+              setOpen={setLogin}
+              mobileMenuClose={handleMobileMenuClose}
+            />
           </IconButton>
           <p>LogIn</p>
-          <IconButton size="large" color="inherit" onClick={handleSignup}>
+          <IconButton size="large" color="inherit" onClick={() => {
+              handleSignup();
+              handleMobileMenuClose();
+            }}>
             <FiEdit3 />
             <SignupModal open={openSignup} setOpen={setSignup} />
           </IconButton>
