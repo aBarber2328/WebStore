@@ -9,8 +9,6 @@ import cart, { fetchCart } from "../store/cart";
 
 const OrderSession = (props) => {
   let myCart = props.cart.products;
-
-  const cartRef = useRef([]);
   const [total, setTotal] = useState(0);
 
   // const updateOrderSession = async () => {
@@ -47,13 +45,11 @@ const OrderSession = (props) => {
       <Divider />
       {myCart === undefined
         ? ""
-        : myCart.map((product, index) => (
+        : myCart.map((product) => (
             <OrderSessionProduct
-              key={index}
+              key={product.id}
               product={product}
               cart={myCart}
-              //setCart={setCart}
-              cartRef={cartRef}
             />
           ))}
 

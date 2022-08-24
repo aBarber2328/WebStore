@@ -24,7 +24,7 @@ router.get("/", async (req, res, next) => {
     filteredOrder.products = order.products.map((product) => {
       return {
         id: product.id,
-        name: product.name,
+        name: (product.name).toUpperCase(),
         price: product.price,
         imageURL: product.imageURL,
         quantity: product.productOrderSessions.quantity,

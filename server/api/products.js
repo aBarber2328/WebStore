@@ -9,7 +9,16 @@ module.exports = router;
 router.get("/", async (req, res, next) => {
   try {
     const products = await Product.findAll({ order: [["id", "ASC"]] });
-    res.json(products);
+
+    const filteredProducts = {};
+
+    filteredProducts.products = products.map((product) => {
+      if (product.name) {
+        product.name = product.name.toUpperCase();
+      }
+      return product;
+    });
+    res.json(filteredProducts.products);
   } catch (err) {
     next(err);
   }
