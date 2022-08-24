@@ -5,13 +5,22 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import ProductNav from "../components/ProductNav";
-import { addProduct } from "../store/cart";
 import { fetchProducts } from "../store/products";
+import { addProduct, setCart, fetchCart } from "../store/cart";
 
 const AllProducts = (props) => {
   const products = props.products;
   useEffect(() => {
     props.getProducts();
+    // (async () => {
+    //   const { data } = await axios.get("/api/products");
+    //   setProducts(data);
+    // })();
+
+    if (!window.localStorage.getItem("cart")) {
+      window.localStorage.setItem("cart", '{"products":[]}');
+    }
+    props.fetchCart();
   }, []);
   async function handleAddToCart(event, product) {
     props.addProduct(product);
@@ -69,6 +78,12 @@ const mapDispatch = (dispatch) => {
     },
     getProducts: () => {
       dispatch(fetchProducts());
+    },
+    setCart: (cart) => {
+      dispatch(setCart(cart));
+    },
+    fetchCart: () => {
+      dispatch(fetchCart());
     },
   };
 };

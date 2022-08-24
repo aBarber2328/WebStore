@@ -52,79 +52,17 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const SearchBar = (props) => {
-  let products = useSelector((state) => state.products);
-  //console.log("products",products);
 
   const handleSearch = (event) => {
     let input = event.target.value.toUpperCase();
-    let previous = input.length;
-      console.log("input", previous);
 
-      if(input){
-        if(input.length >= previous){
-          props.productSearch(input);
-        }
-        if(input.length < previous){
-          props.getProducts();
-          props.productSearch(input);
-          console.log(props);
-        }
-      }
-
+    props.productSearch(input);
   };
 
-  // const searchFilter = createSelectorHook(
-  //   (allProducts)=> allProducts.filter((product)=>{
-
-  //       let matchProduct = product.name.toUpperCase();
-
-  //       if (matchProduct.indexOf(handleSearch) > -1) {
-  //          console.log(matchProduct);
-  //          return matchProduct = '';
-  //       } else {
-  //         matchProduct = "none";
-  //       }
-
-  //   })
-  // );
-  // const FilterSearch = ()=>{
-  //   const searchFil = useSelector(searchFilter);
-  //   console.log(searchFil);
-  //   return (
-  //     <div>{searchFil}</div>
-  //   )
-  // };
-  //console.log(handleSearch);
-
   return (
-    // <div>
-    // {allProducts.length === undefined ? "":
-
-    // <Stack spacing={2} sx={{ width: 300 }}>
-    //   <Autocomplete
-    //     freeSolo
-    //     id="free-solo-2-demo"
-    //     disableClearable
-    //     options={allProducts.map((product) => product.name)}
-    //     renderInput={(params) => (
-    //       <TextField
-    //         key={allProducts.map((product) => product.id)}
-    //         {...params}
-    //         label="Search"
-    //         InputProps={{
-    //           ...params.InputProps,
-    //           type: 'search',
-    //         }}
-    //       />
-    //     )}
-    //   />
-    // </Stack>}
-    // </div>
     <Search>
       <SearchIconWrapper>
-        {/* <IconButton  type="submit" onSubmit={handleSubmit}> */}
         <SearchIcon />
-        {/* </IconButton> */}
       </SearchIconWrapper>
       <StyledInputBase
         placeholder="Search…"
@@ -142,9 +80,9 @@ const mapDispatch = (dispatch) => {
     productSearch: (product) => {
       dispatch(searchProducts(product));
     },
-    getProducts: ()=>{
+    getProducts: () => {
       dispatch(fetchProducts());
-    }
+    },
   };
 };
 

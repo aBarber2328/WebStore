@@ -9,9 +9,10 @@ const _allProducts = (products) => ({
   products,
 });
 
-const _searchProducts = (product) => ({
+const _searchProducts = (product, products) => ({
   type: SEARCH_PRODUCTS,
   product,
+  products
 });
 
 export const fetchProducts = () => async (dispatch) => {
@@ -20,7 +21,8 @@ export const fetchProducts = () => async (dispatch) => {
 };
 
 export const searchProducts = (product) => async (dispatch) => {
-  dispatch(_searchProducts(product));
+  const { data: products } = await axios.get("/api/products");
+  dispatch(_searchProducts(product, products));
 };
 
 export default function (state = {}, action) {
@@ -28,7 +30,7 @@ export default function (state = {}, action) {
     case ALL_PRODUCTS:
       return action.products;
     case SEARCH_PRODUCTS:
-      return state.filter((product) => product.name.includes(action.product));
+      return action.products.filter((product) => product.name.includes(action.product));
     default:
       return state;
   }

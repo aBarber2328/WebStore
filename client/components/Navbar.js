@@ -25,8 +25,6 @@ import { FiEdit3 } from "react-icons/fi";
 import { clearCart } from "../store/cart";
 import SearchBar from "./SearchBar";
 
-
-
 const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products }) => {
   const [openLogin, setLogin] = useState(false);
   const [openSignup, setSignup] = useState(false);
@@ -35,8 +33,6 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products }) => {
   const cartProducts = cart.products;
 
   const isMenuOpen = Boolean(anchorEl);
-
-  //console.log("allP", allProducts);
 
   const handleLogin = () => {
     setLogin(true);
@@ -64,8 +60,6 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products }) => {
     event.persist();
     setMobileMoreAnchorEl(event.currentTarget);
   };
-
-
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
@@ -107,7 +101,21 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products }) => {
               >
                 <Link to="/products">WEBSTORE</Link>
               </Typography>
-              <SearchBar allProducts={products}/>
+              <SearchBar allProducts={products} />
+              <IconButton
+                  size="large"
+                  aria-label="show 17 new notifications"
+                  color="inherit"
+                >
+                  <Badge
+                    badgeContent={cartProducts && cartProducts.length}
+                    color="error"
+                  >
+                    <Link to="/order-session">
+                      <ShoppingCart />
+                    </Link>
+                  </Badge>
+                </IconButton>
               <Box sx={{ flexGrow: 1 }} />
               <Box sx={{ display: { xs: "none", md: "flex" } }}>
                 <IconButton size="large" color="inherit">
@@ -120,7 +128,10 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products }) => {
                   aria-label="show 17 new notifications"
                   color="inherit"
                 >
-                  <Badge badgeContent={cartProducts && cartProducts.length} color="error">
+                  <Badge
+                    badgeContent={cartProducts && cartProducts.length}
+                    color="error"
+                  >
                     <Link to="/order-session">
                       <ShoppingCart />
                     </Link>
@@ -173,12 +184,6 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products }) => {
             isLoggedIn={isLoggedIn}
             handleProfileMenuOpen={handleProfileMenuOpen}
             handleClick={handleClick}
-            // handleLogin={handleLogin}
-            // handleSignup={handleSignup}
-            // openLogin={openLogin}
-            // setLogin={setLogin}
-            // openSignup={openSignup}
-            // setSignup={setSignup}
             handleMobileMenuClose={handleMobileMenuClose}
             itemNum={cartProducts}
           />
@@ -197,7 +202,21 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products }) => {
               >
                 <Link to="/products">WEBSTORE</Link>
               </Typography>
-              <SearchBar allProducts={products}/>
+              <SearchBar allProducts={products} />
+              <IconButton
+                  size="large"
+                  aria-label="show 17 new notifications"
+                  color="inherit"
+                >
+                  <Badge
+                    badgeContent={cartProducts && cartProducts.length}
+                    color="error"
+                  >
+                    <Link to="/order-session">
+                      <ShoppingCart />
+                    </Link>
+                  </Badge>
+                </IconButton>
               <Box sx={{ flexGrow: 1 }} />
               <Box sx={{ display: { xs: "none", md: "flex" } }}>
                 <IconButton size="large" color="inherit">
@@ -210,7 +229,10 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products }) => {
                   aria-label="show 17 new notifications"
                   color="inherit"
                 >
-                  <Badge badgeContent={cartProducts && cartProducts.length} color="error">
+                  <Badge
+                    badgeContent={cartProducts && cartProducts.length}
+                    color="error"
+                  >
                     <Link to="/order-session">
                       <ShoppingCart />
                     </Link>
@@ -242,14 +264,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products }) => {
           <RenderMobileMenu
             mobileMoreAnchorEl={mobileMoreAnchorEl}
             isLoggedIn={isLoggedIn}
-            //handleProfileMenuOpen={handleProfileMenuOpen}
             handleClick={handleClick}
-            // handleLogin={handleLogin}
-            // handleSignup={handleSignup}
-            // openLogin={openLogin}
-            // setLogin={setLogin}
-            // openSignup={openSignup}
-            // setSignup={setSignup}
             handleMobileMenuClose={handleMobileMenuClose}
             itemNum={cartProducts}
           />
@@ -275,7 +290,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     handleClick() {
-      dispatch(clearCart())
+      dispatch(clearCart());
       dispatch(logout());
     },
   };

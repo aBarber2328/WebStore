@@ -27,11 +27,6 @@ export const me = () => async (dispatch) => {
       },
     });
 
-    const { data } = await axios.get("/api/order-session", {
-      headers: {
-        authorization: token,
-      },
-    });
     dispatch(fetchCart());
 
     return dispatch(setAuth(res.data));
@@ -49,7 +44,7 @@ export const authenticate =
     }
   };
 
-export const logout = ()=> {
+export const logout = () => {
   window.localStorage.removeItem(TOKEN);
 
   //dispatch(clearCart());

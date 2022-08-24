@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from "react";
+import React, { useState } from "react";
 import { Divider } from "@mui/material";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 
 const OrderSessionProduct = (props) => {
   const product = props.product;
-  let quantity = product.quantity;
+  let [quantity, setQuantity] = useState(product.quantity);
 
   const removeProduct = (productId) => {
     props.deleteItem(productId);
@@ -16,15 +16,15 @@ const OrderSessionProduct = (props) => {
 
   const handleDecrement = async (productId) => {
     if (quantity > 0) {
-      quantity = quantity - 1;
-      props.editQuantity(productId, quantity, props.cart.id);
+      props.editQuantity(productId, quantity - 1, props.cart.id);
+      setQuantity((q) => q - 1);
     }
   };
 
   const handleIncrement = async (productId) => {
     if (quantity < 100) {
-      quantity = quantity + 1;
-      props.editQuantity(productId, quantity, props.cart.id);
+      props.editQuantity(productId, quantity + 1, props.cart.id);
+      setQuantity((q) => q + 1);
     }
   };
 
@@ -74,6 +74,7 @@ const mapDispatch = (dispatch) => {
     },
   };
 };
+
 const mapState = (state) => {
   return {
     cart: state.cart,
