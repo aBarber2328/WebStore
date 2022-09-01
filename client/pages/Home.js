@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import cart, { fetchCart } from "../store/cart";
+//import SplineLanding from "../components/SplineLanding";
+//import 'bootstrap/dist/css/bootstrap.min.css';
 
 /**
  * COMPONENT
@@ -10,17 +12,18 @@ export class Home extends React.Component {
     super();
   }
 
-  // componentDidMount() {
-  //   this.props.fetchCart();
-  // }
-
   render() {
     const { username } = this.props;
 
     return (
-      <div className="landing">
-        <h3>Welcome, {username}</h3>
-        <div></div>
+      // <div>
+      //   <SplineLanding />
+      // </div>
+      <div>
+        <div className="landing">
+          <h3>Welcome, {username}</h3>
+          <div></div>
+        </div>
       </div>
     );
   }

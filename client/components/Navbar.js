@@ -102,20 +102,6 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products }) => {
                 <Link to="/products">WEBSTORE</Link>
               </Typography>
               <SearchBar allProducts={products} />
-              <IconButton
-                  size="large"
-                  aria-label="show 17 new notifications"
-                  color="inherit"
-                >
-                  <Badge
-                    badgeContent={cartProducts && cartProducts.length}
-                    color="error"
-                  >
-                    <Link to="/order-session">
-                      <ShoppingCart />
-                    </Link>
-                  </Badge>
-                </IconButton>
               <Box sx={{ flexGrow: 1 }} />
               <Box sx={{ display: { xs: "none", md: "flex" } }}>
                 <IconButton size="large" color="inherit">
@@ -168,6 +154,20 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products }) => {
               <Box sx={{ display: { xs: "flex", md: "none" } }}>
                 <IconButton
                   size="large"
+                  aria-label="show 17 new notifications"
+                  color="inherit"
+                >
+                  <Badge
+                    badgeContent={cartProducts && cartProducts.length}
+                    color="error"
+                  >
+                    <Link to="/order-session">
+                      <ShoppingCart />
+                    </Link>
+                  </Badge>
+                </IconButton>
+                <IconButton
+                  size="large"
                   aria-label="show more"
                   aria-controls={mobileMenuId}
                   aria-haspopup="true"
@@ -188,7 +188,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products }) => {
             itemNum={cartProducts}
           />
 
-          {renderMenu}
+          {/* {renderMenu} */}
         </Box>
       ) : (
         <Box sx={{ flexGrow: 1 }}>
@@ -203,20 +203,6 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products }) => {
                 <Link to="/products">WEBSTORE</Link>
               </Typography>
               <SearchBar allProducts={products} />
-              <IconButton
-                  size="large"
-                  aria-label="show 17 new notifications"
-                  color="inherit"
-                >
-                  <Badge
-                    badgeContent={cartProducts && cartProducts.length}
-                    color="error"
-                  >
-                    <Link to="/order-session">
-                      <ShoppingCart />
-                    </Link>
-                  </Badge>
-                </IconButton>
               <Box sx={{ flexGrow: 1 }} />
               <Box sx={{ display: { xs: "none", md: "flex" } }}>
                 <IconButton size="large" color="inherit">
@@ -248,6 +234,20 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products }) => {
                 </IconButton>
               </Box>
               <Box sx={{ display: { xs: "flex", md: "none" } }}>
+                <IconButton
+                  size="large"
+                  aria-label="show 17 new notifications"
+                  color="inherit"
+                >
+                  <Badge
+                    badgeContent={cartProducts && cartProducts.length}
+                    color="error"
+                  >
+                    <Link to="/order-session">
+                      <ShoppingCart />
+                    </Link>
+                  </Badge>
+                </IconButton>
                 <IconButton
                   size="large"
                   aria-label="show more"
