@@ -8,6 +8,7 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
 import SingleCheckoutItem from "../components/SingleCheckoutItem";
+// import Canvas3D from "../components/Canvas3D";
 
 const initialCheckoutInfo = {
   firstName: "",
@@ -330,51 +331,9 @@ const Checkout = (props) => {
         </Form.Group>
         <Button type="submit">Confirm</Button>
       </Form>
+      {/* <Canvas3D /> */}
     </div>
   );
-
-  // <div className="checkout">
-  //   <Box
-  //     component="form"
-  //     sx={{
-  //       "& > :not(style)": { m: 1 },
-  //       // maxWidth: "80%",
-  //     }}
-  //     noValidate
-  //     autoComplete="off"
-  //   >
-  //     <h3>Contact {"&"} Shipping Info:</h3>
-  //     {Object.keys(initialCheckoutInfo).map((param, index) => (
-  //       <FormControl key={param}>
-  //         <InputLabel htmlFor="component-outlined">
-  //           {checkoutTitles[index]}
-  //         </InputLabel>
-  //         <OutlinedInput
-  //           name={param}
-  //           value={checkoutInfo[param]}
-  //           onChange={handleChange}
-  //           label={checkoutTitles[index]}
-  //         />
-  //       </FormControl>
-  //     ))}
-  //     <h3>Payment Info:</h3>
-  //     {Object.keys(initialPaymentInfo).map((param, index) => (
-  //       <FormControl key={param}>
-  //         <InputLabel htmlFor="component-outlined">
-  //           {paymentTitles[index]}
-  //         </InputLabel>
-  //         <OutlinedInput
-  //           name={param}
-  //           value={checkoutInfo[param]}
-  //           onChange={handleChange}
-  //           label={checkoutTitles[index]}
-  //         />
-  //       </FormControl>
-  //     ))}
-  //   </Box>
-  //   <Button onClick={(event) => handleSubmit(event)}>Buy</Button>
-  // </div>
-  // );
 };
 
 const mapState = (state) => {
