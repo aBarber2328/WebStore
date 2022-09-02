@@ -103,19 +103,19 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products }) => {
               </Typography>
               <SearchBar allProducts={products} />
               <IconButton
-                  size="large"
-                  aria-label="show 17 new notifications"
-                  color="inherit"
+                size="large"
+                aria-label="show 17 new notifications"
+                color="inherit"
+              >
+                <Badge
+                  badgeContent={cartProducts && cartProducts.length}
+                  color="error"
                 >
-                  <Badge
-                    badgeContent={cartProducts && cartProducts.length}
-                    color="error"
-                  >
-                    <Link to="/order-session">
-                      <ShoppingCart />
-                    </Link>
-                  </Badge>
-                </IconButton>
+                  <Link to="/order-session">
+                    <ShoppingCart />
+                  </Link>
+                </Badge>
+              </IconButton>
               <Box sx={{ flexGrow: 1 }} />
               <Box sx={{ display: { xs: "none", md: "flex" } }}>
                 <IconButton size="large" color="inherit">
@@ -204,19 +204,19 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products }) => {
               </Typography>
               <SearchBar allProducts={products} />
               <IconButton
-                  size="large"
-                  aria-label="show 17 new notifications"
-                  color="inherit"
+                size="large"
+                aria-label="show 17 new notifications"
+                color="inherit"
+              >
+                <Badge
+                  badgeContent={cartProducts && cartProducts.length}
+                  color="error"
                 >
-                  <Badge
-                    badgeContent={cartProducts && cartProducts.length}
-                    color="error"
-                  >
-                    <Link to="/order-session">
-                      <ShoppingCart />
-                    </Link>
-                  </Badge>
-                </IconButton>
+                  <Link to="/order-session">
+                    <ShoppingCart />
+                  </Link>
+                </Badge>
+              </IconButton>
               <Box sx={{ flexGrow: 1 }} />
               <Box sx={{ display: { xs: "none", md: "flex" } }}>
                 <IconButton size="large" color="inherit">

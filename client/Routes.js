@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter, Route, Switch } from "react-router-dom";
+import { withRouter, Route, Routes as Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import { me } from "./store";
 import SingleProduct from "./pages/SingleProduct";
@@ -22,12 +22,16 @@ class Routes extends Component {
     return (
       <div>
         <Switch>
-          <Route exact path="/checkout" component={Checkout} />
-          <Route exact path="/" component={Home} />
-          <Route exact path="/products" component={AllProducts} />
-          <Route exact path="/products/:productId" component={SingleProduct} />
-          <Route path="/order-session" component={OrderSession} />
-          <Route exact path="/checkout" component={Checkout} />
+          <Route exact path="/checkout" element={<Checkout />} />
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/products" element={<AllProducts />} />
+          <Route
+            exact
+            path="/products/:productId"
+            element={<SingleProduct />}
+          />
+          <Route path="/order-session" element={<OrderSession />} />
+          <Route exact path="/checkout" element={<Checkout />} />
           {/* {isLoggedIn ? (
             <Route path="/orderHistory" component={OrderHistory} />
           ) : (
@@ -62,4 +66,4 @@ const mapDispatch = (dispatch) => {
 
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
-export default withRouter(connect(mapState, mapDispatch)(Routes));
+export default connect(mapState, mapDispatch)(Routes);
