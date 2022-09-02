@@ -46,10 +46,8 @@ export const authenticate =
 
 export const logout = () => {
   window.localStorage.removeItem(TOKEN);
-
   //dispatch(clearCart());
 
-  history.push("/");
   return {
     type: SET_AUTH,
     auth: {},
