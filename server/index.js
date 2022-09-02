@@ -5,7 +5,6 @@ const seed = require("../script/seed");
 
 const init = async () => {
   try {
-    console.log(process.env);
     if (process.env.SEED === "true") {
       await seed();
     } else {
