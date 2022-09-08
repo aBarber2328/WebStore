@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter, Route, Routes as Switch } from "react-router-dom";
+import { Route, Routes as Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import { me } from "./store";
 import SingleProduct from "./pages/SingleProduct";
@@ -18,29 +18,22 @@ class Routes extends Component {
 
   render() {
     const { isLoggedIn } = this.props;
-
     return (
-      <div>
-        <Switch>
-          <Route exact path="/checkout" element={<Checkout />} />
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/products" element={<AllProducts />} />
-          <Route
-            exact
-            path="/products/:productId"
-            element={<SingleProduct />}
-          />
-          <Route path="/order-session" element={<OrderSession />} />
-          <Route exact path="/checkout" element={<Checkout />} />
-          {/* {isLoggedIn ? (
+      <Switch>
+        <Route exact path="/checkout" element={<Checkout />} />
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/products" element={<AllProducts />} />
+        <Route exact path="/products/:productId" element={<SingleProduct />} />
+        <Route path="/order-session" element={<OrderSession />} />
+        <Route exact path="/checkout" element={<Checkout />} />
+        {/* {isLoggedIn ? (
             <Route path="/orderHistory" component={OrderHistory} />
           ) : (
             <>
               <Route path="/login" component={Login} />
             </>
           )} */}
-        </Switch>
-      </div>
+      </Switch>
     );
   }
 }

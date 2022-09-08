@@ -1,0 +1,11 @@
+Model Information:
+* title:	Magnifying Glass (3D Apple Emoji)
+* source:	https://sketchfab.com/3d-models/magnifying-glass-3d-apple-emoji-c42c2a14d34244f2b3712c09c94befd7
+* author:	Alexander (https://sketchfab.com/pravdin)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Magnifying Glass (3D Apple Emoji)" (https://sketchfab.com/3d-models/magnifying-glass-3d-apple-emoji-c42c2a14d34244f2b3712c09c94befd7) by Alexander (https://sketchfab.com/pravdin) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

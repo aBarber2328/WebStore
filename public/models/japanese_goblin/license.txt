@@ -1,0 +1,11 @@
+Model Information:
+* title:	Japanese Goblin Emoji
+* source:	https://sketchfab.com/3d-models/japanese-goblin-emoji-fd304959acc347c286b2ac988b2ed306
+* author:	saywhoom (https://sketchfab.com/saywhoom)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Japanese Goblin Emoji" (https://sketchfab.com/3d-models/japanese-goblin-emoji-fd304959acc347c286b2ac988b2ed306) by saywhoom (https://sketchfab.com/saywhoom) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

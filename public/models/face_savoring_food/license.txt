@@ -1,0 +1,11 @@
+Model Information:
+* title:	3moji.org : Face Savoring Food
+* source:	https://sketchfab.com/3d-models/3mojiorg-face-savoring-food-46e65117305046658fca52bd2da0796d
+* author:	Jeremy Edelblut (https://sketchfab.com/jeremy.toys)
+
+Model License:
+* license type:	CC-BY-SA-4.0 (http://creativecommons.org/licenses/by-sa/4.0/)
+* requirements:	Author must be credited. Modified versions must have the same license. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "3moji.org : Face Savoring Food" (https://sketchfab.com/3d-models/3mojiorg-face-savoring-food-46e65117305046658fca52bd2da0796d) by Jeremy Edelblut (https://sketchfab.com/jeremy.toys) licensed under CC-BY-SA-4.0 (http://creativecommons.org/licenses/by-sa/4.0/)

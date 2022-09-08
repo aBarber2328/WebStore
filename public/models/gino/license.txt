@@ -1,0 +1,11 @@
+Model Information:
+* title:	Emoji giño
+* source:	https://sketchfab.com/3d-models/emoji-gino-e699680b6dd14e1eb0f08635adc836b0
+* author:	Juan martín (https://sketchfab.com/napoleon67y)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Emoji giño" (https://sketchfab.com/3d-models/emoji-gino-e699680b6dd14e1eb0f08635adc836b0) by Juan martín (https://sketchfab.com/napoleon67y) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

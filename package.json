@@ -53,6 +53,7 @@
     "redux-thunk": "^2.4.1",
     "sequelize": "^6.21.4",
     "three": "^0.144.0",
+    "three-stdlib": "^2.15.0",
     "webpack": "^5.74.0"
   },
   "devDependencies": {

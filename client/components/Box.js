@@ -1,6 +1,7 @@
 import React, { useRef, useState, useMemo } from "react";
 import { Canvas, useFrame } from "react-three-fiber";
-import * as THREE from "three";
+import { DoubleSide } from "three";
+import { TextureLoader } from "three";
 import five from "../assets/five.png";
 
 const Box = (props) => {
@@ -12,7 +13,7 @@ const Box = (props) => {
     mesh.current.rotation.x = mesh.current.rotation.y += 0.01;
   });
 
-  const texture = useMemo(() => new THREE.TextureLoader().load(five), []);
+  const texture = useMemo(() => new TextureLoader().load(five), []);
 
   return (
     <mesh
@@ -21,8 +22,8 @@ const Box = (props) => {
       scale={active ? [2, 2, 2] : [1.5, 1.5, 1.5]}
       onClick={(e) => setActive(!active)}
     >
-      <boxBufferGeometry args={[1, 1, 1]} />
-      <meshBasicMaterial attach="material" transparent side={THREE.DoubleSide}>
+      <boxGeometry args={[1, 1, 1]} />
+      <meshBasicMaterial attach="material" transparent side={DoubleSide}>
         <primitive attach="map" object={texture} />
       </meshBasicMaterial>
     </mesh>
