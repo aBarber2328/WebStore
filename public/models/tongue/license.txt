@@ -1,0 +1,11 @@
+Model Information:
+* title:	Emoji_Tongue
+* source:	https://sketchfab.com/3d-models/emoji-tongue-d0bd82b23fa74569ac47c11bb240928a
+* author:	JadeBarbiier (https://sketchfab.com/JadeBarbiier)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Emoji_Tongue" (https://sketchfab.com/3d-models/emoji-tongue-d0bd82b23fa74569ac47c11bb240928a) by JadeBarbiier (https://sketchfab.com/JadeBarbiier) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

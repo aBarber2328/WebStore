@@ -1,0 +1,11 @@
+Model Information:
+* title:	Emoji_Smiling_1
+* source:	https://sketchfab.com/3d-models/emoji-smiling-1-d6bbe1c692de411ea217d9d7feda7db7
+* author:	JadeBarbiier (https://sketchfab.com/JadeBarbiier)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Emoji_Smiling_1" (https://sketchfab.com/3d-models/emoji-smiling-1-d6bbe1c692de411ea217d9d7feda7db7) by JadeBarbiier (https://sketchfab.com/JadeBarbiier) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

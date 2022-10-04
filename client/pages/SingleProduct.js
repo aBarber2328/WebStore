@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import EmotionNav from "../components/ProductNav";
+import Canvas3D from "../components/Canvas3D";
 
 const SingleEmotion = (props) => {
+  let params = useParams();
   const [product, setProduct] = useState({});
 
   useEffect(() => {
     (async () => {
-      const { data } = await axios.get(
-        `/api/products/${props.match.params.productId}`
-      );
+      const { data } = await axios.get(`/api/products/${params.productId}`);
       setProduct(data);
     })();
   }, []);
@@ -27,7 +27,8 @@ const SingleEmotion = (props) => {
               Empathy Level: {product.reccomendedEmpathyLevel}
             </div>
             <div className="singleImg">
-              <img src={product.imageURL} />
+              {/* */}
+              <Canvas3D />
             </div>
             <div className="description">
               <div>
