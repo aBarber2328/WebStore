@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Divider } from "@mui/material";
 import { connect } from "react-redux";
 import cart, { fetchCart } from "../store/cart";
+import Navbar from "../components/Navbar";
 
 const OrderSession = (props) => {
   let myCart = props.cart.products;
@@ -35,31 +36,34 @@ const OrderSession = (props) => {
   }, []);
 
   return (
-    <div className="order-session">
-      <h1>Your Cart</h1>
-      <div className="order-session-title">
-        <h2>Product</h2>
-        <h2>Qty</h2>
-        <h2>Price</h2>
-      </div>
-      <Divider />
-      {myCart === undefined
-        ? ""
-        : myCart.map((product) => (
-            <OrderSessionProduct
-              key={product.id}
-              product={product}
-              cart={myCart}
-            />
-          ))}
+    <>
+      <Navbar />
+      <div className="order-session">
+        <h1 className="text-white text-4xl text-center my-4">Your Cart</h1>
+        <div className="flex justify-between text-white text-2xl">
+          <h2>Product</h2>
+          <h2>Quantity</h2>
+          <h2>Price</h2>
+        </div>
+        <Divider />
+        {myCart === undefined
+          ? ""
+          : myCart.map((product) => (
+              <OrderSessionProduct
+                key={product.id}
+                product={product}
+                cart={myCart}
+              />
+            ))}
 
-      <strong>
-        <p className="session-total">${total}</p>
-      </strong>
-      <Link to="/checkout">
-        <Button>Checkout</Button>
-      </Link>
-    </div>
+        <strong>
+          <p className="session-total">${total}</p>
+        </strong>
+        <Link to="/checkout">
+          <Button>Checkout</Button>
+        </Link>
+      </div>
+    </>
   );
 };
 

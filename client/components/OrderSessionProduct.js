@@ -30,10 +30,9 @@ const OrderSessionProduct = (props) => {
 
   return (
     <>
-      <div className="order-session-product">
+      <div className="order-session-product my-4">
         <div>
-          <div className="product-title">{product.name}</div>
-          <img src={product.imageURL} />
+          <div className="text-8xl">{product.imageURL}</div>
         </div>
         <div>
           <div
@@ -50,9 +49,9 @@ const OrderSessionProduct = (props) => {
           </div>
         </div>
         <div style={{ display: "block" }}>
-          <div>$ {product.price}</div>
+          <div className="text-white text-2xl">$ {product.price}</div>
           <button
-            className="delete-button"
+            className="text-white text-sm"
             onClick={() => removeProduct(product.id)}
           >
             Remove
