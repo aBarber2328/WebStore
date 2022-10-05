@@ -1,3 +1,60 @@
+/* //////////////////LANDING PAGE//////////////////// */
+
+
+/* Custom default button */
+/* .btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+  color: #333; */
+  /* text-shadow: none; */
+  /* Prevent inheritance from `body` */
+/* } */
+
+
+/*
+ * Base structure
+ */
+
+/* body {
+  text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
+  box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+} */
+
+/* .cover-container {
+  max-width: 42em;
+} */
+
+
+/*
+ * Header
+ */
+
+/* .nav-masthead .nav-link {
+  color: rgba(255, 255, 255, .5);
+  border-bottom: .25rem solid transparent;
+}
+
+.nav-masthead .nav-link:hover,
+.nav-masthead .nav-link:focus {
+  border-bottom-color: rgba(255, 255, 255, .25);
+}
+
+.nav-masthead .nav-link + .nav-link {
+  margin-left: 1rem;
+}
+
+.nav-masthead .active {
+  color: #fff;
+  border-bottom-color: #fff;
+} */
+
+/* ////////////////LANDING PAGE////////////////////// */
+
+
+
+
+
+
 body {
   font-family: sans-serif;
   background-color: #edede9;
@@ -24,7 +81,7 @@ label {
 nav a {
   display: inline-block;
   margin: 1em;
-}
+} */
 
 img {
   border-radius: 3px;
@@ -41,7 +98,7 @@ span {
 } */
 
 /* ////////NAVBAR////////////// */
-.navBar {
+/* .navBar {
   display: flex;
   justify-content: space-between;
   padding: 10px;
@@ -51,7 +108,7 @@ span {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-}
+} */
 /* ////////NAVBAR///////////// */
 
 /* AllProductsView features */
@@ -157,43 +214,7 @@ span {
   cursor: pointer;
 }
 
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-}
 
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 40%; /* Could be more or less, depending on screen size */
-  height: auto;
-}
-
-/* The Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
 
 /* /////////FLICKITY////////////// */
 .flickity-prev-next-button {
@@ -281,77 +302,5 @@ img {
   a:hover {
     color: #e28413;
     transition: color 0.5s ease;
-  }
-  .navBar {
-    display: flex;
-    justify-content: space-between;
-    height: 80px;
-    z-index: 1;
-    width: 100%;
-    max-width: 1300px;
-    padding: 0;
-    color: white;
-  }
-  .navBarMenu {
-    display: grid;
-    grid-template-columns: auto;
-    justify-content: center;
-    margin: 0;
-    width: 96.1%;
-    position: absolute;
-    /* top: -1000px;
-    opacity: 0; */
-    transition: all 0.5s ease;
-    height: 50vh;
-    z-index: -1;
-    background: #e28413;
-    color: white;
-  }
-  .navBarMenu.active {
-    background: #000022;
-    top: 100%;
-    opacity: 1;
-    transition: all 0.5s ease;
-    z-index: 99;
-    height: 50vh;
-    font-size: 16px;
-  }
-  .navToggle .bar {
-    width: 25px;
-    height: 3px;
-    margin: 5px auto;
-    transition: all 0.3s ease-in-out;
-    background: #000022;
-    position: relative;
-  }
-  #mobileMenu {
-    position: absolute;
-    top: 6.25%;
-    right: 5%;
-    transform: translate(5%, 20%);
-  }
-  .navToggle .bar {
-    display: block;
-    cursor: pointer;
-  }
-  .carousel-cell {
-    background-color: #000022;
-    color: #d2e5f5;
-  }
-  #mobileMenu.isActive .bar:nth-child(2) {
-    opacity: 0;
-  }
-  #mobileMenu.isActive .bar:nth-child(1) {
-    transform: translate(8px) rotate(45deg);
-  }
-  #mobileMenu.isActive .bar:nth-child(3) {
-    transform: translate(-8px) rotate(-45deg);
-  }
-}
-
-@media screen and (min-width: 800px) {
-  .order-session img {
-    width: 20vw;
-    margin: 5px;
   }
 }

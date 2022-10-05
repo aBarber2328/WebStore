@@ -1,6 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import cart, { fetchCart } from "../store/cart";
+import { fetchCart } from "../store/cart";
+import SplineLanding from "../components/SplineLanding";
+import { WrapAroundEnding, Wrapping } from "three";
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 /**
  * COMPONENT
@@ -10,18 +13,13 @@ export class Home extends React.Component {
     super();
   }
 
-  // componentDidMount() {
-  //   this.props.fetchCart();
-  // }
-
   render() {
     const { username } = this.props;
 
     return (
-      <div className="landing">
-        <h3>Welcome, {username}</h3>
-        <div></div>
-      </div>
+      // <div style={{width: "100vw", height: "100vh", position: "relative"}}>
+        <SplineLanding/>
+      // </div>
     );
   }
 }
@@ -47,3 +45,10 @@ const mapDispatch = (dispatch) => {
 };
 
 export default connect(mapState, mapDispatch)(Home);
+
+
+
+{/* <div className="landing">
+           <h3>Welcome, {username}</h3>
+           <div></div>
+        </div> */}

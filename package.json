@@ -28,6 +28,7 @@
     "@mui/material": "^5.10.3",
     "@react-three/drei": "^9.25.3",
     "@react-three/fiber": "^8.6.2",
+    "@splinetool/r3f-spline": "^1.0.2",
     "@splinetool/react-spline": "^2.2.1",
     "@splinetool/runtime": "^0.9.104",
     "axios": "^0.27.2",
@@ -47,6 +48,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
     "react-redux": "^8.0.2",
+    "react-responsive-carousel": "^3.2.23",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
     "react-three-fiber": "^6.0.13",
@@ -55,7 +57,11 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.4.1",
     "sequelize": "^6.21.4",
+<<<<<<< HEAD
     "tailwind-scrollbar-hide": "^1.1.7",
+=======
+    "styled-components": "^5.3.6",
+>>>>>>> 6823a425128292177dde135accbedfcf5769eea1
     "three": "^0.144.0",
     "three-stdlib": "^2.15.0",
     "webpack": "^5.74.0"
