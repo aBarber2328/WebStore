@@ -1,0 +1,398 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 15216,
+      "max": [
+        0.5882599949836731,
+        0.7082449793815613,
+        0.3243820071220398
+      ],
+      "min": [
+        -0.7307819724082947,
+        -0.6113979816436768,
+        -1.0
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 182592,
+      "componentType": 5126,
+      "count": 15216,
+      "max": [
+        0.9991642236709595,
+        0.9997373223304749,
+        0.9994980692863464
+      ],
+      "min": [
+        -0.9994380474090576,
+        -0.9983035922050476,
+        -0.9976996183395386
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 15216,
+      "max": [
+        0.9992429614067078,
+        0.9999678730964661,
+        0.999905526638031,
+        1.0
+      ],
+      "min": [
+        -0.9984673857688904,
+        -0.9998553991317749,
+        -0.9971206188201904,
+        -1.0
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 15216,
+      "max": [
+        0.8849369883537292,
+        0.9998559951782227
+      ],
+      "min": [
+        0.00014400000509340316,
+        0.00014400000509340316
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 16872,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 365184,
+      "componentType": 5126,
+      "count": 2611,
+      "max": [
+        0.8053399920463562,
+        -0.0632781982421875,
+        1.0
+      ],
+      "min": [
+        -0.8053399920463562,
+        -0.7082449793815613,
+        -0.0724589005112648
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 396516,
+      "componentType": 5126,
+      "count": 2611,
+      "max": [
+        0.9996106028556824,
+        0.9992986917495728,
+        0.9961094856262207
+      ],
+      "min": [
+        -0.9999618530273438,
+        -0.9996833205223083,
+        -0.8019316792488098
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "byteOffset": 243456,
+      "componentType": 5126,
+      "count": 2611,
+      "max": [
+        0.9997262358665466,
+        0.9357525110244751,
+        0.9833784699440002,
+        1.0
+      ],
+      "min": [
+        -0.9994962811470032,
+        -0.9999451041221619,
+        -0.9937006235122681,
+        -1.0
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 121728,
+      "componentType": 5126,
+      "count": 2611,
+      "max": [
+        0.992838978767395,
+        0.9997850060462952
+      ],
+      "min": [
+        0.00021499999274965376,
+        0.00021499999274965376
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 67488,
+      "componentType": 5125,
+      "count": 13740,
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "Rine Studios (https://sketchfab.com/myamegames)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/emoji-face-fa738e1a72634a73bffc4a7705ff3934",
+      "title": "EMOJI FACE"
+    },
+    "generator": "Sketchfab-12.68.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 122448,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 142616,
+      "byteOffset": 122448,
+      "byteStride": 8,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 427848,
+      "byteOffset": 265064,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 285232,
+      "byteOffset": 692912,
+      "byteStride": 16,
+      "name": "floatBufferViews",
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 978144,
+      "uri": "scene.bin"
+    }
+  ],
+  "images": [
+    {
+      "uri": "textures/Hands_baseColor.jpeg"
+    },
+    {
+      "uri": "textures/Hands_metallicRoughness.png"
+    },
+    {
+      "uri": "textures/Hands_normal.png"
+    },
+    {
+      "uri": "textures/Ball_baseColor.jpeg"
+    },
+    {
+      "uri": "textures/Ball_metallicRoughness.png"
+    },
+    {
+      "uri": "textures/Ball_normal.png"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "name": "Hands",
+      "normalTexture": {
+        "index": 2
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicRoughnessTexture": {
+          "index": 1
+        }
+      }
+    },
+    {
+      "doubleSided": true,
+      "name": "Ball",
+      "normalTexture": {
+        "index": 5
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 3
+        },
+        "metallicRoughnessTexture": {
+          "index": 4
+        }
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "defaultMaterial",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TANGENT": 2,
+            "TEXCOORD_0": 3
+          },
+          "indices": 4,
+          "material": 1,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "defaultMaterial",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 6,
+            "POSITION": 5,
+            "TANGENT": 7,
+            "TEXCOORD_0": 8
+          },
+          "indices": 9,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.220446049250313e-16,
+        -1.0,
+        0.0,
+        0.0,
+        1.0,
+        2.220446049250313e-16,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Sketchfab_model"
+    },
+    {
+      "children": [
+        2,
+        4
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -4.371139006309477e-08,
+        0.999999999999999,
+        0.0,
+        0.0,
+        -0.999999999999999,
+        -4.371139006309477e-08,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Collada visual scene group"
+    },
+    {
+      "children": [
+        3
+      ],
+      "name": "Ball_Group63474"
+    },
+    {
+      "mesh": 0,
+      "name": "defaultMaterial"
+    },
+    {
+      "children": [
+        5
+      ],
+      "name": "Hands_default.003"
+    },
+    {
+      "mesh": 1,
+      "name": "defaultMaterial"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Sketchfab_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
+    },
+    {
+      "sampler": 0,
+      "source": 2
+    },
+    {
+      "sampler": 0,
+      "source": 3
+    },
+    {
+      "sampler": 0,
+      "source": 4
+    },
+    {
+      "sampler": 0,
+      "source": 5
+    }
+  ]
+}

@@ -10,13 +10,9 @@ const container = document.getElementById("app");
 const root = ReactDOM.createRoot(container);
 
 root.render(
-  <>
-    <div>Testing</div>
-
-    <Provider store={store}>
-      <Router history={history}>
-        <App />
-      </Router>
-    </Provider>
-  </>
+  <Provider store={store}>
+    <Router>
+      <App />
+    </Router>
+  </Provider>
 );

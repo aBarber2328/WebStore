@@ -18,8 +18,3 @@ const init = async () => {
 };
 
 init();
-
-// "test": "echo \"Error: no test specified\" && exit 1",
-// "start": "node server",
-// "start-dev": "JWT=secret webpack -w & nodemon server",
-// "seed": "node script/seed.js"

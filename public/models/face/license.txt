@@ -1,0 +1,11 @@
+Model Information:
+* title:	EMOJI FACE
+* source:	https://sketchfab.com/3d-models/emoji-face-fa738e1a72634a73bffc4a7705ff3934
+* author:	Rine Studios (https://sketchfab.com/myamegames)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "EMOJI FACE" (https://sketchfab.com/3d-models/emoji-face-fa738e1a72634a73bffc4a7705ff3934) by Rine Studios (https://sketchfab.com/myamegames) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

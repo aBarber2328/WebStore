@@ -1,0 +1,11 @@
+Model Information:
+* title:	Emoji-01
+* source:	https://sketchfab.com/3d-models/emoji-01-e3053584f8894bdeac6fafb1ae7beed1
+* author:	aniljaco (https://sketchfab.com/aniljaco)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Emoji-01" (https://sketchfab.com/3d-models/emoji-01-e3053584f8894bdeac6fafb1ae7beed1) by aniljaco (https://sketchfab.com/aniljaco) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

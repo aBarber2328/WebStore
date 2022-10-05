@@ -1,0 +1,11 @@
+Model Information:
+* title:	Emoji 064 Neutral
+* source:	https://sketchfab.com/3d-models/emoji-064-neutral-ff83d0d3ce744ba4aa50338bd5c3f3be
+* author:	HQ3DMOD (https://sketchfab.com/AivisAstics)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Emoji 064 Neutral" (https://sketchfab.com/3d-models/emoji-064-neutral-ff83d0d3ce744ba4aa50338bd5c3f3be) by HQ3DMOD (https://sketchfab.com/AivisAstics) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
