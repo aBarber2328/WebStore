@@ -23,11 +23,8 @@ const SingleEmotion = (props) => {
         <h1>{product.name}</h1>
         <div className="item">
           <div className="itemDetails">
-            <div className="empathy">
-              Empathy Level: {product.reccomendedEmpathyLevel}
-            </div>
             <div className="singleImg">
-              {/* */}
+              <div className="text-9xl">{product.imageURL}</div>
               {/* <Canvas3D /> */}
             </div>
             <div className="description">

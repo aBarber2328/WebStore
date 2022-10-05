@@ -1,9 +1,10 @@
 body {
   font-family: sans-serif;
   background-color: #edede9;
+  background-color: black;
 }
 
-a {
+/* a {
   text-decoration: none;
   color: #edede9;
 }
@@ -25,9 +26,9 @@ nav a {
   margin: 1em;
 }
 
-/* img {
+img {
   border-radius: 3px;
-} */
+}
 
 form div {
   margin: 1em;
@@ -37,7 +38,7 @@ form div {
 span {
   font-size: 20px;
   font-weight: 1000;
-}
+} */
 
 /* ////////NAVBAR////////////// */
 .navBar {
@@ -54,7 +55,7 @@ span {
 /* ////////NAVBAR///////////// */
 
 /* AllProductsView features */
-.displayAll {
+/* .displayAll {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
@@ -89,7 +90,7 @@ span {
   margin-top: 10px;
   height: 100px;
   width: 100%;
-}
+} */
 
 /* SingleView features */
 .singleHeader {
@@ -206,11 +207,11 @@ span {
 }
 /* /////////Flickity////////////// */
 /* ////////HOME PAGE///////////// */
-img {
+/* img {
   width: 80%;
   height: 80%;
   object-fit: contain;
-}
+} */
 .landing {
   position: absolute;
   background-image: url(landingPhoto.jpg);
