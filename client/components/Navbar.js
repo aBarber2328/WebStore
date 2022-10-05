@@ -85,9 +85,9 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products }) => {
 
   return (
     <div>
-      <div>
+      {/* <div>
         <NavCarousel />
-      </div>
+      </div> */}
 
       {isLoggedIn ? (
         <Box sx={{ flexGrow: 1 }}>
@@ -102,20 +102,6 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products }) => {
                 <Link to="/products">WEBSTORE</Link>
               </Typography>
               <SearchBar allProducts={products} />
-              <IconButton
-                  size="large"
-                  aria-label="show 17 new notifications"
-                  color="inherit"
-                >
-                  <Badge
-                    badgeContent={cartProducts && cartProducts.length}
-                    color="error"
-                  >
-                    <Link to="/order-session">
-                      <ShoppingCart />
-                    </Link>
-                  </Badge>
-                </IconButton>
               <Box sx={{ flexGrow: 1 }} />
               <Box sx={{ display: { xs: "none", md: "flex" } }}>
                 <IconButton size="large" color="inherit">
@@ -217,20 +203,6 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products }) => {
                 <Link to="/products">WEBSTORE</Link>
               </Typography>
               <SearchBar allProducts={products} />
-              <IconButton
-                  size="large"
-                  aria-label="show 17 new notifications"
-                  color="inherit"
-                >
-                  <Badge
-                    badgeContent={cartProducts && cartProducts.length}
-                    color="error"
-                  >
-                    <Link to="/order-session">
-                      <ShoppingCart />
-                    </Link>
-                  </Badge>
-                </IconButton>
               <Box sx={{ flexGrow: 1 }} />
               <Box sx={{ display: { xs: "none", md: "flex" } }}>
                 <IconButton size="large" color="inherit">
