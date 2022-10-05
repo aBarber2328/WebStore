@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import ProductNav from "../components/ProductNav";
 import { fetchProducts } from "../store/products";
 import { addProduct, setCart, fetchCart } from "../store/cart";
+import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
 const AllProducts = (props) => {
   const products = props.products;
@@ -90,17 +91,51 @@ const AllProducts = (props) => {
 };
 
 const ProductType = ({ products, name, handleAddToCart }) => {
+  const slideLeft = () => {
+    const slide = document.getElementById(`${name}-slider`);
+    slide.scrollLeft = slide.scrollLeft - 500;
+  };
+
+  const slideRight = () => {
+    const slide = document.getElementById(`${name}-slider`);
+    slide.scrollLeft = slide.scrollLeft + 500;
+  };
+
   return (
     <>
       <div className="text-3xl font-bold uppercase mx-8 text-white">{name}</div>
-      <div className="flex flex-row overflow-x-auto overflow-y-hidden mb-8 touch-auto">
-        {products.map((product) => (
-          <Product
-            product={product}
-            handleAddToCart={handleAddToCart}
-            key={product.id}
+      <div className="flex flex-nowrap items-center">
+        {window.innerWidth < 600 ? (
+          <></>
+        ) : (
+          <MdChevronLeft
+            className="absolute bg-neutral-200 my-6 mx-4 rounded-xl h-28 z-50"
+            size={40}
+            onClick={slideLeft}
           />
-        ))}
+        )}
+
+        <div
+          id={`${name}-slider`}
+          className="flex flex-row overflow-x-auto overflow-y-hidden scroll whitespace-nowrap scroll-smooth mb-8 scrollbar-hide"
+        >
+          {products.map((product) => (
+            <Product
+              product={product}
+              handleAddToCart={handleAddToCart}
+              key={product.id}
+            />
+          ))}
+        </div>
+        {window.innerWidth < 600 ? (
+          <></>
+        ) : (
+          <MdChevronRight
+            className="absolute right-1.5 bg-neutral-200 my-6 mx-4 mb-16 rounded-xl h-28 z-50"
+            size={40}
+            onClick={slideRight}
+          />
+        )}
       </div>
     </>
   );
@@ -108,14 +143,14 @@ const ProductType = ({ products, name, handleAddToCart }) => {
 
 const Product = ({ product, handleAddToCart }) => {
   return (
-    <div className="bg-white my-6 mx-6 py-4 px-4 rounded-xl h-96">
-      <div className="text-xl text-black font-medium text-center h-24 max-h-full">
+    <div className="bg-white my-6 mx-6 py-4 px-4 rounded-xl h-96 hover:scale-110">
+      <div className="text-2xl text-black font-medium text-center h-24 max-h-full whitespace-normal">
         {product.name}
       </div>
 
       <div>
         <Link to={`/products/${product.id}`}>
-          <div className="flex justify-center my-4">
+          <div className="flex w-48 justify-center my-4">
             <div className="text-9xl">{product.imageURL}</div>
           </div>
         </Link>
@@ -124,7 +159,7 @@ const Product = ({ product, handleAddToCart }) => {
       <div className="text-center text-2xl my-2">
         Price: ${product.price.toFixed(2)}
       </div>
-      <div className="flex flex-wrap justify-center mt-2">
+      <div className="flex flex-wrap justify-center mt-2 bg-emerald-400 rounded-2xl">
         <button
           className="text-2xl"
           name={product.id}
