@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import EmotionNav from "../components/ProductNav";
 // import Canvas3D from "../components/Canvas3D";
+import Navbar from "../components/Navbar";
 
 const SingleEmotion = (props) => {
   let params = useParams();
@@ -17,33 +18,36 @@ const SingleEmotion = (props) => {
 
   return (
     !product.name || (
-      <div>
-        Single Emotion View
-        <EmotionNav />
-        <h1>{product.name}</h1>
-        <div className="item">
-          <div className="itemDetails">
-            <div className="singleImg">
-              <div className="text-9xl">{product.imageURL}</div>
-              {/* <Canvas3D /> */}
-            </div>
-            <div className="description">
-              <div>
-                <h2>Description:</h2> {product.description}
+      <>
+        <Navbar />
+        <div>
+          Single Emotion View
+          <EmotionNav />
+          <h1>{product.name}</h1>
+          <div className="item">
+            <div className="itemDetails">
+              <div className="singleImg">
+                <div className="text-9xl">{product.imageURL}</div>
+                {/* <Canvas3D /> */}
               </div>
-            </div>
-            <div>
-              <span>Price:</span> ${product.price}
-            </div>
-            <div>
-              <span>On Hand Quantity:</span> {product.stockQuantity}
-            </div>
-            <div>
-              <Link to={`/products/${product.id}/edit`} />
+              <div className="description">
+                <div>
+                  <h2>Description:</h2> {product.description}
+                </div>
+              </div>
+              <div>
+                <span>Price:</span> ${product.price}
+              </div>
+              <div>
+                <span>On Hand Quantity:</span> {product.stockQuantity}
+              </div>
+              <div>
+                <Link to={`/products/${product.id}/edit`} />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </>
     )
   );
 };

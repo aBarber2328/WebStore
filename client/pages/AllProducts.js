@@ -7,6 +7,7 @@ import ProductNav from "../components/ProductNav";
 import { fetchProducts } from "../store/products";
 import { addProduct, setCart, fetchCart } from "../store/cart";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import Navbar from "../components/Navbar";
 
 const AllProducts = (props) => {
   const products = props.products;
@@ -58,6 +59,7 @@ const AllProducts = (props) => {
 
   return (
     <>
+      <Navbar />
       <ProductNav />
       <ProductType
         products={free}
