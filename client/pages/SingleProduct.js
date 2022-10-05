@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import EmotionNav from "../components/ProductNav";
-import Canvas3D from "../components/Canvas3D";
+// import Canvas3D from "../components/Canvas3D";
 
 const SingleEmotion = (props) => {
   let params = useParams();
@@ -28,7 +28,7 @@ const SingleEmotion = (props) => {
             </div>
             <div className="singleImg">
               {/* */}
-              <Canvas3D />
+              {/* <Canvas3D /> */}
             </div>
             <div className="description">
               <div>
