@@ -207,11 +207,11 @@ span {
 }
 /* /////////Flickity////////////// */
 /* ////////HOME PAGE///////////// */
-/* img {
+img {
   width: 80%;
   height: 80%;
   object-fit: contain;
-} */
+}
 .landing {
   position: absolute;
   background-image: url(landingPhoto.jpg);

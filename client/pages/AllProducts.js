@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import ProductNav from "../components/ProductNav";
@@ -117,7 +116,6 @@ const Product = ({ product, handleAddToCart }) => {
       <div>
         <Link to={`/products/${product.id}`}>
           <div className="flex justify-center my-4">
-            {/* {<img src={product.imageURL} />} */}
             <div className="text-9xl">{product.imageURL}</div>
           </div>
         </Link>
