@@ -2,7 +2,11 @@
 module.exports = {
   content: ["./client/**/*.{html,js}"],
   theme: {
-    extend: {},
+    extend: {
+      backgroundColor: {
+        "faux-black-coffee": "#352E2E",
+      },
+    },
   },
   plugins: [require("tailwind-scrollbar-hide")],
 };
