@@ -7,7 +7,6 @@ import LoginModal from "./LoginModal";
 import SignupModal from "./SignupModal";
 import IconButton from "@mui/material/IconButton";
 import LandingFooter from "./LandingFooter";
-import { fontSize } from "@mui/system";
 
 export default function App() {
   const [openLogin, setLogin] = useState(false);
@@ -61,7 +60,7 @@ export default function App() {
             <Link className="landingLink" to="/products">
               <div style={{display: "flex", flexDirection: "column", justifyContent: "space-around"}}>
               <span style={{alignSelf: "center"}}>Unlock Your Inner</span>
-              <img style={{alignSelf: "center"}} src="feeling.png" alt="" />
+              <img className="landingImg" style={{alignSelf: "center"}} src="feeling.png" alt="" />
               </div>
             </Link>
           </div>
@@ -134,7 +133,7 @@ const Content = styled.div`
     padding-left: 2rem;
     padding-right: 2rem;
     padding-top: 0.5rem;
-    background-color: rgba(51, 51, 51, 0.51);
+    background-color: #352e2e;
     padding-bottom: 0.5rem;
     width: 275px;
     font-size: 20px;
@@ -150,8 +149,12 @@ const Content = styled.div`
 
   .landingLink:hover {
     color: #d66fb2;
-    background-color: #e6e6e6;
     transition: all 0.2s;
+    transform: scale(1.5);
+  }
+
+  .landingImg:hover {
+    box-shadow: 8px 8px 8px 4px rgba(0, 0, 0, 0.2);
   }
 
   .landingText,
@@ -169,24 +172,4 @@ const SectionBreak = styled.div`
   height: 4px;
   background: #352e2e;
   fontsize: 1px;
-`;
-
-const SectionDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  color: white;
-`;
-
-const Section = styled.div`
-  flex-grow: 1;
-  display: flex;
-  justify-content: space-around;
-
-  .section-div {
-    background-color: #352e2e;
-    margin: 10px;
-    border-radius: 10px;
-    flex-grow: 1;
-    flex-direction: row;
-  }
 `;
