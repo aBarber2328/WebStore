@@ -16,7 +16,30 @@ const AllProducts = (props) => {
   const [random, setRandom] = useState([]);
   const [expensive, setExpensive] = useState([]);
   const [free, setFree] = useState([]);
-  const [load, setLoad] = useState(false);
+
+  useEffect(() => {
+    if (products.length !== undefined) {
+      setFree([]);
+      setPopular([]);
+      setOnsale([]);
+      setRandom([]);
+      setExpensive([]);
+      products.forEach((product) => {
+        const randomNum = Math.floor(Math.random() * 10);
+        if (product.price >= 80) {
+          setExpensive((arr) => [...arr, product]);
+        } else if (product.price === 0) {
+          setFree((arr) => [...arr, product]);
+        } else if (product.price <= 20) {
+          setOnsale((arr) => [...arr, product]);
+        } else if (randomNum >= 8) {
+          setRandom((arr) => [...arr, product]);
+        } else {
+          setPopular((arr) => [...arr, product]);
+        }
+      });
+    }
+  }, [products]);
 
   useEffect(() => {
     props.getProducts();
@@ -32,28 +55,6 @@ const AllProducts = (props) => {
   }
 
   if (products.length === undefined) {
-    return "";
-  }
-
-  if (!load) {
-    setLoad(true);
-    products.forEach((product) => {
-      const randomNum = Math.floor(Math.random() * 10);
-      if (product.price >= 80) {
-        setExpensive((arr) => [...arr, product]);
-      } else if (product.price === 0) {
-        setFree((arr) => [...arr, product]);
-      } else if (product.price <= 20) {
-        setOnsale((arr) => [...arr, product]);
-      } else if (randomNum >= 8) {
-        setRandom((arr) => [...arr, product]);
-      } else {
-        setPopular((arr) => [...arr, product]);
-      }
-    });
-  }
-
-  if (!load) {
     return "";
   }
 

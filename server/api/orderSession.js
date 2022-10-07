@@ -25,7 +25,6 @@ router.get("/", async (req, res, next) => {
       });
     }
 
-    console.log("test");
     const filteredOrder = {};
     filteredOrder.id = order.id;
     filteredOrder.userId = order.userId;
