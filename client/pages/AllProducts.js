@@ -15,7 +15,30 @@ const AllProducts = (props) => {
   const [random, setRandom] = useState([]);
   const [expensive, setExpensive] = useState([]);
   const [free, setFree] = useState([]);
-  const [load, setLoad] = useState(false);
+
+  useEffect(() => {
+    if (products.length !== undefined) {
+      setFree([]);
+      setPopular([]);
+      setOnsale([]);
+      setRandom([]);
+      setExpensive([]);
+      products.forEach((product) => {
+        const randomNum = Math.floor(Math.random() * 10);
+        if (product.price >= 80) {
+          setExpensive((arr) => [...arr, product]);
+        } else if (product.price === 0) {
+          setFree((arr) => [...arr, product]);
+        } else if (product.price <= 20) {
+          setOnsale((arr) => [...arr, product]);
+        } else if (randomNum >= 8) {
+          setRandom((arr) => [...arr, product]);
+        } else {
+          setPopular((arr) => [...arr, product]);
+        }
+      });
+    }
+  }, [products]);
 
   useEffect(() => {
     props.getProducts();
@@ -31,28 +54,6 @@ const AllProducts = (props) => {
   }
 
   if (products.length === undefined) {
-    return "";
-  }
-
-  if (!load) {
-    setLoad(true);
-    products.forEach((product) => {
-      const randomNum = Math.floor(Math.random() * 10);
-      if (product.price >= 80) {
-        setExpensive((arr) => [...arr, product]);
-      } else if (product.price === 0) {
-        setFree((arr) => [...arr, product]);
-      } else if (product.price <= 20) {
-        setOnsale((arr) => [...arr, product]);
-      } else if (randomNum >= 8) {
-        setRandom((arr) => [...arr, product]);
-      } else {
-        setPopular((arr) => [...arr, product]);
-      }
-    });
-  }
-
-  if (!load) {
     return "";
   }
 
@@ -143,20 +144,20 @@ const ProductType = ({ products, name, handleAddToCart }) => {
 
 const Product = ({ product, handleAddToCart }) => {
   return (
-    <div className="bg-white my-6 mx-6 py-4 px-4 rounded-xl h-96 hover:scale-110">
-      <div className="text-2xl text-black font-medium text-center h-24 max-h-full whitespace-normal">
+    <div className="bg-white my-6 mx-6 py-4 px-4 rounded-xl h-72 md:hover:scale-110">
+      <div className="text-lg text-black font-medium text-center h-16 max-h-full whitespace-normal">
         {product.name}
       </div>
 
       <div>
         <Link to={`/products/${product.id}`}>
-          <div className="flex w-48 justify-center my-4">
-            <div className="text-9xl">{product.imageURL}</div>
+          <div className="flex w-40 justify-center my-4">
+            <div className="text-6xl">{product.imageURL}</div>
           </div>
         </Link>
       </div>
 
-      <div className="text-center text-2xl my-2">
+      <div className="text-center text-xl my-2">
         Price: ${product.price.toFixed(2)}
       </div>
       <div className="flex flex-wrap justify-center mt-2 bg-emerald-400 rounded-2xl">

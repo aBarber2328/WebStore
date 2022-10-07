@@ -5,6 +5,8 @@ import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { deleteProduct, editQuantity } from "../store/cart";
 import { connect } from "react-redux";
+import { IoIosAddCircle } from "react-icons/io";
+import { AiFillMinusCircle } from "react-icons/ai";
 
 const OrderSessionProduct = (props) => {
   const product = props.product;
@@ -32,33 +34,44 @@ const OrderSessionProduct = (props) => {
     <>
       <div className="order-session-product my-4">
         <div>
-          <div className="text-8xl">{product.imageURL}</div>
+          <div className="text-6xl">{product.imageURL}</div>
         </div>
         <div>
           <div
             style={{
               display: "flex",
-              flexDirection: "column",
               marginLeft: "auto",
               marginRight: "auto",
             }}
+            className="text-sm text-white h-16 w-20 text-center"
           >
-            <ArrowDropUpIcon onClick={() => handleIncrement(product.id)} />
-            <div>{quantity}</div>
-            <ArrowDropDownIcon onClick={() => handleDecrement(product.id)} />
+            <AiFillMinusCircle
+              className="self-center"
+              onClick={() => handleDecrement(product.id)}
+            />
+            <div className="mx-3 w-8 text-xl self-center text-center">
+              {quantity}
+            </div>
+            <IoIosAddCircle
+              className="self-center"
+              onClick={() => handleIncrement(product.id)}
+            />
           </div>
         </div>
-        <div style={{ display: "block" }}>
-          <div className="text-white text-2xl">$ {product.price}</div>
+        <div className="flex text-center">
+          <div className="text-white text-lg grow flex flex-nowrap justify-between">
+            <span>$</span>
+            <span>{product.price.toFixed(2)}</span>
+          </div>
           <button
-            className="text-white text-sm"
+            className="text-white text-sm bg-red-500 rounded-lg px-1"
             onClick={() => removeProduct(product.id)}
           >
             Remove
           </button>
         </div>
       </div>
-      <Divider />
+      <Divider className="bg-white" />
     </>
   );
 };
