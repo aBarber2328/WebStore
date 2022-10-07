@@ -10,7 +10,7 @@ module.exports = router;
 router.get("/", async (req, res, next) => {
   const userId = await User.findIdByToken(req.headers.authorization);
   try {
-    const order = await OrderSession.findOne({
+    let order = await OrderSession.findOne({
       where: {
         status: "active",
         userId: userId,
@@ -18,13 +18,21 @@ router.get("/", async (req, res, next) => {
       include: Product,
     });
 
+    if (!order) {
+      order = await OrderSession.create({
+        status: "active",
+        userId: userId,
+      });
+    }
+
+    console.log("test");
     const filteredOrder = {};
     filteredOrder.id = order.id;
     filteredOrder.userId = order.userId;
     filteredOrder.products = order.products.map((product) => {
       return {
         id: product.id,
-        name: (product.name).toUpperCase(),
+        name: product.name.toUpperCase(),
         price: product.price,
         imageURL: product.imageURL,
         quantity: product.productOrderSessions.quantity,
@@ -36,8 +44,6 @@ router.get("/", async (req, res, next) => {
     next(err);
   }
 });
-
-router.get("/")
 
 // GET /api/orders/:orderId
 // get single order
