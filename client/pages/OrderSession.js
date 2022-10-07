@@ -35,11 +35,15 @@ const OrderSession = (props) => {
     props.fetchCart();
   }, []);
 
+  const handleCheckout = async () => {
+    await axios.post("/api/stripe/create-checkout-session", { items: myCart });
+  };
+
   return (
     <>
       <Navbar />
       <div className="order-session">
-        <h1 className="text-white text-4xl text-center my-4">Your Cart</h1>
+        <h1 className="text-white text-4xl text-center my-4">My Cart</h1>
         <div className="flex justify-between text-white text-2xl">
           <h2>Product</h2>
           <h2>Quantity</h2>
@@ -55,13 +59,20 @@ const OrderSession = (props) => {
                 cart={myCart}
               />
             ))}
-
         <strong>
-          <p className="session-total">${total}</p>
+          <p className="text-white text-center text-3xl mt-3 flex justify-around">
+            <span>Total: </span>
+            <span>${total.toFixed(2)}</span>
+          </p>
         </strong>
-        <Link to="/checkout">
-          <Button>Checkout</Button>
-        </Link>
+        <div className="min-w-full text-center my-3">
+          <button
+            onClick={handleCheckout}
+            className="text-black bg-yellow-400 rounded-lg text-2xl px-2"
+          >
+            CHECKOUT
+          </button>
+        </div>
       </div>
     </>
   );

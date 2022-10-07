@@ -1,15 +1,13 @@
 /* //////////////////LANDING PAGE//////////////////// */
 
-
 /* Custom default button */
 /* .btn-secondary,
 .btn-secondary:hover,
 .btn-secondary:focus {
   color: #333; */
-  /* text-shadow: none; */
-  /* Prevent inheritance from `body` */
+/* text-shadow: none; */
+/* Prevent inheritance from `body` */
 /* } */
-
 
 /*
  * Base structure
@@ -23,7 +21,6 @@
 /* .cover-container {
   max-width: 42em;
 } */
-
 
 /*
  * Header
@@ -49,11 +46,6 @@
 } */
 
 /* ////////////////LANDING PAGE////////////////////// */
-
-
-
-
-
 
 body {
   font-family: sans-serif;
@@ -91,11 +83,6 @@ form div {
   margin: 1em;
   display: inline-block;
 }
-
-span {
-  font-size: 20px;
-  font-weight: 1000;
-} */
 
 /* ////////NAVBAR////////////// */
 /* .navBar {
@@ -213,8 +200,6 @@ span {
   color: black;
   cursor: pointer;
 }
-
-
 
 /* /////////FLICKITY////////////// */
 .flickity-prev-next-button {
