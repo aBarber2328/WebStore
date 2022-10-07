@@ -3,7 +3,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import ProductNav from "../components/ProductNav";
 import { fetchProducts } from "../store/products";
 import { addProduct, setCart, fetchCart } from "../store/cart";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
@@ -61,7 +60,6 @@ const AllProducts = (props) => {
   return (
     <>
       <Navbar />
-      <ProductNav />
       <ProductType
         products={free}
         name="free"

@@ -91,8 +91,11 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products }) => {
 
       {isLoggedIn ? (
         <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="static" style={{ color: "#000022" }}>
-            <Toolbar>
+          <AppBar
+            position="static"
+            style={{ color: "#000022" }}
+          >
+            <Toolbar className="bg-neutral-300">
               <Typography
                 variant="h6"
                 noWrap
