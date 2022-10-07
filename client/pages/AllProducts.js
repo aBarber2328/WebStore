@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from "react";
-import { useState, useEffect } from "react";
+import React, {useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchProducts } from "../store/products";
@@ -17,6 +16,7 @@ const AllProducts = (props) => {
   const [free, setFree] = useState([]);
   const [load, setLoad] = useState(false);
 
+  
   useEffect(() => {
     props.getProducts();
 
@@ -90,7 +90,7 @@ const AllProducts = (props) => {
   );
 };
 
-const ProductType = ({ products, name, handleAddToCart }) => {
+const ProductType = ({ products, name, handleAddToCart, compareProducts }) => {
   const slideLeft = () => {
     const slide = document.getElementById(`${name}-slider`);
     slide.scrollLeft = slide.scrollLeft - 500;

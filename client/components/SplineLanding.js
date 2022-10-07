@@ -8,7 +8,7 @@ import SignupModal from "./SignupModal";
 import IconButton from "@mui/material/IconButton";
 import LandingFooter from "./LandingFooter";
 
-export default function App() {
+export default function App({username}) {
   const [openLogin, setLogin] = useState(false);
   const [openSignup, setSignup] = useState(false);
 
@@ -26,6 +26,9 @@ export default function App() {
           scene="https://prod.spline.design/bF6arss6HizC3Mhq/scene.splinecode"
         />
         <Content className="content">
+          {username ? (
+            ""
+          ):(
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
             <IconButton
               className="landingButton1"
@@ -45,7 +48,7 @@ export default function App() {
               Signup
               <SignupModal open={openSignup} setOpen={setSignup} />
             </IconButton>
-          </div>
+          </div>)}
 
           <div className="landingText">
             Create perfect{" "}

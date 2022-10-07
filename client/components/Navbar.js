@@ -1,8 +1,8 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../store";
-import NavCarousel from "./navCarousel";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -22,10 +22,10 @@ import SignupModal from "./SignupModal";
 import RenderMobileMenu from "./MobileNav";
 import { mobileMenuId } from "./MobileNav";
 import { FiEdit3 } from "react-icons/fi";
-import { clearCart } from "../store/cart";
+import { clearCart, fetchCart } from "../store/cart";
 import SearchBar from "./SearchBar";
 
-const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products }) => {
+const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products, fetchCart }) => {
   const [openLogin, setLogin] = useState(false);
   const [openSignup, setSignup] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -40,6 +40,9 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products }) => {
   const handleSignup = () => {
     setSignup(true);
   };
+  const handleCart = ()=>{
+    window.localStorage.setItem("cart", '{"products":[]}');
+  }
 
   const handleProfileMenuOpen = (event) => {
     event.persist();
@@ -85,10 +88,6 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products }) => {
 
   return (
     <div>
-      {/* <div>
-        <NavCarousel />
-      </div> */}
-
       {isLoggedIn ? (
         <Box sx={{ flexGrow: 1 }}>
           <AppBar
@@ -159,6 +158,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products }) => {
                   size="large"
                   aria-label="show 17 new notifications"
                   color="inherit"
+                  // onClick={()=>{handleCart()}}
                 >
                   <Badge
                     badgeContent={cartProducts && cartProducts.length}
@@ -295,6 +295,9 @@ const mapDispatch = (dispatch) => {
     handleClick() {
       dispatch(clearCart());
       dispatch(logout());
+    },
+    fetchCart: () => {
+      dispatch(fetchCart());
     },
   };
 };

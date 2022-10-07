@@ -34,23 +34,23 @@ const _clearCart = () => ({
 
 export const fetchCart = () => async (dispatch) => {
   const token = window.localStorage.getItem("token");
-
+  let cart;
   if (token) {
-    const { data: cart } = await axios.get("/api/order-session", {
+    const { data } = await axios.get("/api/order-session", {
       headers: {
         authorization: token,
       },
     });
-
-    dispatch(setCart(cart));
-  } else {
-    const cart = window.localStorage.getItem("cart");
-
-    if (cart) {
-      dispatch(setCart(JSON.parse(cart)));
+    cart = data;
+  } else if(cart === undefined || cart.products.length === 0){
+    const localCart = window.localStorage.getItem("cart");
+    if (localCart) {
+      dispatch(setCart(JSON.parse(localCart)));
     } else {
       dispatch(setCart({}));
     }
+  }else{
+    dispatch(setCart(cart));
   }
 };
 
@@ -123,6 +123,7 @@ export const editQuantity =
 
 export const clearCart = () => async (dispatch) => {
   dispatch(_clearCart());
+  window.localStorage.clear();
 };
 
 export const deleteProduct = (productId) => async (dispatch) => {
