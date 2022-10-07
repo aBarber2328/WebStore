@@ -39,7 +39,7 @@ const OrderSession = (props) => {
     <>
       <Navbar />
       <div className="order-session">
-        <h1 className="text-white text-4xl text-center my-4">Your Cart</h1>
+        <h1 className="text-white text-4xl text-center my-4">My Cart</h1>
         <div className="flex justify-between text-white text-2xl">
           <h2>Product</h2>
           <h2>Quantity</h2>
@@ -57,11 +57,17 @@ const OrderSession = (props) => {
             ))}
 
         <strong>
-          <p className="session-total">${total}</p>
+          <p className="text-white text-center text-3xl mt-3 flex justify-around">
+            <span>Total: </span> <span>${total.toFixed(2)}</span>
+          </p>
         </strong>
-        <Link to="/checkout">
-          <Button>Checkout</Button>
-        </Link>
+        <div className="min-w-full text-center my-3">
+          <Link to="/checkout">
+            <button className="text-black bg-yellow-400 rounded-lg text-2xl px-2">
+              CHECKOUT
+            </button>
+          </Link>
+        </div>
       </div>
     </>
   );
