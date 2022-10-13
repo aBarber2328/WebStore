@@ -13,8 +13,8 @@
     An awesome E-commerce website built with React, Tailwind, Node, Express.js, PostgreSQL, React-three-fiber, and Spline!
     <br />
     <!-- <a href="https://www.youtube.com/watch?v=QuREEs3BDHQ">View Demo</a>
-    ·
-    <a href="https://github.com/KYu-2468/netflixk/issues">Request Feature</a> -->
+    · -->
+    <a href="https://github.com/aBarber2328/WebStore/issues">Request Feature</a>
     ·
     <a href="https://web-store072222.herokuapp.com/">Website Link</a>
   </p>
@@ -42,9 +42,15 @@ Webstore brings emojis to life and allows customers to interact with and purchas
 
 [![WebStore][product-screenshot]](https://web-store072222.herokuapp.com/)
 
+### Products
+
 [![WebStore][product-screenshot2]](https://web-store072222.herokuapp.com/)
 
+### Cart
+
 [![WebStore][product-screenshot3]](https://web-store072222.herokuapp.com/)
+
+### Payment
 
 [![WebStore][product-screenshot4]](https://web-store072222.herokuapp.com/)
 
@@ -54,9 +60,10 @@ Webstore brings emojis to life and allows customers to interact with and purchas
 
 - [![React][react.js]][react-url]
 - [![Tailwind][tailwind.js]][tailwind-url]
-- [![AWS][aws]][aws-url]
-- [![TMDB][tmdb]][tmdb-url]
-- [![Youtube][youtube]][youtube-url]
+- [![Node.js][node]][node-url]
+- [![Spline][spline]][spline-url]
+- [![React-three-fiber][react-three-fiber]][react-three-fiber-url]
+- [![Stripe][stripe]][stripe-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -66,9 +73,9 @@ Webstore brings emojis to life and allows customers to interact with and purchas
 
 Software Engineers:
 
-Andre Barber - [LinkedIn](https://www.linkedin.com/in/andreb2021/)
+Andre Barber - [LinkedIn](https://www.linkedin.com/in/andreb2021/) - [GitHub](https://github.com/aBarber2328)
 
-Kevin Yu - [LinkedIn](https://www.linkedin.com/in/kevinyu2468/)
+Kevin Yu - [LinkedIn](https://www.linkedin.com/in/kevinyu2468/) - [GitHub](https://github.com/KYu-2468)
 
 Project Link: [https://github.com/aBarber2328/WebStore](https://github.com/aBarber2328/WebStore)
 
@@ -84,9 +91,11 @@ Project Link: [https://github.com/aBarber2328/WebStore](https://github.com/aBarb
 [react-url]: https://reactjs.org/
 [tailwind.js]: images/Tailwind.png
 [tailwind-url]: https://tailwindcss.com/
-[aws]: images/AWS-amplify.png
-[aws-url]: https://aws.amazon.com/amplify/
-[tmdb]: images/tmdb.png
-[tmdb-url]: https://www.themoviedb.org/?language=en-US
-[youtube]: images/youtube.png
-[youtube-url]: https://www.youtube.com/
+[node]: images/AWS-amplify.png
+[node-url]: https://aws.amazon.com/amplify/
+[spline]: images/tmdb.png
+[spline-url]: https://www.themoviedb.org/?language=en-US
+[react-three-fiber]: images/youtube.png
+[react-three-fiber-url]: https://www.youtube.com/
+[stripe]: images/youtube.png
+[stripe-url]: https://www.youtube.com/

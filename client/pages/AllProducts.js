@@ -9,20 +9,37 @@ import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import Navbar from "../components/Navbar";
 
 const AllProducts = (props) => {
+  // Get all products from props
   const products = props.products;
+
+  // Use hooks to keep track of different emoji types
   const [popular, setPopular] = useState([]);
   const [onsale, setOnsale] = useState([]);
   const [random, setRandom] = useState([]);
   const [expensive, setExpensive] = useState([]);
   const [free, setFree] = useState([]);
 
+  // Component did moun -> fetch the products and cart info
+  useEffect(() => {
+    props.getProducts();
+
+    if (!window.localStorage.getItem("cart")) {
+      window.localStorage.setItem("cart", '{"products":[]}');
+    }
+    props.fetchCart();
+  }, []);
+
+  // Every time the products from props change, do following
   useEffect(() => {
     if (products.length !== undefined) {
+      // Reset the product types to empty array
       setFree([]);
       setPopular([]);
       setOnsale([]);
       setRandom([]);
       setExpensive([]);
+
+      // Filter the product base on price and randomness
       products.forEach((product) => {
         const randomNum = Math.floor(Math.random() * 10);
         if (product.price >= 80) {
@@ -40,26 +57,21 @@ const AllProducts = (props) => {
     }
   }, [products]);
 
-  useEffect(() => {
-    props.getProducts();
-
-    if (!window.localStorage.getItem("cart")) {
-      window.localStorage.setItem("cart", '{"products":[]}');
-    }
-    props.fetchCart();
-  }, []);
-
-  async function handleAddToCart(event, product) {
+  // Add to cart funtion
+  const handleAddToCart = async (event, product) => {
     props.addProduct(product);
-  }
+  };
 
+  // Make sure there are products before rendering
   if (products.length === undefined) {
     return "";
   }
 
+  // If there are products -> render below
   return (
     <>
       <Navbar />
+
       <ProductType
         products={free}
         name="free"
@@ -91,12 +103,15 @@ const AllProducts = (props) => {
   );
 };
 
+// Component for each type/row in the all products view
 const ProductType = ({ products, name, handleAddToCart }) => {
+  // slide left function
   const slideLeft = () => {
     const slide = document.getElementById(`${name}-slider`);
     slide.scrollLeft = slide.scrollLeft - 1000;
   };
 
+  // slide right function
   const slideRight = () => {
     const slide = document.getElementById(`${name}-slider`);
     slide.scrollLeft = slide.scrollLeft + 1000;
@@ -108,15 +123,18 @@ const ProductType = ({ products, name, handleAddToCart }) => {
         {name}
       </div>
       <div className="flex flex-nowrap items-center">
-        {window.innerWidth < 600 ? (
-          <></>
-        ) : (
-          <MdChevronLeft
-            className="absolute bg-amber-500 my-6 mx-4 rounded-xl h-28 z-50"
-            size={40}
-            onClick={slideLeft}
-          />
-        )}
+        {
+          // If the window width is more than 600, render the sliding button, else don't render
+          window.innerWidth < 600 ? (
+            <></>
+          ) : (
+            <MdChevronLeft
+              className="absolute bg-amber-500 my-6 mx-4 rounded-xl h-28 z-50"
+              size={40}
+              onClick={slideLeft}
+            />
+          )
+        }
 
         <div
           id={`${name}-slider`}
@@ -130,20 +148,24 @@ const ProductType = ({ products, name, handleAddToCart }) => {
             />
           ))}
         </div>
-        {window.innerWidth < 600 ? (
-          <></>
-        ) : (
-          <MdChevronRight
-            className="absolute right-1.5 bg-amber-500 my-6 mx-4 mb-16 rounded-xl h-28 z-50"
-            size={40}
-            onClick={slideRight}
-          />
-        )}
+        {
+          // If the window width is more than 600, render the sliding button, else don't render
+          window.innerWidth < 600 ? (
+            <></>
+          ) : (
+            <MdChevronRight
+              className="absolute right-1.5 bg-amber-500 my-6 mx-4 mb-16 rounded-xl h-28 z-50"
+              size={40}
+              onClick={slideRight}
+            />
+          )
+        }
       </div>
     </>
   );
 };
 
+// Component for each product in the all product view
 const Product = ({ product, handleAddToCart }) => {
   return (
     <div className="bg-slate-200 my-6 mx-6 py-4 px-4 rounded-xl h-72 md:hover:scale-110">
