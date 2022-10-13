@@ -230,55 +230,6 @@ img {
   color: white;
 }
 
-.order-session {
-  width: 95%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.order-session-title {
-  display: flex;
-  justify-content: space-between;
-}
-
-.order-session-title > h2 {
-  width: 30%;
-  text-align: center;
-}
-
-.order-session-product {
-  display: flex;
-  align-items: center;
-  margin: 5px;
-  justify-content: space-between;
-}
-
-.order-session-product > div {
-  width: 15%;
-  font-size: 20px;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.order-session-product svg {
-  transform: scale(2.5);
-}
-
-.order-session img {
-  width: 10vw;
-  margin: 5px;
-}
-
-.session-total {
-  text-align: center;
-  font-size: 22px;
-}
-
-.checkout {
-  position: absolute;
-  width: 80%;
-}
-
 @media screen and (max-width: 960px) {
   a {
     text-decoration: none;

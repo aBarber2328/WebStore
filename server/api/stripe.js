@@ -22,5 +22,5 @@ router.post("/create-checkout-session", async (req, res) => {
     success_url: `${LOCAL_DOMAIN}${PORT}/index.html`,
     cancel_url: `${LOCAL_DOMAIN}${PORT}/index.html`,
   });
-  res.redirect(303, session.url);
+  res.status(200).send(session.url);
 });
