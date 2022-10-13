@@ -94,23 +94,25 @@ const AllProducts = (props) => {
 const ProductType = ({ products, name, handleAddToCart }) => {
   const slideLeft = () => {
     const slide = document.getElementById(`${name}-slider`);
-    slide.scrollLeft = slide.scrollLeft - 500;
+    slide.scrollLeft = slide.scrollLeft - 1000;
   };
 
   const slideRight = () => {
     const slide = document.getElementById(`${name}-slider`);
-    slide.scrollLeft = slide.scrollLeft + 500;
+    slide.scrollLeft = slide.scrollLeft + 1000;
   };
 
   return (
     <>
-      <div className="text-3xl font-bold uppercase mx-8 text-white">{name}</div>
+      <div className="text-3xl font-bold uppercase mx-8 text-white my-2 font-sans">
+        {name}
+      </div>
       <div className="flex flex-nowrap items-center">
         {window.innerWidth < 600 ? (
           <></>
         ) : (
           <MdChevronLeft
-            className="absolute bg-neutral-200 my-6 mx-4 rounded-xl h-28 z-50"
+            className="absolute bg-amber-500 my-6 mx-4 rounded-xl h-28 z-50"
             size={40}
             onClick={slideLeft}
           />
@@ -132,7 +134,7 @@ const ProductType = ({ products, name, handleAddToCart }) => {
           <></>
         ) : (
           <MdChevronRight
-            className="absolute right-1.5 bg-neutral-200 my-6 mx-4 mb-16 rounded-xl h-28 z-50"
+            className="absolute right-1.5 bg-amber-500 my-6 mx-4 mb-16 rounded-xl h-28 z-50"
             size={40}
             onClick={slideRight}
           />
@@ -144,8 +146,8 @@ const ProductType = ({ products, name, handleAddToCart }) => {
 
 const Product = ({ product, handleAddToCart }) => {
   return (
-    <div className="bg-white my-6 mx-6 py-4 px-4 rounded-xl h-72 md:hover:scale-110">
-      <div className="text-lg text-black font-medium text-center h-16 max-h-full whitespace-normal">
+    <div className="bg-slate-200 my-6 mx-6 py-4 px-4 rounded-xl h-72 md:hover:scale-110">
+      <div className="text-lg text-black font-medium text-center h-16 max-h-full whitespace-normal italic">
         {product.name}
       </div>
 

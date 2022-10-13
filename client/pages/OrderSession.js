@@ -12,19 +12,6 @@ const OrderSession = (props) => {
   let myCart = props.cart.products;
   const [total, setTotal] = useState(0);
 
-  // const updateOrderSession = async () => {
-  //   const newCart = cartRef.current.map((item) => ({
-  //     quantity: item.productOrderSessions.quantity,
-  //     orderSessionId: item.productOrderSessions.orderSessionId,
-  //     productId: item.productOrderSessions.productId,
-  //   }));
-
-  //   await axios.put("/api/order-session/", {
-  //     token: window.localStorage.token,
-  //     cart: newCart,
-  //   });
-  // };
-
   useEffect(() => {
     if (myCart !== undefined) {
       setTotal(calculateTotal(myCart));
@@ -36,18 +23,27 @@ const OrderSession = (props) => {
   }, []);
 
   const handleCheckout = async () => {
-    await axios.post("/api/stripe/create-checkout-session", { items: myCart });
+    const { data: url } = await axios.post(
+      "/api/stripe/create-checkout-session",
+      {
+        items: myCart,
+      }
+    );
+    window.location.href = url;
   };
 
   return (
     <>
       <Navbar />
-      <div className="order-session">
+      <div className="mx-auto lg:w-3/4">
         <h1 className="text-white text-4xl text-center my-4">My Cart</h1>
-        <div className="flex justify-between text-white text-2xl">
-          <h2>Product</h2>
+        <div className="flex justify-between text-white text-2xl mx-3">
+          <h2 className="w-20">Product</h2>
           <h2>Quantity</h2>
-          <h2>Price</h2>
+          <h2 className="w-20">Price</h2>
+          <h2 className="hidden lg:inline text-white text-2xl w-32 text-center">
+            Total
+          </h2>
         </div>
         <Divider />
         {myCart === undefined
