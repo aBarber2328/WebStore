@@ -87,12 +87,12 @@ Project Link: [https://github.com/aBarber2328/WebStore](https://github.com/aBarb
 [product-screenshot2]: public/images/Allproducts.png
 [product-screenshot3]: public/images/cart-webview.png
 [product-screenshot4]: public/images/payment-webview.png
-[react.js]: images/react.png
+[react.js]: public/images/react.png
 [react-url]: https://reactjs.org/
-[tailwind.js]: images/Tailwind.png
+[tailwind.js]: public/images/tailwind.png
 [tailwind-url]: https://tailwindcss.com/
-[node]: images/AWS-amplify.png
-[node-url]: https://aws.amazon.com/amplify/
+[node]: public/images/node.png
+[node-url]: https://nodejs.org/en/
 [spline]: images/tmdb.png
 [spline-url]: https://www.themoviedb.org/?language=en-US
 [react-three-fiber]: images/youtube.png
