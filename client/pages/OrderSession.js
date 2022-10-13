@@ -1,8 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Button from "@mui/material/Button";
 import OrderSessionProduct from "../components/OrderSessionProduct";
-import { Link } from "react-router-dom";
 import { Divider } from "@mui/material";
 import { connect } from "react-redux";
 import cart, { fetchCart } from "../store/cart";
