@@ -19,8 +19,8 @@ router.post("/create-checkout-session", async (req, res) => {
       },
     ],
     mode: "payment",
-    success_url: `${LOCAL_DOMAIN}${PORT}/index.html`,
-    cancel_url: `${LOCAL_DOMAIN}${PORT}/index.html`,
+    success_url: `${LOCAL_DOMAIN}${PORT}`,
+    cancel_url: `${LOCAL_DOMAIN}${PORT}`,
   });
   res.status(200).send(session.url);
 });

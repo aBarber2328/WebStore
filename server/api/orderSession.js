@@ -91,7 +91,7 @@ router.post("/", async (req, res, next) => {
           {
             quantity:
               products[i].dataValues.productOrderSessions.dataValues.quantity +
-              1,
+              +req.body.quantity,
           },
           {
             where: {
@@ -105,7 +105,7 @@ router.post("/", async (req, res, next) => {
 
     if (isNewProduct) {
       await ProductOrderSession.create({
-        quantity: 1,
+        quantity: +req.body.quantity,
         productId: +req.body.productId,
         orderSessionId: orderSession.dataValues.id,
       });
