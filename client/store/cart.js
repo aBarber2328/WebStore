@@ -36,6 +36,7 @@ export const fetchCart = () => async (dispatch) => {
   const token = window.localStorage.getItem("token");
 
   if (token) {
+    // Check if cart exist in database
     const { data: cart } = await axios.get("/api/order-session", {
       headers: {
         authorization: token,
@@ -62,6 +63,7 @@ export const addProduct = (product) => async (dispatch) => {
       await axios.post("/api/order-session", {
         token: window.localStorage.token,
         productId: product.id,
+        quantity: product.quantity || 1,
       });
     })();
 
@@ -122,6 +124,8 @@ export const editQuantity =
   };
 
 export const clearCart = () => async (dispatch) => {
+  window.localStorage.removeItem("cart");
+  console.log("Cleared", window.localStorage.cart);
   dispatch(_clearCart());
 };
 

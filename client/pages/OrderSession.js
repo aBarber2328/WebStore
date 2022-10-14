@@ -7,19 +7,25 @@ import cart, { fetchCart } from "../store/cart";
 import Navbar from "../components/Navbar";
 
 const OrderSession = (props) => {
+  // Get all products in cart
   let myCart = props.cart.products;
+
+  // Total cost of cart
   const [total, setTotal] = useState(0);
 
+  // If cart changes, update the total price
   useEffect(() => {
     if (myCart !== undefined) {
       setTotal(calculateTotal(myCart));
     }
   }, [myCart]);
 
+  // Component did mount -> fetch cart
   useEffect(() => {
     props.fetchCart();
   }, []);
 
+  // Redirect user to stripe checkout page when user clicks on checkout button
   const handleCheckout = async () => {
     const { data: url } = await axios.post(
       "/api/stripe/create-checkout-session",
