@@ -45,7 +45,7 @@ export const authenticate =
         window.localStorage.getItem("cart")
       );
 
-      // Merge localCart with database cart
+      // If local cart exist -> Merge localCart with database cart
       if (localCart.length !== 0) {
         for (let product of localCart) {
           await axios.post("/api/order-session", {
