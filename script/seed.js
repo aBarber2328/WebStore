@@ -83,7 +83,7 @@ async function seed() {
 
     // Add emojis from csv to stripe database
     // Update emoji info if already exist in stripe
-    for (let i = 0; i < emojis.length; i++) {
+    for (let i = 0; i < 50; i++) {
       const [img, unicode, name] = emojis[i];
 
       if (!img || !unicode || !name) continue;

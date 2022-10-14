@@ -10,8 +10,6 @@ const LOCAL_DOMAIN = "http://localhost:";
 const PRODUCTION_DOMAIN = "https://web-store072222.herokuapp.com/";
 
 router.post("/create-checkout-session", async (req, res) => {
-  console.log(req.body);
-
   const line_items = [];
 
   for (let item of req.body.items) {
@@ -29,3 +27,16 @@ router.post("/create-checkout-session", async (req, res) => {
   });
   res.status(200).send(session.url);
 });
+
+// Get all products in stripe database
+const getStripeProducts = async () => {
+  const products = {};
+
+  const { data: productsArr } = await stripe.products.list();
+
+  for (let stripeProduct of productsArr) {
+    products[stripeProduct.name] = stripeProduct.id;
+  }
+
+  return products;
+};
