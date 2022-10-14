@@ -103,17 +103,19 @@ async function seed() {
       }
 
       // Create new stripe product in stripe database
-      const { id: stripeId } = await stripe.products.create({
-        name: img,
-        description: name,
-        default_price_data: {
-          unit_amount: product.price * 100,
-          currency: "usd",
-        },
-        expand: ["default_price"],
-      });
+      const { id: stripeProdId, default_price: stripePrice } =
+        await stripe.products.create({
+          name: img,
+          description: name,
+          default_price_data: {
+            unit_amount: product.price * 100,
+            currency: "usd",
+          },
+          expand: ["default_price"],
+        });
 
-      product["stripeId"] = stripeId;
+      product["stripeProdId"] = stripeProdId;
+      product["stripePriceId"] = stripePrice.id;
 
       // Create product in PostgreSQL database
       await Product.create(product);

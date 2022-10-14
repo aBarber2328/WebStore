@@ -11,13 +11,18 @@ const PRODUCTION_DOMAIN = "https://web-store072222.herokuapp.com/";
 
 router.post("/create-checkout-session", async (req, res) => {
   console.log(req.body);
+
+  const line_items = [];
+
+  for (let item of req.body.items) {
+    line_items.push({
+      price: item.stripePriceId,
+      quantity: item.quantity,
+    });
+  }
+
   const session = await stripe.checkout.sessions.create({
-    line_items: [
-      {
-        price: "price_1LqKM4BJqjrTBHVauwGHQg7H",
-        quantity: 1,
-      },
-    ],
+    line_items: line_items,
     mode: "payment",
     success_url: `${LOCAL_DOMAIN}${PORT}`,
     cancel_url: `${LOCAL_DOMAIN}${PORT}`,

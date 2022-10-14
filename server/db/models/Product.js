@@ -20,7 +20,10 @@ const Product = db.define("products", {
   description: {
     type: Sequelize.STRING,
   },
-  stripeId: {
+  stripeProdId: {
+    type: Sequelize.STRING,
+  },
+  stripePriceId: {
     type: Sequelize.STRING,
   },
 });

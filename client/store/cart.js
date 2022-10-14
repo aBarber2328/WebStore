@@ -87,6 +87,8 @@ export const addProduct = (product) => async (dispatch) => {
         imageURL: product.imageURL,
         name: product.name,
         price: product.price,
+        stripeProdId: product.stripeProdId,
+        stripePriceId: product.stripePriceId,
       });
     }
     window.localStorage.setItem("cart", JSON.stringify(localCart));
@@ -125,7 +127,6 @@ export const editQuantity =
 
 export const clearCart = () => async (dispatch) => {
   window.localStorage.removeItem("cart");
-  console.log("Cleared", window.localStorage.cart);
   dispatch(_clearCart());
 };
 
