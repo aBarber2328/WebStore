@@ -28,7 +28,6 @@ export const me = () => async (dispatch) => {
     });
 
     dispatch(fetchCart());
-
     return dispatch(setAuth(res.data));
   }
 };
@@ -36,7 +35,6 @@ export const me = () => async (dispatch) => {
 export const authenticate =
   (username, password, method) => async (dispatch) => {
     try {
-      console.log("start auth!");
       const res = await axios.post(`/auth/${method}`, { username, password });
       window.localStorage.setItem(TOKEN, res.data.token);
 
