@@ -19,7 +19,11 @@ const stripePromise = loadStripe(
 const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
+  const currentUrl = window.location.href;
+  const return_url =
+    currentUrl.slice(0, currentUrl.lastIndexOf("/")) + "/purchase-success";
 
+  console.log(return_url);
   const [errorMessage, setErrorMessage] = useState(null);
 
   const handleSubmit = async (event) => {
@@ -37,7 +41,7 @@ const CheckoutForm = () => {
       //`Elements` instance that was used to create the Payment Element
       elements,
       confirmParams: {
-        return_url: "http://localhost:8080/purchase-success",
+        return_url: return_url,
       },
     });
 
