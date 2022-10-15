@@ -6,6 +6,10 @@ import { connect } from "react-redux";
 import cart, { fetchCart } from "../store/cart";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+import Checkout from "./Checkout";
+import PurchaseSuccess from "./PurchaseSuccess";
 
 const OrderSession = (props) => {
   // Get all products in cart
@@ -56,11 +60,25 @@ const OrderSession = (props) => {
           </p>
         </strong>
         <div className="min-w-full text-center my-3">
-          <Link to="/checkout">
-            <button className="text-black bg-yellow-400 rounded-lg text-2xl px-2">
-              CHECKOUT
-            </button>
-          </Link>
+          {total === 0 ? (
+            <Link to="/purchase-success">
+              <button className="text-black bg-yellow-400 rounded-lg text-2xl px-2">
+                CHECKOUT
+              </button>
+            </Link>
+          ) : (
+            <Popup
+              trigger={
+                <button className="text-black bg-yellow-400 rounded-lg text-2xl px-2">
+                  CHECKOUT
+                </button>
+              }
+              position="center"
+              modal
+            >
+              <Checkout />
+            </Popup>
+          )}
         </div>
       </div>
     </>

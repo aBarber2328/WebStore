@@ -4,26 +4,33 @@ module.exports = router;
 
 // Set your secret key. Remember to switch to your live secret key in production.
 // See your keys here: https://dashboard.stripe.com/apikeys
-const stripe = require("stripe")(
-  "sk_test_51LqJ7vBJqjrTBHVahTDDJY0iX3DttXrzCSC6srniSNnnsGsBNbjFBqmUj1cceicEo0JuEute6vL6v7W70aSo3BZm00ZSOBLrRH"
-);
+const stripe = require("stripe")(process.env.STRIPE_SK);
 
-const endpointSecret =
-  "whsec_cb7e88d3f87c0da118ec28d7e5363dfc618267c7cf8945bf7d6a77191893a7e9";
+const endpointSecret = process.env.ENDPOINT_SECTRET;
 router.post("/create-payment-intent", async (req, res) => {
   const { items, total } = req.body;
-
+  console.log("secrets");
+  console.log(process.env.STRIPE_SK);
+  console.log(process.env.ENDPOINT_SECTRET);
   // Create a PaymentIntent with the order amount and currency
-  const paymentIntent = await stripe.paymentIntents.create({
-    amount: total * 100,
-    currency: "usd",
-    automatic_payment_methods: {
-      enabled: true,
-    },
-  });
-  res.send({
-    clientSecret: paymentIntent.client_secret,
-  });
+
+  try {
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: total * 100,
+      currency: "usd",
+      automatic_payment_methods: {
+        enabled: true,
+      },
+    });
+
+    console.log("PI created", paymentIntent);
+    res.send({
+      clientSecret: paymentIntent.client_secret,
+    });
+  } catch (error) {
+    console.log("Error!!", error);
+    res.sendStatus(404);
+  }
 });
 
 router.post(
@@ -35,12 +42,8 @@ router.post(
     let event;
 
     try {
-      console.log("sigL ", sig);
-      console.log("rerq body: ", request.body);
       event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
-      console.log("SUCESS!");
     } catch (err) {
-      console.log("Big Error", err);
       response.status(400).send(`Webhook Error: ${err.message}`);
       return;
     }

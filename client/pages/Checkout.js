@@ -98,6 +98,7 @@ const CheckoutContainer = (props) => {
 
   // Redirect user to stripe checkout page when user clicks on checkout button
   const fetchClient = async () => {
+    console.log(myCart, total);
     const { data } = await axios.post("/api/stripe/create-payment-intent", {
       items: myCart,
       total: total,
