@@ -1,5 +1,4 @@
 "use strict";
-
 // Set your secret key. Remember to switch to your live secret key in production.
 // See your keys here: https://dashboard.stripe.com/apikeys
 const stripe = require("stripe")(
@@ -60,30 +59,13 @@ async function seed() {
     });
   };
 
-  const getStripeProducts = async () => {
-    const products = {};
-
-    const { data: productsArr } = await stripe.products.list();
-
-    for (let stripeProduct of productsArr) {
-      products[stripeProduct.name] = stripeProduct.id;
-    }
-
-    return products;
-  };
-
   await (async () => {
     console.log("Start Update Product:");
 
     // Get emojis from csv file
     await parseProviders();
 
-    // Get all emojis from stripe database
-    const stripeProducts = await getStripeProducts();
-
-    // Add emojis from csv to stripe database
-    // Update emoji info if already exist in stripe
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < emojis.length; i++) {
       const [img, unicode, name] = emojis[i];
 
       if (!img || !unicode || !name) continue;
@@ -98,24 +80,29 @@ async function seed() {
       };
 
       // If emoji already exist in stripe, delete from stripe
-      if (stripeProducts[name]) {
-        await stripe.products.del(stripeProducts[name]);
-      }
+      // if (stripeProducts[img]) {
+      //   try {
+      //     await stripe.products.del(stripeProducts[img]);
+      //     console.log("delete");
+      //   } catch (error) {
+      //     console.log("Not deleted");
+      //   }
+      // }
 
       // Create new stripe product in stripe database
-      const { id: stripeProdId, default_price: stripePrice } =
-        await stripe.products.create({
-          name: img,
-          description: name,
-          default_price_data: {
-            unit_amount: product.price * 100,
-            currency: "usd",
-          },
-          expand: ["default_price"],
-        });
+      // const { id: stripeProdId, default_price: stripePrice } =
+      //   await stripe.products.create({
+      //     name: img,
+      //     description: name,
+      //     default_price_data: {
+      //       unit_amount: product.price * 100,
+      //       currency: "usd",
+      //     },
+      //     expand: ["default_price"],
+      //   });
 
-      product["stripeProdId"] = stripeProdId;
-      product["stripePriceId"] = stripePrice.id;
+      // product["stripeProdId"] = stripeProdId;
+      // product["stripePriceId"] = stripePrice.id;
 
       // Create product in PostgreSQL database
       await Product.create(product);
