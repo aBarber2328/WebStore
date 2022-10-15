@@ -15,7 +15,7 @@ const PurchaseSuccess = (props) => {
   return (
     <>
       <Navbar />
-      <div>Purchase Success!</div>
+      <div className="text-8xl text-white">Purchase Success!</div>
     </>
   );
 };
