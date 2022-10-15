@@ -19,7 +19,11 @@ const stripePromise = loadStripe(
 const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
+  const currentUrl = window.location.href;
+  const return_url =
+    currentUrl.slice(0, currentUrl.lastIndexOf("/")) + "/purchase-success";
 
+  console.log(return_url);
   const [errorMessage, setErrorMessage] = useState(null);
 
   const handleSubmit = async (event) => {
@@ -37,7 +41,7 @@ const CheckoutForm = () => {
       //`Elements` instance that was used to create the Payment Element
       elements,
       confirmParams: {
-        return_url: "http://localhost:8080/purchase-success",
+        return_url: return_url,
       },
     });
 
@@ -54,9 +58,17 @@ const CheckoutForm = () => {
   };
 
   return (
-    <form className="bg-white" onSubmit={handleSubmit}>
-      <PaymentElement />
-      <button disabled={!stripe}>Submit</button>
+    <form
+      className="bg-white flex flex-nowrap flex-col"
+      onSubmit={handleSubmit}
+    >
+      <PaymentElement className="w-10/12 justify-center" />
+      <button
+        disabled={!stripe}
+        className="text-black bg-sky-500 rounded-lg text-3xl px-4  justify-center"
+      >
+        Submit
+      </button>
       {/* Show error message to your customers */}
       {errorMessage && <div>{errorMessage}</div>}
     </form>
@@ -107,9 +119,11 @@ const CheckoutContainer = (props) => {
 
   if (!option) return <></>;
 
-  console.log(stripePromise, option);
   return (
-    <Elements stripe={stripePromise} options={{ clientSecret: option }}>
+    <Elements
+      stripe={stripePromise}
+      options={{ clientSecret: option, appearance: { theme: "stripe" } }}
+    >
       <CheckoutForm />
     </Elements>
   );
