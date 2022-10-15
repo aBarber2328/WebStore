@@ -5,6 +5,7 @@ import { Divider } from "@mui/material";
 import { connect } from "react-redux";
 import cart, { fetchCart } from "../store/cart";
 import Navbar from "../components/Navbar";
+import { Link } from "react-router-dom";
 
 const OrderSession = (props) => {
   // Get all products in cart
@@ -24,17 +25,6 @@ const OrderSession = (props) => {
   useEffect(() => {
     props.fetchCart();
   }, []);
-
-  // Redirect user to stripe checkout page when user clicks on checkout button
-  const handleCheckout = async () => {
-    const { data: url } = await axios.post(
-      "/api/stripe/create-checkout-session",
-      {
-        items: myCart,
-      }
-    );
-    window.location.href = url;
-  };
 
   return (
     <>
@@ -66,12 +56,11 @@ const OrderSession = (props) => {
           </p>
         </strong>
         <div className="min-w-full text-center my-3">
-          <button
-            onClick={handleCheckout}
-            className="text-black bg-yellow-400 rounded-lg text-2xl px-2"
-          >
-            CHECKOUT
-          </button>
+          <Link to="/checkout">
+            <button className="text-black bg-yellow-400 rounded-lg text-2xl px-2">
+              CHECKOUT
+            </button>
+          </Link>
         </div>
       </div>
     </>
