@@ -9,9 +9,6 @@ const stripe = require("stripe")(process.env.STRIPE_SK);
 const endpointSecret = process.env.ENDPOINT_SECTRET;
 router.post("/create-payment-intent", async (req, res) => {
   const { items, total } = req.body;
-  console.log("secrets");
-  console.log(process.env.STRIPE_SK);
-  console.log(process.env.ENDPOINT_SECTRET);
   // Create a PaymentIntent with the order amount and currency
 
   try {
@@ -23,7 +20,6 @@ router.post("/create-payment-intent", async (req, res) => {
       },
     });
 
-    console.log("PI created", paymentIntent);
     res.send({
       clientSecret: paymentIntent.client_secret,
     });
@@ -98,7 +94,6 @@ router.post(
 
 // Create a new stripe product
 const createStripeProduct = async ({ name, img, price }) => {
-  console.log("Create Start!");
   const dataUri = await textToImage.generate(img);
   const { id: stripeProdId, default_price: stripePrice } =
     await stripe.products.create({
@@ -111,7 +106,6 @@ const createStripeProduct = async ({ name, img, price }) => {
       expand: ["default_price"],
     });
 
-  console.log("Create End!", stripePrice.id);
   return { stripeProdId, stripePriceId: stripePrice.id };
 };
 

@@ -54,9 +54,17 @@ const CheckoutForm = () => {
   };
 
   return (
-    <form className="bg-white" onSubmit={handleSubmit}>
-      <PaymentElement />
-      <button disabled={!stripe}>Submit</button>
+    <form
+      className="bg-white flex flex-nowrap flex-col"
+      onSubmit={handleSubmit}
+    >
+      <PaymentElement className="w-10/12 justify-center" />
+      <button
+        disabled={!stripe}
+        className="text-black bg-sky-500 rounded-lg text-3xl px-4  justify-center"
+      >
+        Submit
+      </button>
       {/* Show error message to your customers */}
       {errorMessage && <div>{errorMessage}</div>}
     </form>
@@ -98,7 +106,6 @@ const CheckoutContainer = (props) => {
 
   // Redirect user to stripe checkout page when user clicks on checkout button
   const fetchClient = async () => {
-    console.log(myCart, total);
     const { data } = await axios.post("/api/stripe/create-payment-intent", {
       items: myCart,
       total: total,
@@ -108,9 +115,11 @@ const CheckoutContainer = (props) => {
 
   if (!option) return <></>;
 
-  console.log(stripePromise, option);
   return (
-    <Elements stripe={stripePromise} options={{ clientSecret: option }}>
+    <Elements
+      stripe={stripePromise}
+      options={{ clientSecret: option, appearance: { theme: "stripe" } }}
+    >
       <CheckoutForm />
     </Elements>
   );
