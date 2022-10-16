@@ -1,77 +1,101 @@
-# FS-App-Template
+<a name="readme-top"></a>
 
-## Setup
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/aBarber2328/WebStore">
+    <img src="public/images/Webstore-1.png" alt="Logo" width="80" height="80">
+  </a>
 
-To use this as boilerplate, you'll need to take the following steps:
+  <h3 align="center">WebStore</h3>
 
-* Don't fork or clone this repo! Instead, create a new, empty
-  directory on your machine and `git init` (or create an empty repo on
-  Github and clone it to your local machine)
+  <p align="center">
+    An awesome E-commerce website built with React, Tailwind, Node, Express.js, PostgreSQL, React-three-fiber, and Spline!
+    <br />
+    <!-- <a href="https://www.youtube.com/watch?v=QuREEs3BDHQ">View Demo</a>
+    · -->
+    <a href="https://github.com/aBarber2328/WebStore/issues">Request Feature</a>
+    ·
+    <a href="https://web-store072222.herokuapp.com/">Website Link</a>
+  </p>
+</div>
 
-* Now you will have to add the fs-app-template as a remote and merge it into your own repository.
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
 
-```
-git remote add boilermaker git@github.com:FullstackAcademy/fs-app-template.git
-git fetch boilermaker
-git merge boilermaker/main
-git branch -m master main
-```
+<!-- ABOUT THE PROJECT -->
 
-## Customize
+## About The Project
 
-Now that you've got the code, follow these steps to get acclimated:
+Webstore brings emojis to life and allows customers to interact with and purchase them. Webstore contains an amazing collection of more than 1800+ emojis. These emojis are supported in Unicode, the world standard for text and emojis.
 
-* Update project name and description in `package.json`
-* `npm install`
-* Create two postgres databases (`MY_APP_NAME` should match the `name`
-  parameter in `package.json`):
-* These commands will create both your **development** and **test** databases
+[![WebStore][product-screenshot]](https://web-store072222.herokuapp.com/)
 
-```
-createdb <YOUR APP NAME HERE FROM package.json>
-createdb <YOUR APP NAME HERE FROM package.json>-test
-```
+### Products
 
-* By default, running `npm test` will use your test database, while
-  regular development uses development database
+[![WebStore][product-screenshot2]](https://web-store072222.herokuapp.com/)
 
-## Start
+### Cart
 
-Sync and seed your database by running `npm run seed`. Running `npm run start:dev` will make great things happen!
+[![WebStore][product-screenshot3]](https://web-store072222.herokuapp.com/)
 
-- start:dev will both start your server and build your client side files using webpack
-- start:dev:logger is the same as start:dev, but you will see your SQL queries (can be helpful for debugging)
-- start:dev:seed will start your server and also seed your database (this is useful when you are making schema changes and you don't want to run your seed script separately)
+### Payment
 
+[![WebStore][product-screenshot4]](https://web-store072222.herokuapp.com/)
 
-### Heroku
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-1.  Set up the [Heroku command line tools][heroku-cli]
-2.  `heroku login`
-3.  Add a git remote for heroku:
+### Built With
 
-[heroku-cli]: https://devcenter.heroku.com/articles/heroku-cli
+- [![React][react.js]][react-url]
+- [![Tailwind][tailwind.js]][tailwind-url]
+- [![Node.js][node]][node-url]
+- [![Spline][spline]][spline-url]
+- [![React-three-fiber][react-three-fiber]][react-three-fiber-url]
+- [![Stripe][stripe]][stripe-url]
 
-* **If you are creating a new app...**
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-  1.  `heroku create` or `heroku create your-app-name` if you have a
-      name in mind.
-  2.  `heroku config:set JWT=<your secret here!>` to set a secret for JWT signing
+<!-- CONTACT -->
 
-Database Setup
+## Contact
 
-  3.  `heroku addons:create heroku-postgresql:hobby-dev` to add
-      ("provision") a postgres database to your heroku dyno (This creates your production database)
+Software Engineers:
 
-  4.  `heroku config:set SEED=true` to get heroku to sync and seed your database
+Andre Barber - [LinkedIn](https://www.linkedin.com/in/andreb2021/) - [GitHub](https://github.com/aBarber2328)
 
-  5.   note everytime your app restarts, the database tables will be dropped and re-created. To avoid this you can `config:unset SEED`
+Kevin Yu - [LinkedIn](https://www.linkedin.com/in/kevinyu2468/) - [GitHub](https://github.com/KYu-2468)
 
+Project Link: [https://github.com/aBarber2328/WebStore](https://github.com/aBarber2328/WebStore)
 
-* **If you already have a Heroku app...**
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-  1.  `heroku git:remote your-app-name` You'll need to be a
-      collaborator on the app.
+<!-- MARKDOWN LINKS & IMAGES -->
 
-
-Now, you should be deployed!
+[product-screenshot]: public/images/Webstore.png
+[product-screenshot2]: public/images/Allproducts.png
+[product-screenshot3]: public/images/cart-webview.png
+[product-screenshot4]: public/images/payment-webview.png
+[react.js]: public/images/react.png
+[react-url]: https://reactjs.org/
+[tailwind.js]: public/images/tailwind.png
+[tailwind-url]: https://tailwindcss.com/
+[node]: public/images/node.png
+[node-url]: https://nodejs.org/en/
+[spline]: images/tmdb.png
+[spline-url]: https://www.themoviedb.org/?language=en-US
+[react-three-fiber]: images/youtube.png
+[react-three-fiber-url]: https://www.youtube.com/
+[stripe]: images/youtube.png
+[stripe-url]: https://www.youtube.com/

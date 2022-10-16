@@ -1,7 +1,7 @@
-const Sequelize = require('sequelize');
-const db = require('../db');
+const Sequelize = require("sequelize");
+const db = require("../db");
 
-const Product = db.define('products', {
+const Product = db.define("products", {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -20,11 +20,12 @@ const Product = db.define('products', {
   description: {
     type: Sequelize.STRING,
   },
-  // reccomendedEmpathyLevel: {
-  //   type: Sequelize.INTEGER,
-  //   defaultValue: 1,
-  // },
+  stripeProdId: {
+    type: Sequelize.STRING,
+  },
+  stripePriceId: {
+    type: Sequelize.STRING,
+  },
 });
-
 
 module.exports = Product;

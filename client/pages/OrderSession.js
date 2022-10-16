@@ -1,30 +1,24 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Button from "@mui/material/Button";
 import OrderSessionProduct from "../components/OrderSessionProduct";
-import { Link } from "react-router-dom";
 import { Divider } from "@mui/material";
 import { connect } from "react-redux";
 import cart, { fetchCart } from "../store/cart";
 import Navbar from "../components/Navbar";
+import { Link } from "react-router-dom";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+import Checkout from "./Checkout";
+import PurchaseSuccess from "./PurchaseSuccess";
 
 const OrderSession = (props) => {
+  // Get all products in cart
   let myCart = props.cart.products;
+
+  // Total cost of cart
   const [total, setTotal] = useState(0);
 
-  // const updateOrderSession = async () => {
-  //   const newCart = cartRef.current.map((item) => ({
-  //     quantity: item.productOrderSessions.quantity,
-  //     orderSessionId: item.productOrderSessions.orderSessionId,
-  //     productId: item.productOrderSessions.productId,
-  //   }));
-
-  //   await axios.put("/api/order-session/", {
-  //     token: window.localStorage.token,
-  //     cart: newCart,
-  //   });
-  // };
-
+  // If cart changes, update the total price
   useEffect(() => {
     if (myCart !== undefined) {
       setTotal(calculateTotal(myCart));
@@ -32,23 +26,23 @@ const OrderSession = (props) => {
   }, [myCart]);
   
 
+  // Component did mount -> fetch cart
   useEffect(() => {
     props.fetchCart();
   }, []);
 
-  const handleCheckout = async () => {
-    await axios.post("/api/stripe/create-checkout-session", { items: myCart });
-  };
-
   return (
     <>
       <Navbar />
-      <div className="order-session">
+      <div className="mx-auto lg:w-3/4">
         <h1 className="text-white text-4xl text-center my-4">My Cart</h1>
-        <div className="flex justify-between text-white text-2xl">
-          <h2>Product</h2>
+        <div className="flex justify-between text-white text-2xl mx-3">
+          <h2 className="w-20">Product</h2>
           <h2>Quantity</h2>
-          <h2>Price</h2>
+          <h2 className="w-20">Price</h2>
+          <h2 className="hidden lg:inline text-white text-2xl w-32 text-center">
+            Total
+          </h2>
         </div>
         <Divider />
         {myCart === undefined
@@ -67,12 +61,25 @@ const OrderSession = (props) => {
           </p>
         </strong>
         <div className="min-w-full text-center my-3">
-          <button
-            onClick={handleCheckout}
-            className="text-black bg-yellow-400 rounded-lg text-2xl px-2"
-          >
-            CHECKOUT
-          </button>
+          {total === 0 ? (
+            <Link to="/purchase-success">
+              <button className="text-black bg-yellow-400 rounded-lg text-2xl px-2">
+                CHECKOUT
+              </button>
+            </Link>
+          ) : (
+            <Popup
+              trigger={
+                <button className="text-black bg-yellow-400 rounded-lg text-2xl px-2">
+                  CHECKOUT
+                </button>
+              }
+              position="center"
+              modal
+            >
+              <Checkout />
+            </Popup>
+          )}
         </div>
       </div>
     </>

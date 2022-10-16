@@ -35,6 +35,8 @@ router.get("/", async (req, res, next) => {
         price: product.price,
         imageURL: product.imageURL,
         quantity: product.productOrderSessions.quantity,
+        stripeProdId: product.stripeProdId,
+        stripePriceId: product.stripePriceId,
       };
     });
 
@@ -91,7 +93,7 @@ router.post("/", async (req, res, next) => {
           {
             quantity:
               products[i].dataValues.productOrderSessions.dataValues.quantity +
-              1,
+              +req.body.quantity,
           },
           {
             where: {
@@ -105,7 +107,7 @@ router.post("/", async (req, res, next) => {
 
     if (isNewProduct) {
       await ProductOrderSession.create({
-        quantity: 1,
+        quantity: +req.body.quantity,
         productId: +req.body.productId,
         orderSessionId: orderSession.dataValues.id,
       });

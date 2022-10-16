@@ -32,43 +32,38 @@ const OrderSessionProduct = (props) => {
 
   return (
     <>
-      <div className="order-session-product my-4">
+      <div className="my-4 mx-3 flex justify-between">
         <div>
           <div className="text-6xl">{product.imageURL}</div>
         </div>
-        <div>
-          <div
-            style={{
-              display: "flex",
-              marginLeft: "auto",
-              marginRight: "auto",
-            }}
-            className="text-sm text-white h-16 w-20 text-center"
-          >
-            <AiFillMinusCircle
-              className="self-center"
-              onClick={() => handleDecrement(product.id)}
-            />
-            <div className="mx-3 w-8 text-xl self-center text-center">
-              {quantity}
-            </div>
-            <IoIosAddCircle
-              className="self-center"
-              onClick={() => handleIncrement(product.id)}
-            />
+        <div className="flex scale-150 text-white h-16 w-24 text-center">
+          <AiFillMinusCircle
+            className="self-center w-10"
+            onClick={() => handleDecrement(product.id)}
+          />
+          <div className="mx-1 w-8 text-xl self-center text-center">
+            {quantity}
           </div>
+          <IoIosAddCircle
+            className="self-center w-10"
+            onClick={() => handleIncrement(product.id)}
+          />
         </div>
-        <div className="flex text-center">
-          <div className="text-white text-lg grow flex flex-nowrap justify-between">
+        <div className="flex flex-col text-center">
+          <div className="text-white text-2xl grow flex flex-nowrap justify-around">
             <span>$</span>
             <span>{product.price.toFixed(2)}</span>
           </div>
           <button
-            className="text-white text-sm bg-red-500 rounded-lg px-1"
+            className="text-white text-xl bg-red-500 rounded-lg px-1"
             onClick={() => removeProduct(product.id)}
           >
             Remove
           </button>
+        </div>
+        <div className="hidden lg:inline text-white text-2xl w-32 flex-nowrap justify-around">
+          <span>= $ </span>
+          <span>{(quantity * product.price).toFixed(2)}</span>
         </div>
       </div>
       <Divider className="bg-white" />

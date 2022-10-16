@@ -28,7 +28,6 @@ export const me = () => async (dispatch) => {
     });
 
     dispatch(fetchCart());
-
     return dispatch(setAuth(res.data));
   }
 };
@@ -38,6 +37,23 @@ export const authenticate =
     try {
       const res = await axios.post(`/auth/${method}`, { username, password });
       window.localStorage.setItem(TOKEN, res.data.token);
+
+      // Check if cart exist in browser local storage
+      const { products: localCart } = JSON.parse(
+        window.localStorage.getItem("cart")
+      );
+
+      // If local cart exist -> Merge localCart with database cart
+      if (localCart.length !== 0) {
+        for (let product of localCart) {
+          await axios.post("/api/order-session", {
+            token: window.localStorage.getItem("token"),
+            productId: product.id,
+            quantity: product.quantity || 1,
+          });
+        }
+      }
+
       dispatch(me());
     } catch (authError) {
       return dispatch(setAuth({ error: authError }));

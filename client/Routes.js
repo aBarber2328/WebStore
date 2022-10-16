@@ -7,6 +7,7 @@ import SingleProduct from "./pages/SingleProduct";
 import AllProducts from "./pages/AllProducts";
 import OrderSession from "./pages/OrderSession";
 import Checkout from "./pages/Checkout";
+import PurchaseSuccess from "./pages/PurchaseSuccess";
 
 /**
  * COMPONENT
@@ -20,12 +21,12 @@ class Routes extends Component {
     const { isLoggedIn } = this.props;
     return (
       <Switch>
-        <Route exact path="/checkout" element={<Checkout />} />
         <Route exact path="/" element={<Home />} />
         <Route exact path="/products" element={<AllProducts />} />
         <Route exact path="/products/:productId" element={<SingleProduct />} />
         <Route path="/order-session" element={<OrderSession />} />
-        <Route exact path="/checkout" element={<Checkout />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/purchase-success" element={<PurchaseSuccess />} />
         {/* {isLoggedIn ? (
             <Route path="/orderHistory" component={OrderHistory} />
           ) : (

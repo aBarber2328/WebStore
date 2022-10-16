@@ -1,5 +1,4 @@
 const Sequelize = require("sequelize");
-const { Op } = require("sequelize");
 const db = require("../db");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
@@ -94,13 +93,13 @@ const hashPassword = async (user) => {
   }
 };
 
-// const makeCart = async (user) => {
-//   user.createOrder({ status: "cart" });
-// };
+const makeCart = async (user) => {
+  user.createOrderSession({ status: "active" });
+};
 
 User.beforeCreate(hashPassword);
 User.beforeUpdate(hashPassword);
 User.beforeBulkCreate((users) => Promise.all(users.map(hashPassword)));
 
-// User.afterCreate(makeCart);
-// User.afterBulkCreate((users) => Promise.all(users.map(makeCart)));
+User.afterCreate(makeCart);
+User.afterBulkCreate((users) => Promise.all(users.map(makeCart)));
