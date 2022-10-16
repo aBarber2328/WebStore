@@ -40,6 +40,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products, fetchCart })
   const handleSignup = () => {
     setSignup(true);
   };
+  
   const handleCart = ()=>{
     window.localStorage.setItem("cart", '{"products":[]}');
   }

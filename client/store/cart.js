@@ -34,23 +34,27 @@ const _clearCart = () => ({
 
 export const fetchCart = () => async (dispatch) => {
   const token = window.localStorage.getItem("token");
-  let cart;
+  const localCart = window.localStorage.getItem("cart");
+  console.log(localCart);
+
   if (token) {
-    const { data } = await axios.get("/api/order-session", {
+    const { data: cart } = await axios.get("/api/order-session", {
       headers: {
         authorization: token,
       },
     });
-    cart = data;
-  } else if(cart === undefined || cart.products.length === 0){
-    const localCart = window.localStorage.getItem("cart");
+    if(cart.length === 0 && localCart !== 0){
+      dispatch(setCart(localCart));
+    }else{
+      dispatch(setCart(cart));
+    }
+
+  } else {
     if (localCart) {
       dispatch(setCart(JSON.parse(localCart)));
     } else {
       dispatch(setCart({}));
     }
-  }else{
-    dispatch(setCart(cart));
   }
 };
 

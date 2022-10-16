@@ -30,6 +30,7 @@ const OrderSession = (props) => {
       setTotal(calculateTotal(myCart));
     }
   }, [myCart]);
+  
 
   useEffect(() => {
     props.fetchCart();
