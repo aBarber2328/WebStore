@@ -15,7 +15,19 @@ const PurchaseSuccess = (props) => {
   return (
     <>
       <Navbar />
-      <div className="text-8xl text-white">Purchase Success!</div>
+
+      <div className="bg-black p-10 rounded-md flex flex-col justify-center text-center">
+        <i className="text-lime-600" style={{ fontSize: "15rem" }}>
+          ✓
+        </i>
+        <div className="text-4xl text-lime-600 font-black mb-8">
+          Purchase Success!
+        </div>
+        <p className="text-white text-2xl">
+          We received your purchase request;
+          <br /> we'll be in touch shortly!
+        </p>
+      </div>
     </>
   );
 };
