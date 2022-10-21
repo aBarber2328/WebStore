@@ -2,15 +2,17 @@ const router = require("express").Router();
 const express = require("express");
 module.exports = router;
 
-// Set your secret key. Remember to switch to your live secret key in production.
-// See your keys here: https://dashboard.stripe.com/apikeys
+// Import stripe API and get stripe secret key from server environment
 const stripe = require("stripe")(process.env.STRIPE_SK);
 
+// Get stripe end point secret key from Node.js environment variable
 const endpointSecret = process.env.ENDPOINT_SECTRET;
-router.post("/create-payment-intent", async (req, res) => {
-  const { items, total } = req.body;
-  // Create a PaymentIntent with the order amount and currency
 
+// Create payment intent
+router.post("/create-payment-intent", async (req, res) => {
+  const { total } = req.body;
+
+  // Create a PaymentIntent with the order amount and currency
   try {
     const paymentIntent = await stripe.paymentIntents.create({
       amount: total * 100,
@@ -24,17 +26,17 @@ router.post("/create-payment-intent", async (req, res) => {
       clientSecret: paymentIntent.client_secret,
     });
   } catch (error) {
-    console.log("Error!!", error);
-    res.sendStatus(404);
+    console.log(error);
+    res.sendStatus(500);
   }
 });
 
+// Create webhook to receive requests from Stripe
 router.post(
   "/webhook",
   express.raw({ type: "application/json" }),
   (request, response) => {
     const sig = request.headers["stripe-signature"];
-
     let event;
 
     try {
@@ -44,83 +46,90 @@ router.post(
       return;
     }
 
-    // Handle the event
-    switch (event.type) {
-      case "payment_intent.succeeded":
-        const paymentIntent = event.data.object;
-        // Then define and call a function to handle the event payment_intent.succeeded
-        break;
-      // ... handle other event types
-      default:
-        console.log(`Unhandled event type ${event.type}`);
-    }
-
     // Return a 200 response to acknowledge receipt of the event
-    response.send();
+    response.send(200);
   }
 );
 
 // Find a specific stripe product
-// const findStripeProduct = async ({ name, img, price }) => {
-//   const allProducts = await getStripeProducts();
+const findStripeProduct = async ({ name, img, price }) => {
+  try {
+    const allProducts = await getStripeProducts();
 
-//   if (allProducts[name]) {
-//     // Update and return
-//     console.log("product name: ", name);
-//     return await updateStripeProduct({
-//       stripePriceId: allProducts[name].stripePriceId,
-//       price,
-//     });
-//   }
+    // If Stripe product exist, update price in Stripe
+    if (allProducts[name]) {
+      // Update Stripe product and return Stripe product ID
+      return await updateStripeProduct({
+        stripePriceId: allProducts[name].stripePriceId,
+        price,
+      });
+    }
 
-//   // Create new product if product doesn't exist
-//   return await createStripeProduct({ name, img, price });
-// };
+    // If product doesn't exist, create new product
+    return await createStripeProduct({ name, img, price });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 // Get all products in stripe database
-// const getStripeProducts = async () => {
-//   const products = {};
-//   const { data: productsArr } = await stripe.products.list();
+const getStripeProducts = async () => {
+  try {
+    const products = {};
 
-//   for (let stripeProduct of productsArr) {
-//     products[stripeProduct.name] = {
-//       stripeProductId: stripeProduct.id,
-//       stripePriceId: stripeProduct["default_price"],
-//     };
-//   }
-//   console.log("Found all products!");
-//   return products;
-// };
+    // Fetch all products from Stripe
+    const { data: productsArr } = await stripe.products.list();
+
+    for (let stripeProduct of productsArr) {
+      products[stripeProduct.name] = {
+        stripeProductId: stripeProduct.id,
+        stripePriceId: stripeProduct["default_price"],
+      };
+    }
+    return products;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 // Create a new stripe product
 const createStripeProduct = async ({ name, img, price }) => {
-  const dataUri = await textToImage.generate(img);
-  const { id: stripeProdId, default_price: stripePrice } =
-    await stripe.products.create({
-      name: name,
-      images: [dataUri],
-      default_price_data: {
-        unit_amount: price * 100,
-        currency: "usd",
-      },
-      expand: ["default_price"],
-    });
+  try {
+    // Converts text emoji to image
+    const dataUri = await textToImage.generate(img);
 
-  return { stripeProdId, stripePriceId: stripePrice.id };
+    // Sends API request to Stripe to create product
+    const { id: stripeProdId, default_price: stripePrice } =
+      await stripe.products.create({
+        name: name,
+        images: [dataUri],
+        default_price_data: {
+          unit_amount: price * 100,
+          currency: "usd",
+        },
+        expand: ["default_price"],
+      });
+
+    return { stripeProdId, stripePriceId: stripePrice.id };
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 // Update price of stripe product
-// const updateStripeProduct = async ({ stripePriceId, price }) => {
-//   console.log("Update Start!");
-//   console.log(typeof price, price);
-//   const data = await stripe.prices.update(stripePriceId, {
-//     currency_options: {
-//       eur: {
-//         unit_amount: 50 * 100,
-//       },
-//     },
-//   });
-//   console.log("price: ", data);
+const updateStripeProduct = async ({ stripePriceId, price }) => {
+  try {
+    // Update price to Stripe price ID
+    await stripe.prices.update(stripePriceId, {
+      currency_options: {
+        eur: {
+          unit_amount: price * 100,
+        },
+      },
+    });
 
-//   return { stripePriceId };
-// };
+    return { stripePriceId };
+  } catch (error) {
+    console.log(error);
+  }
+};
