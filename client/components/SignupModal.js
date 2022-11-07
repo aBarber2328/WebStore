@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Signup } from "./AuthForm";
 
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+import IconButton from "@mui/material/IconButton";
 
 const style = {
   position: "absolute",
@@ -14,15 +15,26 @@ const style = {
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
+  borderRadius: 3,
 };
 
-const SignupModal = ({ open, setOpen }) => {
-  const handleClose = () => setOpen(false);
+const SignupModal = () => {
+  const [openSignup, setSignup] = useState(false);
+  const handleSignup = () => setSignup(true);
+  const handleClose = () => setSignup(false);
 
   return (
     <div>
+      <IconButton
+        className="landingButton1"
+        size="large"
+        color="inherit"
+        onClick={handleSignup}
+      >
+        Signup
+      </IconButton>
       <Modal
-        open={open}
+        open={openSignup}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"

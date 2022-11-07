@@ -10,10 +10,19 @@ import LandingFooter from "./LandingFooter";
 export default function App({ username }) {
   return (
     <div>
+      <div className="landingText " style={{color: "white", fontFamily: "Comic Sans MS", fontSize: "20px"}}>
+        Create perfect <strong style={{ color: "#AC8AF9" }}>feelings</strong>{" "}
+        for the moment
+      </div>
+      <p style={{color: "white", fontFamily: "Comic Sans MS"}}>
+        Take time to understand and embrace{" "}
+        <strong style={{ color: "#AC8AF9" }}>emotion</strong> with us!!!
+      </p>
+
       <Wrapper className="landingText" style={{ width: "100vw" }}>
         <Spline
           className="spline"
-          scene="https://prod.spline.design/bF6arss6HizC3Mhq/scene.splinecode"
+          scene="https://prod.spline.design/gj9XL0OmiXk3c3GX/scene.splinecode"
         />
         <Content className="content">
           {username ? (
@@ -24,37 +33,28 @@ export default function App({ username }) {
               <SignupModal />
             </div>
           )}
-
-          <div className="landingText">
-            Create perfect{" "}
-            <strong style={{ color: "#AC8AF9" }}>feelings</strong> for the
-            moment
-          </div>
-          <p>
-            Take time to understand and embrace{" "}
-            <strong style={{ color: "#AC8AF9" }}>emotion</strong> with us!!!
-          </p>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <Link className="landingLink" to="/products">
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-around",
-                }}
-              >
-                <span style={{ alignSelf: "center" }}>Unlock Your Inner</span>
-                <img
-                  className="landingImg"
-                  style={{ alignSelf: "center" }}
-                  src="feeling.png"
-                  alt=""
-                />
-              </div>
-            </Link>
-          </div>
         </Content>
+
       </Wrapper>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Link className="landingLink" to="/products">
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-around",
+            }}
+          >
+            <span style={{ alignSelf: "center", fontSize: "16px", color: "white" }}>Unlock Your Inner</span>
+            <img
+              className="landingImg"
+              style={{ alignSelf: "center" }}
+              src="feeling.png"
+              alt=""
+            />
+          </div>
+        </Link>
+      </div>
       <SectionBreak>
         <div className="landingBreak"></div>
       </SectionBreak>
@@ -112,6 +112,7 @@ const Content = styled.div`
 
   .landingLink {
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     cursor: pointer;
     color: #ac8af9;

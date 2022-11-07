@@ -25,7 +25,14 @@ import { FiEdit3 } from "react-icons/fi";
 import { clearCart, fetchCart } from "../store/cart";
 import SearchBar from "./SearchBar";
 
-const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products, fetchCart }) => {
+const Navbar = ({
+  handleClick,
+  isLoggedIn,
+  isAdmin,
+  cart,
+  products,
+  fetchCart,
+}) => {
   const [openLogin, setLogin] = useState(false);
   const [openSignup, setSignup] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -40,10 +47,10 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products, fetchCart })
   const handleSignup = () => {
     setSignup(true);
   };
-  
-  const handleCart = ()=>{
+
+  const handleCart = () => {
     window.localStorage.setItem("cart", '{"products":[]}');
-  }
+  };
 
   const handleProfileMenuOpen = (event) => {
     event.persist();
@@ -91,10 +98,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products, fetchCart })
     <div>
       {isLoggedIn ? (
         <Box sx={{ flexGrow: 1 }}>
-          <AppBar
-            position="static"
-            style={{ color: "#000022" }}
-          >
+          <AppBar position="static" style={{ color: "#000022" }}>
             <Toolbar className="bg-neutral-300">
               <Typography
                 variant="h6"
@@ -102,17 +106,20 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products, fetchCart })
                 component="div"
                 sx={{ display: { xs: "none", sm: "block" } }}
               >
-                <Link to="/products">WEBSTORE</Link>
+                <Link className="app-bar-links" to="/products">
+                  WEBSTORE
+                </Link>
               </Typography>
               <SearchBar allProducts={products} />
               <Box sx={{ flexGrow: 1 }} />
               <Box sx={{ display: { xs: "none", md: "flex" } }}>
                 <IconButton size="large" color="inherit">
-                  <Link to="/">
+                  <Link className="app-bar-links" to="/">
                     <Home />
                   </Link>
                 </IconButton>
                 <IconButton
+                  className="app-bar-links"
                   size="large"
                   aria-label="show 17 new notifications"
                   color="inherit"
@@ -121,7 +128,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products, fetchCart })
                     badgeContent={cartProducts && cartProducts.length}
                     color="error"
                   >
-                    <Link to="/order-session">
+                    <Link className="app-bar-links" to="/order-session">
                       <ShoppingCart />
                     </Link>
                   </Badge>
@@ -136,7 +143,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products, fetchCart })
                   // onClick={handleProfileMenuOpen}
                   color="inherit"
                 >
-                  <Link to="/">
+                  <Link className="app-bar-links" to="/">
                     <AccountCircle />
                   </Link>
                 </IconButton>
@@ -149,7 +156,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products, fetchCart })
                     setSignup(false);
                   }}
                 >
-                  <Link to="/">
+                  <Link className="app-bar-links" to="/">
                     <LogOut />
                   </Link>
                 </IconButton>
@@ -165,7 +172,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products, fetchCart })
                     badgeContent={cartProducts && cartProducts.length}
                     color="error"
                   >
-                    <Link to="/order-session">
+                    <Link className="app-bar-links" to="/order-session">
                       <ShoppingCart />
                     </Link>
                   </Badge>
@@ -196,21 +203,25 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products, fetchCart })
         </Box>
       ) : (
         <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="static">
-            <Toolbar>
+          <AppBar
+            className="app-bar"
+            position="static"
+            style={{ color: "#000022" }}
+          >
+            <Toolbar className="bg-neutral-300">
               <Typography
                 variant="h6"
                 noWrap
                 component="div"
                 sx={{ display: { xs: "none", sm: "block" } }}
               >
-                <Link to="/products">WEBSTORE</Link>
+                <Link className="app-bar-links" to="/products">WEBSTORE</Link>
               </Typography>
               <SearchBar allProducts={products} />
               <Box sx={{ flexGrow: 1 }} />
               <Box sx={{ display: { xs: "none", md: "flex" } }}>
                 <IconButton size="large" color="inherit">
-                  <Link to="/">
+                  <Link className="app-bar-links" to="/">
                     <Home />
                   </Link>
                 </IconButton>
@@ -223,19 +234,19 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products, fetchCart })
                     badgeContent={cartProducts && cartProducts.length}
                     color="error"
                   >
-                    <Link to="/order-session">
+                    <Link className="app-bar-links" to="/order-session">
                       <ShoppingCart />
                     </Link>
                   </Badge>
                 </IconButton>
-                <IconButton size="large" color="inherit" onClick={handleLogin}>
-                  <LogIn />
-                  <LoginModal open={openLogin} setOpen={setLogin} />
-                </IconButton>
-                <IconButton size="large" color="inherit" onClick={handleSignup}>
-                  <FiEdit3 />
-                  <SignupModal open={openSignup} setOpen={setSignup} />
-                </IconButton>
+                {/* <IconButton size="large" color="inherit" onClick={handleLogin}>
+                  <LogIn className="app-bar-links" /> */}
+                  <LoginModal className="landingButton1"/>
+                {/* </IconButton> */}
+                {/* <IconButton size="large" color="inherit" onClick={handleSignup}>
+                  <FiEdit3 className="app-bar-links" /> */}
+                  <SignupModal className="landingButton1"/>
+                {/* </IconButton> */}
               </Box>
               <Box sx={{ display: { xs: "flex", md: "none" } }}>
                 <IconButton
@@ -247,7 +258,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, products, fetchCart })
                     badgeContent={cartProducts && cartProducts.length}
                     color="error"
                   >
-                    <Link to="/order-session">
+                    <Link className="app-bar-links" to="/order-session">
                       <ShoppingCart />
                     </Link>
                   </Badge>

@@ -9,41 +9,54 @@ const AuthForm = (props) => {
   const { name, displayName, handleSubmit, error } = props;
 
   return (
-    <div>
-      <form
+    // <div>
+    <form
+      // style={{
+      //   display: "flex",
+      //   flexDirection: "column",
+      // }}
+      onSubmit={handleSubmit}
+      name={name}
+    >
+      <div
         style={{
           display: "flex",
           flexDirection: "column",
+          justifyContent: "center",
+          margin: "0",
         }}
-        onSubmit={handleSubmit}
-        name={name}
       >
         <div
           style={{
             display: "flex",
-            justifyContent: "center",
-            flexWrap: "wrap",
+            justifyContent: "space-around",
+            margin: "0",
           }}
         >
-          <div>
-            <label htmlFor="username">
-              <small>Username</small>
-            </label>
-            <input name="username" type="text" />
-          </div>
-          <div>
-            <label htmlFor="password">
-              <small>Password</small>
-            </label>
-            <input name="password" type="password" />
-          </div>
+          <label className="label">
+            <input name="username" type="text" required />
+            <span className="placeholder">Enter Username</span>
+          </label>
         </div>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <button type="submit">{displayName}</button>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-around",
+            margin: "0",
+          }}
+        >
+          <label className="label">
+            <input name="password" type="password" required />
+            <span className="placeholder">Enter Password</span>
+          </label>
         </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
-    </div>
+      </div>
+      <div style={{ display: "flex", justifyContent: "center", margin: "0", }}>
+        <button className="modal-button" type="submit">{displayName}</button>
+      </div>
+      {error && error.response && <div> {error.response.data} </div>}
+    </form>
+    // </div>
   );
 };
 

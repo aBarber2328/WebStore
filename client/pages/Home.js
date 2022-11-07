@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchCart } from "../store/cart";
 import SplineLanding from "../components/SplineLanding";
+import SplineMobile from "../components/SplineMobile";
+import SplineTab from "../components/SplineTab";
 
 /**
  * COMPONENT
@@ -14,9 +16,9 @@ export class Home extends React.Component {
   render() {
     const { username } = this.props;
 
-    return (
-        <SplineLanding username = {username}/>
-    );
+    if(screen.width > 920)return(<SplineLanding username = {username}/>)
+    if(screen.width > 428 && screen.width < 920)return(<SplineTab username = {username}/>)
+    if(screen.width <= 428)return(<SplineMobile username = {username}/>)
   }
 }
 

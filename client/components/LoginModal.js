@@ -1,8 +1,9 @@
-import React from "react";
-import { Login, } from "./AuthForm";
+import React, { useState } from "react";
+import { Login } from "./AuthForm";
 
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+import IconButton from "@mui/material/IconButton";
 
 const style = {
   position: "absolute",
@@ -14,18 +15,26 @@ const style = {
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
+  borderRadius: 3,
 };
 
-const LoginModal = ({ open, setOpen }) => {
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+const LoginModal = () => {
+  const [openLogin, setLogin] = useState(false);
+  const handleLogin = () => setLogin(true);
+  const handleClose = () => setLogin(false);
 
   return (
     <div>
+      <IconButton
+        className="landingButton1"
+        size="large"
+        color="inherit"
+        onClick={handleLogin}
+      >
+        Login
+      </IconButton>
       <Modal
-        open={open}
+        open={openLogin}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"

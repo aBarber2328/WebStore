@@ -13,7 +13,7 @@ export default function App({ username }) {
       <Wrapper className="landingText" style={{ width: "100vw" }}>
         <Spline
           className="spline"
-          scene="https://prod.spline.design/bF6arss6HizC3Mhq/scene.splinecode"
+          scene="https://prod.spline.design/aDlDgq3dq1Gr0Rt4/scene.splinecode"
         />
         <Content className="content">
           {username ? (
