@@ -228,6 +228,11 @@ img {
   z-index: -2;
   color: white;
 }
+.landingImg{
+  position: sticky;
+  top: 10px;
+  width: 150px;
+}
 
 @media screen and (max-width: 960px) {
   a {

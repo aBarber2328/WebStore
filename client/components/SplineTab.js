@@ -25,16 +25,18 @@ export default function App({ username }) {
             </div>
           )}
 
-          <div className="landingText">
+          <div className="landingText" style={{ fontSize: "24px" }}>
             Create perfect{" "}
             <strong style={{ color: "#AC8AF9" }}>feelings</strong> for the
             moment
           </div>
-          <p>
-            Take time to understand and embrace{" "}
-            <strong style={{ color: "#AC8AF9" }}>emotion</strong> with us!!!
-          </p>
-          <div style={{ display: "flex", justifyContent: "center" }}>
+          <div>
+            <p>
+              Take time to understand and embrace{" "}
+              <strong style={{ color: "#AC8AF9" }}>emotion</strong> with us!!!
+            </p>
+          </div>
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
             <Link className="landingLink" to="/products">
               <div
                 style={{
@@ -89,23 +91,24 @@ const Wrapper = styled.div`
 `;
 const Content = styled.div`
   position: absolute;
-  top: 30px;
-  padding-right: 30px;
-  padding-top: 20px;
+  top: 15px;
+  padding-right: 25px;
+  padding-top: 5px;
 
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 15px;
 
   .landingText {
     font-weight: bold;
-    font-size: 70px;
+    font-size: 24px;
     margin: 0;
-    max-width: 500px;
+    max-width: 350px;
   }
 
   p {
     font-weight: normal;
+    font-size: 20px;
     line-height: 150%;
     max-width: 380px;
   }
@@ -122,7 +125,6 @@ const Content = styled.div`
     padding-left: 2rem;
     padding-right: 2rem;
     padding-top: 0.5rem;
-    background-color: #352e2e;
     padding-bottom: 0.5rem;
     width: 275px;
     font-size: 20px;
