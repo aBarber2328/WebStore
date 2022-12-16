@@ -57,13 +57,14 @@ Webstore brings emojis to life and allows customers to interact with and purchas
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
-
-- [![React][react.js]][react-url]
-- [![Tailwind][tailwind.js]][tailwind-url]
-- [![Node.js][node]][node-url]
-- [![Spline][spline]][spline-url]
-- [![React-three-fiber][react-three-fiber]][react-three-fiber-url]
-- [![Stripe][stripe]][stripe-url]
+- React
+- Tailwind CSS
+- Node.js
+- Express.js
+- PostgreSQL
+- Spline
+- React-three-fiber
+- Stripe
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
