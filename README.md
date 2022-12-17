@@ -7,7 +7,7 @@
     <img src="public/images/Webstore-1.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">WebStore</h3>
+  <h3 align="center">Emoji Store</h3>
 
   <p align="center">
     An awesome E-commerce website built with React, Tailwind, Node, Express.js, PostgreSQL, React-three-fiber, and Spline!
