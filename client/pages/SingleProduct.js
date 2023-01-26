@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
-import EmotionNav from "../components/ProductNav";
 // import Canvas3D from "../components/Canvas3D";
 import Navbar from "../components/Navbar";
 
@@ -21,8 +20,6 @@ const SingleEmotion = (props) => {
       <>
         <Navbar />
         <div>
-          Single Emotion View
-          <EmotionNav />
           <h1>{product.name}</h1>
           <div className="item">
             <div className="itemDetails">

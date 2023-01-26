@@ -2,8 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchCart } from "../store/cart";
 import SplineLanding from "../components/SplineLanding";
-import { WrapAroundEnding, Wrapping } from "three";
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import SplineMobile from "../components/SplineMobile";
+import SplineTab from "../components/SplineTab";
 
 /**
  * COMPONENT
@@ -16,11 +16,9 @@ export class Home extends React.Component {
   render() {
     const { username } = this.props;
 
-    return (
-      // <div style={{width: "100vw", height: "100vh", position: "relative"}}>
-        <SplineLanding/>
-      // </div>
-    );
+    if(screen.width > 920)return(<SplineLanding username = {username}/>)
+    if(screen.width > 428 && screen.width < 920)return(<SplineTab username = {username}/>)
+    if(screen.width <= 428)return(<SplineMobile username = {username}/>)
   }
 }
 
@@ -45,10 +43,3 @@ const mapDispatch = (dispatch) => {
 };
 
 export default connect(mapState, mapDispatch)(Home);
-
-
-
-{/* <div className="landing">
-           <h3>Welcome, {username}</h3>
-           <div></div>
-        </div> */}

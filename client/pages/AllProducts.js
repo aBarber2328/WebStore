@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from "react";
-import { useState, useEffect } from "react";
+import React, {useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchProducts } from "../store/products";
@@ -57,6 +56,16 @@ const AllProducts = (props) => {
     }
   }, [products]);
 
+
+  useEffect(() => {
+    props.getProducts();
+
+    if (!window.localStorage.getItem("cart")) {
+      window.localStorage.setItem("cart", '{"products":[]}');
+    }
+    props.fetchCart();
+  }, []);
+
   // Add to cart funtion
   const handleAddToCart = async (event, product) => {
     props.addProduct(product);
@@ -103,8 +112,9 @@ const AllProducts = (props) => {
   );
 };
 
-// Component for each type/row in the all products view
 const ProductType = ({ products, name, handleAddToCart }) => {
+  // , compareProducts
+// Component for each type/row in the all products view
   // slide left function
   const slideLeft = () => {
     const slide = document.getElementById(`${name}-slider`);

@@ -55,7 +55,6 @@ const SearchBar = (props) => {
 
   const handleSearch = (event) => {
     let input = event.target.value.toUpperCase();
-
     props.productSearch(input);
   };
 

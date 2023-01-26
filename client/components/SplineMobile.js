@@ -6,55 +6,61 @@ import { Link } from "react-router-dom";
 import LoginModal from "./LoginModal";
 import SignupModal from "./SignupModal";
 import LandingFooter from "./LandingFooter";
+import Navbar from "./Navbar";
 
 export default function App({ username }) {
   return (
     <div>
+      <Navbar />
       <Wrapper className="landingText" style={{ width: "100vw" }}>
         <Spline
           className="spline"
-          scene="https://prod.spline.design/bF6arss6HizC3Mhq/scene.splinecode"
+          scene="https://prod.spline.design/gj9XL0OmiXk3c3GX/scene.splinecode"
         />
-        <Content className="content">
-          {username ? (
-            ""
-          ) : (
-            <div style={{ display: "flex", justifyContent: "flex-end" }}>
-              <LoginModal />
-              <SignupModal />
-            </div>
-          )}
 
-          <div className="landingText">
+        <Content className="content">
+          <div
+            className="landingText"
+            style={{
+              fontFamily: "Comic Sans MS",
+              fontSize: "20px",
+            }}
+          >
             Create perfect{" "}
             <strong style={{ color: "#AC8AF9" }}>feelings</strong> for the
             moment
           </div>
-          <p>
-            Take time to understand and embrace{" "}
-            <strong style={{ color: "#AC8AF9" }}>emotion</strong> with us!!!
-          </p>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <Link className="landingLink" to="/products">
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-around",
-                }}
-              >
-                <span style={{ alignSelf: "center" }}>Unlock Your Inner</span>
-                <img
-                  className="landingImg"
-                  style={{ alignSelf: "center" }}
-                  src="feeling.png"
-                  alt=""
-                />
-              </div>
-            </Link>
-          </div>
         </Content>
       </Wrapper>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          position: "-webkit-sticky",
+        }}
+      >
+        <Link className="landingLink" to="/products">
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-around",
+            }}
+          >
+            <span
+              style={{ alignSelf: "center", fontSize: "20px", color: "white" }}
+            >
+              Unlock Your Inner
+            </span>
+            <img
+              className="landingImg"
+              style={{ alignSelf: "center" }}
+              src="feeling.png"
+              alt=""
+            />
+          </div>
+        </Link>
+      </div>
       <SectionBreak>
         <div className="landingBreak"></div>
       </SectionBreak>
@@ -89,19 +95,20 @@ const Wrapper = styled.div`
 `;
 const Content = styled.div`
   position: absolute;
-  top: 30px;
-  padding-right: 30px;
-  padding-top: 20px;
+  top: 20px;
+  padding-right: 15px;
+  padding-top: 5px;
 
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 15px;
 
   .landingText {
     font-weight: bold;
-    font-size: 70px;
+    font-size: 20px;
     margin: 0;
-    max-width: 500px;
+    max-width: 250px;
+    justify-content: flex-end;
   }
 
   p {
@@ -112,6 +119,7 @@ const Content = styled.div`
 
   .landingLink {
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     cursor: pointer;
     color: #ac8af9;
@@ -122,7 +130,6 @@ const Content = styled.div`
     padding-left: 2rem;
     padding-right: 2rem;
     padding-top: 0.5rem;
-    background-color: #352e2e;
     padding-bottom: 0.5rem;
     width: 275px;
     font-size: 20px;

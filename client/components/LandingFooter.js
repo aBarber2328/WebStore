@@ -7,8 +7,10 @@ import IconButton from "@mui/material/IconButton";
 const LandingFooter = () => {
   const [openSignup, setSignup] = useState(false);
 
-  const handleSignup = () => {
+  const handleSignup = (event) => {
     setSignup(true);
+
+    if(event)return (<SignupModal open={openSignup} setOpen={setSignup}/>)
   };
 
   return (
@@ -164,22 +166,22 @@ const LandingFooter = () => {
             </h6>
             <p className="mb-4">
               <a href="#!" className="text-white">
-                Angular
+                Happiness
               </a>
             </p>
             <p className="mb-4">
               <a href="#!" className="text-white">
-                React
+                Anger
               </a>
             </p>
             <p className="mb-4">
               <a href="#!" className="text-white">
-                Vue
+                Blush
               </a>
             </p>
             <p>
               <a href="#!" className="text-white">
-                Laravel
+                Heart Eyes
               </a>
             </p>
           </div>
@@ -204,8 +206,7 @@ const LandingFooter = () => {
                 color="inherit"
                 onClick={handleSignup}
               >
-                Signup
-                <SignupModal open={openSignup} setOpen={setSignup} />
+                Sign Up
               </IconButton>
             </p>
             <p>

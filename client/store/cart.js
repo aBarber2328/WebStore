@@ -34,6 +34,8 @@ const _clearCart = () => ({
 
 export const fetchCart = () => async (dispatch) => {
   const token = window.localStorage.getItem("token");
+  const localCart = window.localStorage.getItem("cart");
+  console.log(localCart);
 
   if (token) {
     // Check if cart exist in database
@@ -42,13 +44,15 @@ export const fetchCart = () => async (dispatch) => {
         authorization: token,
       },
     });
+    if(cart.length === 0 && localCart !== 0){
+      dispatch(setCart(localCart));
+    }else{
+      dispatch(setCart(cart));
+    }
 
-    dispatch(setCart(cart));
   } else {
-    const cart = window.localStorage.getItem("cart");
-
-    if (cart) {
-      dispatch(setCart(JSON.parse(cart)));
+    if (localCart) {
+      dispatch(setCart(JSON.parse(localCart)));
     } else {
       dispatch(setCart({}));
     }
@@ -128,6 +132,7 @@ export const editQuantity =
 export const clearCart = () => async (dispatch) => {
   window.localStorage.removeItem("cart");
   dispatch(_clearCart());
+  window.localStorage.clear();
 };
 
 export const deleteProduct = (productId) => async (dispatch) => {

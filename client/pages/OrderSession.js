@@ -24,6 +24,7 @@ const OrderSession = (props) => {
       setTotal(calculateTotal(myCart));
     }
   }, [myCart]);
+  
 
   // Component did mount -> fetch cart
   useEffect(() => {
